@@ -83,7 +83,7 @@ sizeof          { return OP_SIZEOF; }
 
 {NegI}                     { yylval.number=strtod(yytext, 0); return INT_LITERAL; }
 {NegF}                     { yylval.number=strtod(yytext, 0); return FLOAT_LITERAL; }
-[{C}\_]+[{C}\_0-9]*        { yylval.string=new std::string(yytext); return VARIABLE; }
+[{C}\_]+[{C}\_0-9]*        { yylval.string=new std::string(yytext); return IDENT; }
 {S}                        {yylval.wordValue = new std::string; *(yylval.wordValue) = yytext; return STRING_LITERAL;}
 {Fr}                       {std::string tmp = yytext; double t1,t2; t1 =  std::stod(tmp.substr(0, tmp.find("/")), nullptr);  t2 = std::stod(tmp.substr(tmp.find("/")+1,tmp.size() ), nullptr); yylval.numberValue = t1/t2; return DOUBLE_LITERAL;}
 
