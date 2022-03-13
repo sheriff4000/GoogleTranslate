@@ -36,11 +36,11 @@ PROG : FUNC {}
 
 EXPR : EXPR EXPR
             | LBRACKET EXPR RBRACKET {$$ = $2}
-            | D_INT IDENT
-            | IDENT EQUAL INT_LITERAL //this is assignment, thinking we should separate, or maybe not since assignment has a return value like an expression
+            | T_INT IDENT
+            | IDENT EQUALS INT_LITERAL //this is assignment, thinking we should separate, or maybe not since assignment has a return value like an expression
 
 /* only implementinf int functions */
-FUNC : D_INT IDENT LBRACKET RBRACKET CLBRACKET PROG RETURN_STMT CRBRACKET {}
+FUNC : T_INT IDENT LBRACKET RBRACKET CLBRACKET PROG RETURN_STMT CRBRACKET {}
 
 RETURN_STMT : RETURN INT_LITERAL {}
             | RETURN IDENT
