@@ -16,6 +16,6 @@ struct context {
 
 }
 
-extern const program *parseAST();
+extern const nodePtr parseAST();
 
 #endif
