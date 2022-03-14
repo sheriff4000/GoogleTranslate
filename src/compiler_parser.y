@@ -39,7 +39,7 @@ EXPR : EXPR EXPR
             | T_INT IDENT
             | IDENT EQUALS INT_LITERAL //this is assignment, thinking we should separate, or maybe not since assignment has a return value like an expression
 
-/* only implementinf int functions */
+/* only implementing int functions */
 FUNC : T_INT IDENT LBRACKET RBRACKET CLBRACKET PROG RETURN_STMT CRBRACKET {}
 
 RETURN_STMT : RETURN INT_LITERAL {}
