@@ -2,7 +2,7 @@
     #include "ast.hpp"
     #include <cassert>
 
-    extern const program* g_root;
+    extern const nodePtr g_root;
 
     int yylex(void);
     void yyerror(const char *);
@@ -46,7 +46,12 @@ FUNC : T_INT IDENT LBRACKET RBRACKET CLBRACKET PROG RETURN_STMT CRBRACKET {}
 RETURN_STMT : RETURN INT_LITERAL {}
             | RETURN IDENT
 
-const Expression *parseAST()
+
+%%
+
+const nodePtr g_root; // Definition of variable (to match declaration earlier)
+
+const nodePtr parseAST()
 {
   g_root=0;
   yyparse();
