@@ -36,7 +36,8 @@ PROG : FUNC {}
 
 EXPR : EXPR EXPR
             | LBRACKET EXPR RBRACKET {$$ = $2}
-            | T_INT IDENT
+            | T_INT IDENT //declaration
+            | T_INT IDENT EQUALS INT_LITERAL //declaration + assignment
             | IDENT EQUALS INT_LITERAL //this is assignment, thinking we should separate, or maybe not since assignment has a return value like an expression
 
 /* only implementing int functions */
@@ -44,4 +45,11 @@ FUNC : T_INT IDENT LBRACKET RBRACKET CLBRACKET PROG RETURN_STMT CRBRACKET {}
 
 RETURN_STMT : RETURN INT_LITERAL {}
             | RETURN IDENT
+
+const Expression *parseAST()
+{
+  g_root=0;
+  yyparse();
+  return g_root;
+}
 

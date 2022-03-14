@@ -1,3 +1,5 @@
+#include "ast/ast_node.hpp"
+
 class int_literal : public node
 {
     private:
@@ -7,5 +9,9 @@ class int_literal : public node
         {
             value = val;
         }
+
+        //visualise
+
+        //codegen
 
 };
