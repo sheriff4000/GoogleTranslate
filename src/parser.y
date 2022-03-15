@@ -2,7 +2,7 @@
 
     #include "ast.hpp"
 
-    extern nodePtr g_root;
+    extern node *g_root;
     extern FILE *yyin;
 
 
@@ -13,7 +13,7 @@
 %union{
     std::string* string;
     int number;
-    nodePtr node;
+    float f_number;
 }
 
 %token IDENTIFIER CONSTANT STRING_LITERAL SIZEOF
