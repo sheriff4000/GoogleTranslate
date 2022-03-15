@@ -18,6 +18,6 @@
 #include "ast/literals/ast_string_literal.hpp"
 
 
-extern const nodePtr parseAST(std::string filename);
+extern const node* parseAST(std::string filename);
 
 #endif

@@ -112,7 +112,7 @@ extern int yydebug;
 
     #include "ast.hpp"
 
-    extern node *g_root;
+    extern nodePtr g_root;
     extern FILE *yyin;
 
 
@@ -1633,7 +1633,7 @@ yyreturn:
 // classic parser stuff - idk what it does [TO FIGURE OUT]
 node *g_root;
 
-extern node *parseAST(std::string filename)
+const node* parseAST(std::string filename)
 {
   yyin = fopen(filename.c_str(), "r");
   if(yyin == NULL){

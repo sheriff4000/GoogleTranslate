@@ -49,7 +49,7 @@ extern int yydebug;
 
     #include "ast.hpp"
 
-    extern node *g_root;
+    extern nodePtr g_root;
     extern FILE *yyin;
 
 
