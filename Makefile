@@ -3,16 +3,16 @@ CPPFLAGS += -I include
 
 all : bin/c_compiler
 
-src/bare_parser.tab.cpp src/bare_parser.tab.hpp : src/bare_parser.y
-	bison -v -d src/bare_parser.y -o src/bare_parser.tab.cpp
+src/parser.tab.cpp src/parser.tab.hpp : src/parser.y
+	bison -v -d src/parser.y -o src/parser.tab.cpp
 
-src/compiler_lexer.yy.cpp : src/compiler_lexer.flex src/compiler_parser.tab.hpp
-	flex -o src/compiler_lexer.yy.cpp  src/compiler_lexer.flex
+src/lexer.yy.cpp : src/lexer.flex src/parser.tab.hpp
+	flex -o src/lexer.yy.cpp  src/lexer.flex
 
-	
-bin/c_compiler : src/c_compiler.o src/compiler_parser.tab.o src/compiler_lexer.yy.o src/compiler_parser.tab.o
+bin/c_compiler : src/c_compiler.o src/parser.tab.o src/lexer.yy.o src/parser.tab.o
 	mkdir -p bin
 	g++ $(CPPFLAGS) -o bin/c_compiler $^
+	
 
 
 clean :
