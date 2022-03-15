@@ -8,6 +8,8 @@
 #include <vector>
 #include<unordered_map>
 
+#include "ast.hpp"
+
 
 typedef node* nodePtr;
 
