@@ -6,6 +6,7 @@
 #include <string>
 #include <map>
 #include <vector>
+#include<unordered_map>
 
 
 typedef node* nodePtr;
@@ -15,12 +16,10 @@ class node
     
 public:
 //public functions to be inherited
-    node(std::vector<nodePtr> _branches); //basic constructor
-    node();
+    //std::unordered_map<std::string, nodePtr> global_map; //variable name maps to pointer on the stack, not b important for basic functoinality tbh, also needs to be global
 
-
-    virtual void generateMIPS(std::ostream &dst, Context &context, int destReg) const;
-    virtual void generateTypeMIPS(std::ostream &dst, Context &context, int destReg, enum Specifier type) const;
+    virtual void gen_mips(std::ostream &dst, Context &context, int destReg) const;
+    //virtual void generateTypeMIPS(std::ostream &dst, Context &context, int destReg, enum Specifier type) const;
 
 
 

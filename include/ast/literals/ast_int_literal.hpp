@@ -1,4 +1,7 @@
 #include "ast/ast_node.hpp"
+#include <string>
+#include <fstream>
+#include <iostream>
 
 class int_literal : public node
 {
@@ -10,8 +13,11 @@ class int_literal : public node
             value = val;
         }
 
-        //visualise
-
         //codegen
+        //possible way of doing it?
+        void gen_mips(std::ofstream ofs, std::string reg)
+        {
+            //ofs << "addi " + reg + "" <<std::endl; //unfinished
+        }
 
 };

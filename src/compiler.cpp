@@ -2,23 +2,28 @@
 
 
 
-int main (int argc, char *argc[])
+int main (int argc, char *argv[])
 {
-    node* ast = parseAST(argv[2]);
+    nodePtr ast = parseAST(argv[2]);
+
     if argc[3] == "-o"
     {
         std::ofstream ofs(argc[4])
-        //ofs is stream from input file
+        //ofs is output stream i think, the file to put assembly into
     }
     
+    //make context now - dynamically
+    context* Context = new context;
 
-    //ast->gen_mips(ast, ofs, )
+
+    //ast->gen_mips(ofs, context,  ) //idk what arguments we'll need just yet
 
     /*
     Simon did it (and suggests to do) with OOP. The generate mips function is a member of the class. 
     And everything is within classes.
     */
 
+    delete Context
 
 }
 
