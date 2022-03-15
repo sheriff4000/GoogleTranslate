@@ -17,8 +17,8 @@ public :
     void gen_mips()
     {
         //we access the function definition and pass it the args we have for this specfic call?
-        
-        def->gen_mips(args);
+
+        def->gen_mips(std::cout, context, args);
         //so all the making a new stack frame, frame pointers, return pointers etc. is written in the function_def class function gen_mips
     }
 
