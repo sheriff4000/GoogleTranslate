@@ -2,6 +2,8 @@
 #include <fstream>
 #include <iostream>
 
+#include "ast.hpp"
+
 
 int main (int argc, char *argv[])
 {

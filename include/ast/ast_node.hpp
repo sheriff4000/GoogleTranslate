@@ -9,7 +9,7 @@
 #include<unordered_map>
 
 #include "ast.hpp"
-#include "context.cpp"
+#include "context.hpp"
 
 class node;
 
