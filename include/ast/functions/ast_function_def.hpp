@@ -27,7 +27,7 @@ public:
         branches.push_back(statement);
     }
 
-    void gen_mips(std::ostream &dst, context &context, int destReg) const override
+    void gen_mips(std::ostream &dst, context &Context) const override
     {
         int argSize = args.size();//multiply by 4 or 8 or something
 
@@ -38,10 +38,10 @@ public:
         dst << "move    $fp,$sp" << std::endl;
 
         //DO SOME STUFF IN THE MIDDLE INNIT
-        for (int i = 0; i < branches.size(); i++)
-        {
-            branches->gen_mips;
-        }
+        // for (int i = 0; i < branches.size(); i++)
+        // {
+        //     branches->gen_mips;
+        // }
 
         //EPILOGUE
         dst << "move    $sp,$fp" << std::endl;
