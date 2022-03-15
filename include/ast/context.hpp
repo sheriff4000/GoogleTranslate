@@ -5,14 +5,14 @@ class context
 {
 private:
     //variables storing register configuration, function names mapped to pointers, idk other context stuff
-    register reg;
-    std::unordered_map <std::string name, function_def* def> function_defs;//not 100% sure about what maps to what, but it's ok for now
+    registers reg;
+    std::unordered_map <std::string, function_def*> function_defs;//not 100% sure about what maps to what, but it's ok for now
 
 public:
     //functions to check context should be here
-    int get_reg(int a)
+    int get_reg()
     {
-        return reg.get_reg(a);
+        return reg.get_reg();
     }
     nodePtr get_function(std::string name)
     {
