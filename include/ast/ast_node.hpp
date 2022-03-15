@@ -25,8 +25,8 @@ public:
 
     virtual void visualise() const;
 
-    // virtual void gen_mips(std::ostream &dst, context &Context, int destReg) const;
-    // virtual void gen_mips(std::ostream &dst, context &Context) const;
+    virtual void gen_mips(std::ostream &dst, context &Context, int destReg) const;
+    virtual void gen_mips(std::ostream &dst, context &Context) const;
     // virtual void gen_mips(std::ostream &dst, context &Context, std::vector<nodePtr> args) const;
     //virtual void generateTypeMIPS(std::ostream &dst, Context &context, int destReg, enum Specifier type) const;
 
