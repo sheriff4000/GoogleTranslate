@@ -116,7 +116,7 @@ extern int yydebug;
     extern FILE *yyin;
 
 
-    int yylex(void)
+    int yylex(void);
     void yyerror(const char *);
 
 #line 123 "src/parser.tab.cpp"
@@ -151,29 +151,33 @@ extern int yydebug;
     B_NOT = 280,
     B_LSL = 281,
     B_LSR = 282,
-    INT_LITERAL = 283,
-    FLOAT_LITERAL = 284,
-    STRING_LITERAL = 285,
-    LBRACKET = 286,
-    RBRACKET = 287,
-    CLBRACKET = 288,
-    CRBRACKET = 289,
-    SLBRACKET = 290,
-    SRBRACKET = 291,
-    BREAK = 292,
-    WHILE = 293,
-    IF = 294,
-    ELSE = 295,
-    CASE = 296,
-    DEFAULT = 297,
-    VOID = 298,
-    CONTINUE = 299,
-    DO = 300,
-    ENUM = 301,
-    TYPEDEF = 302,
-    VOLATILE = 303,
-    STRUCT = 304,
-    OP_SIZEOF = 305
+    B_XOR = 283,
+    INT_LITERAL = 284,
+    FLOAT_LITERAL = 285,
+    STRING_LITERAL = 286,
+    DOUBLE_LITERAL = 287,
+    LBRACKET = 288,
+    RBRACKET = 289,
+    CLBRACKET = 290,
+    CRBRACKET = 291,
+    SLBRACKET = 292,
+    SRBRACKET = 293,
+    BREAK = 294,
+    WHILE = 295,
+    IF = 296,
+    ELSE = 297,
+    CASE = 298,
+    DEFAULT = 299,
+    VOID = 300,
+    CONTINUE = 301,
+    DO = 302,
+    ENUM = 303,
+    TYPEDEF = 304,
+    VOLATILE = 305,
+    STRUCT = 306,
+    OP_SIZEOF = 307,
+    FOR = 308,
+    SWITCH = 309
   };
 #endif
 
@@ -183,11 +187,11 @@ union YYSTYPE
 {
 #line 13 "src/parser.y"
 
-    std::string *string;
+    std::string* string;
     int number;
     nodePtr node;
 
-#line 191 "src/parser.tab.cpp"
+#line 195 "src/parser.tab.cpp"
 
 };
 typedef union YYSTYPE YYSTYPE;
@@ -509,7 +513,7 @@ union yyalloc
 #define YYLAST   14
 
 /* YYNTOKENS -- Number of terminals.  */
-#define YYNTOKENS  61
+#define YYNTOKENS  65
 /* YYNNTS -- Number of nonterminals.  */
 #define YYNNTS  6
 /* YYNRULES -- Number of rules.  */
@@ -518,7 +522,7 @@ union yyalloc
 #define YYNSTATES  21
 
 #define YYUNDEFTOK  2
-#define YYMAXUTOK   305
+#define YYMAXUTOK   309
 
 
 /* YYTRANSLATE(TOKEN-NUM) -- Symbol number corresponding to TOKEN-NUM
@@ -533,8 +537,8 @@ static const yytype_int8 yytranslate[] =
        0,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,    60,     2,     2,     2,     2,    55,     2,
-      53,    54,    56,    57,     2,    58,     2,     2,     2,     2,
+       2,     2,     2,    64,     2,     2,     2,     2,    59,     2,
+      57,    58,    60,    61,     2,    62,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -542,7 +546,7 @@ static const yytype_int8 yytranslate[] =
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
-       2,     2,     2,    51,     2,    52,    59,     2,     2,     2,
+       2,     2,     2,    55,     2,    56,    63,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
        2,     2,     2,     2,     2,     2,     2,     2,     2,     2,
@@ -560,7 +564,7 @@ static const yytype_int8 yytranslate[] =
       15,    16,    17,    18,    19,    20,    21,    22,    23,    24,
       25,    26,    27,    28,    29,    30,    31,    32,    33,    34,
       35,    36,    37,    38,    39,    40,    41,    42,    43,    44,
-      45,    46,    47,    48,    49,    50
+      45,    46,    47,    48,    49,    50,    51,    52,    53,    54
 };
 
 #if YYDEBUG
@@ -580,13 +584,14 @@ static const char *const yytname[] =
   "$end", "error", "$undefined", "IDENT", "RETURN", "T_INT", "T_FLOAT",
   "T_DOUBLE", "T_CHAR", "T_UINT", "T_SHORT", "T_VOID", "SIGNED",
   "UNSIGNED", "T_LONG", "EQUALS", "PLUS", "MINUS", "TIMES", "DIVIDE",
-  "AND", "OR", "NOT", "B_AND", "B_OR", "B_NOT", "B_LSL", "B_LSR",
-  "INT_LITERAL", "FLOAT_LITERAL", "STRING_LITERAL", "LBRACKET", "RBRACKET",
-  "CLBRACKET", "CRBRACKET", "SLBRACKET", "SRBRACKET", "BREAK", "WHILE",
-  "IF", "ELSE", "CASE", "DEFAULT", "VOID", "CONTINUE", "DO", "ENUM",
-  "TYPEDEF", "VOLATILE", "STRUCT", "OP_SIZEOF", "'{'", "'}'", "'('", "')'",
-  "'&'", "'*'", "'+'", "'-'", "'~'", "'!'", "$accept", "ROOT", "FUNC_DEF",
-  "COMPOUND_STATEMENT", "DIRECT_DECLARATOR", "TYPE_SPECIFIER", YY_NULLPTR
+  "AND", "OR", "NOT", "B_AND", "B_OR", "B_NOT", "B_LSL", "B_LSR", "B_XOR",
+  "INT_LITERAL", "FLOAT_LITERAL", "STRING_LITERAL", "DOUBLE_LITERAL",
+  "LBRACKET", "RBRACKET", "CLBRACKET", "CRBRACKET", "SLBRACKET",
+  "SRBRACKET", "BREAK", "WHILE", "IF", "ELSE", "CASE", "DEFAULT", "VOID",
+  "CONTINUE", "DO", "ENUM", "TYPEDEF", "VOLATILE", "STRUCT", "OP_SIZEOF",
+  "FOR", "SWITCH", "'{'", "'}'", "'('", "')'", "'&'", "'*'", "'+'", "'-'",
+  "'~'", "'!'", "$accept", "ROOT", "FUNC_DEF", "COMPOUND_STATEMENT",
+  "DIRECT_DECLARATOR", "TYPE_SPECIFIER", YY_NULLPTR
 };
 #endif
 
@@ -600,12 +605,12 @@ static const yytype_int16 yytoknum[] =
      275,   276,   277,   278,   279,   280,   281,   282,   283,   284,
      285,   286,   287,   288,   289,   290,   291,   292,   293,   294,
      295,   296,   297,   298,   299,   300,   301,   302,   303,   304,
-     305,   123,   125,    40,    41,    38,    42,    43,    45,   126,
-      33
+     305,   306,   307,   308,   309,   123,   125,    40,    41,    38,
+      42,    43,    45,   126,    33
 };
 # endif
 
-#define YYPACT_NINF (-42)
+#define YYPACT_NINF (-46)
 
 #define yypact_value_is_default(Yyn) \
   ((Yyn) == YYPACT_NINF)
@@ -619,9 +624,9 @@ static const yytype_int16 yytoknum[] =
      STATE-NUM.  */
 static const yytype_int8 yypact[] =
 {
-      -5,   -42,   -42,   -42,   -42,   -42,   -42,   -42,   -42,   -42,
-       4,   -42,     8,   -42,   -42,   -41,   -39,   -40,   -42,   -42,
-     -42
+      -5,   -46,   -46,   -46,   -46,   -46,   -46,   -46,   -46,   -46,
+       4,   -46,     8,   -46,   -46,   -45,   -43,   -44,   -46,   -46,
+     -46
 };
 
   /* YYDEFACT[STATE-NUM] -- Default reduction number in state STATE-NUM.
@@ -637,7 +642,7 @@ static const yytype_int8 yydefact[] =
   /* YYPGOTO[NTERM-NUM].  */
 static const yytype_int8 yypgoto[] =
 {
-     -42,   -42,   -42,   -42,   -42,   -42
+     -46,   -46,   -46,   -46,   -46,   -46
 };
 
   /* YYDEFGOTO[NTERM-NUM].  */
@@ -658,7 +663,7 @@ static const yytype_int8 yytable[] =
 static const yytype_int8 yycheck[] =
 {
        5,     6,     7,     8,     0,    10,    11,    12,    13,    14,
-      51,     3,    53,    52,    54
+      55,     3,    57,    56,    58
 };
 
   /* YYSTOS[STATE-NUM] -- The (internal number of the) accessing
@@ -666,15 +671,15 @@ static const yytype_int8 yycheck[] =
 static const yytype_int8 yystos[] =
 {
        0,     5,     6,     7,     8,    10,    11,    12,    13,    14,
-      62,    63,    66,     0,     3,    65,    51,    53,    64,    52,
-      54
+      66,    67,    70,     0,     3,    69,    55,    57,    68,    56,
+      58
 };
 
   /* YYR1[YYN] -- Symbol number of symbol that rule YYN derives.  */
 static const yytype_int8 yyr1[] =
 {
-       0,    61,    62,    63,    64,    65,    65,    66,    66,    66,
-      66,    66,    66,    66,    66,    66
+       0,    65,    66,    67,    68,    69,    69,    70,    70,    70,
+      70,    70,    70,    70,    70,    70
 };
 
   /* YYR2[YYN] -- Number of symbols on the right hand side of rule YYN.  */
@@ -1378,18 +1383,18 @@ yyreduce:
     {
   case 2:
 #line 34 "src/parser.y"
-                {g_root = (yyvsp[0].node)}
-#line 1383 "src/parser.tab.cpp"
+                {g_root = (yyvsp[0].node);}
+#line 1388 "src/parser.tab.cpp"
     break;
 
   case 3:
 #line 37 "src/parser.y"
-                                                              {(yyval.node) = new function_def()}
-#line 1389 "src/parser.tab.cpp"
+                                                              {(yyval.node) = new function_def();}
+#line 1394 "src/parser.tab.cpp"
     break;
 
 
-#line 1393 "src/parser.tab.cpp"
+#line 1398 "src/parser.tab.cpp"
 
       default: break;
     }
@@ -1628,7 +1633,7 @@ yyreturn:
 // classic parser stuff - idk what it does [TO FIGURE OUT]
 node *g_root;
 
-node *parseAST(std::string filename)
+extern node *parseAST(std::string filename)
 {
   yyin = fopen(filename.c_str(), "r");
   if(yyin == NULL){
@@ -1638,4 +1643,4 @@ node *parseAST(std::string filename)
   g_root = NULL;
   yyparse();
   return g_root;
-}
+} 

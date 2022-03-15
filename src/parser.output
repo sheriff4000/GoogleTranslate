@@ -22,9 +22,11 @@ Terminals unused in grammar
     B_NOT
     B_LSL
     B_LSR
+    B_XOR
     INT_LITERAL
     FLOAT_LITERAL
     STRING_LITERAL
+    DOUBLE_LITERAL
     LBRACKET
     RBRACKET
     CLBRACKET
@@ -45,6 +47,8 @@ Terminals unused in grammar
     VOLATILE
     STRUCT
     OP_SIZEOF
+    FOR
+    SWITCH
     '&'
     '*'
     '+'
@@ -135,48 +139,52 @@ Terminals, with rules where they appear
     B_NOT (280)
     B_LSL (281)
     B_LSR (282)
-    INT_LITERAL (283)
-    FLOAT_LITERAL (284)
-    STRING_LITERAL (285)
-    LBRACKET (286)
-    RBRACKET (287)
-    CLBRACKET (288)
-    CRBRACKET (289)
-    SLBRACKET (290)
-    SRBRACKET (291)
-    BREAK (292)
-    WHILE (293)
-    IF (294)
-    ELSE (295)
-    CASE (296)
-    DEFAULT (297)
-    VOID (298)
-    CONTINUE (299)
-    DO (300)
-    ENUM (301)
-    TYPEDEF (302)
-    VOLATILE (303)
-    STRUCT (304)
-    OP_SIZEOF (305)
+    B_XOR (283)
+    INT_LITERAL (284)
+    FLOAT_LITERAL (285)
+    STRING_LITERAL (286)
+    DOUBLE_LITERAL (287)
+    LBRACKET (288)
+    RBRACKET (289)
+    CLBRACKET (290)
+    CRBRACKET (291)
+    SLBRACKET (292)
+    SRBRACKET (293)
+    BREAK (294)
+    WHILE (295)
+    IF (296)
+    ELSE (297)
+    CASE (298)
+    DEFAULT (299)
+    VOID (300)
+    CONTINUE (301)
+    DO (302)
+    ENUM (303)
+    TYPEDEF (304)
+    VOLATILE (305)
+    STRUCT (306)
+    OP_SIZEOF (307)
+    FOR (308)
+    SWITCH (309)
 
 
 Nonterminals, with rules where they appear
 
-    $accept (61)
+    $accept (65)
         on left: 0
-    ROOT (62)
+    ROOT (66)
         on left: 1
         on right: 0
-    FUNC_DEF <node> (63)
+    FUNC_DEF <node> (67)
         on left: 2
         on right: 1
-    COMPOUND_STATEMENT (64)
+    COMPOUND_STATEMENT (68)
         on left: 3
         on right: 2
-    DIRECT_DECLARATOR (65)
+    DIRECT_DECLARATOR (69)
         on left: 4 5
         on right: 2 5
-    TYPE_SPECIFIER (66)
+    TYPE_SPECIFIER (70)
         on left: 6 7 8 9 10 11 12 13 14
         on right: 2
 

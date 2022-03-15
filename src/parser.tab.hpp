@@ -53,7 +53,7 @@ extern int yydebug;
     extern FILE *yyin;
 
 
-    int yylex(void)
+    int yylex(void);
     void yyerror(const char *);
 
 #line 60 "src/parser.tab.hpp"
@@ -88,29 +88,33 @@ extern int yydebug;
     B_NOT = 280,
     B_LSL = 281,
     B_LSR = 282,
-    INT_LITERAL = 283,
-    FLOAT_LITERAL = 284,
-    STRING_LITERAL = 285,
-    LBRACKET = 286,
-    RBRACKET = 287,
-    CLBRACKET = 288,
-    CRBRACKET = 289,
-    SLBRACKET = 290,
-    SRBRACKET = 291,
-    BREAK = 292,
-    WHILE = 293,
-    IF = 294,
-    ELSE = 295,
-    CASE = 296,
-    DEFAULT = 297,
-    VOID = 298,
-    CONTINUE = 299,
-    DO = 300,
-    ENUM = 301,
-    TYPEDEF = 302,
-    VOLATILE = 303,
-    STRUCT = 304,
-    OP_SIZEOF = 305
+    B_XOR = 283,
+    INT_LITERAL = 284,
+    FLOAT_LITERAL = 285,
+    STRING_LITERAL = 286,
+    DOUBLE_LITERAL = 287,
+    LBRACKET = 288,
+    RBRACKET = 289,
+    CLBRACKET = 290,
+    CRBRACKET = 291,
+    SLBRACKET = 292,
+    SRBRACKET = 293,
+    BREAK = 294,
+    WHILE = 295,
+    IF = 296,
+    ELSE = 297,
+    CASE = 298,
+    DEFAULT = 299,
+    VOID = 300,
+    CONTINUE = 301,
+    DO = 302,
+    ENUM = 303,
+    TYPEDEF = 304,
+    VOLATILE = 305,
+    STRUCT = 306,
+    OP_SIZEOF = 307,
+    FOR = 308,
+    SWITCH = 309
   };
 #endif
 
@@ -120,11 +124,11 @@ union YYSTYPE
 {
 #line 13 "src/parser.y"
 
-    std::string *string;
+    std::string* string;
     int number;
     nodePtr node;
 
-#line 128 "src/parser.tab.hpp"
+#line 132 "src/parser.tab.hpp"
 
 };
 typedef union YYSTYPE YYSTYPE;
