@@ -25,7 +25,12 @@ public:
     }
 
     //visualise
-    void print(std::ostream &dst, std::string indent) const override;
+    void visualise() {
+        std::cout << "function definition" << std::endl;
+        for(int i = 0; i < args.length()){
+            args[i].visualise();
+        }
+    } const override;
 
     virtual ~function_def();
     

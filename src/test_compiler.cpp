@@ -2,3 +2,5 @@
 #include<iostream>
 
 node *program = parseAST()
+
+program->visualise();
