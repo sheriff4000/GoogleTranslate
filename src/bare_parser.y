@@ -16,9 +16,19 @@
     nodePtr expr;
 }
 
-%token IDENT T_INT INT_LITERAL 
-//%token PROG //actual contents of a function
-%token LBRACKET RBRACKET CLBRACKET CRBRACKET // types of bracket
+%token IDENT RETURN
+%token T_INT T_FLOAT T_DOUBLE T_CHAR T_UINT T_SHORT T_VOID
+%token EQUALS 
+%token PLUS MINUS TIMES DIVIDE
+%token AND OR NOT B_AND B_OR B_NOT B_LSL B_LSR
+%token INT_LITERAL FLOAT_LITERAL STRING_LITERAL
+%token LBRACKET RBRACKET CLBRACKET CRBRACKET SLBRACKET SRBRACKET
+%token BREAK WHILE IF ELSE CASE DEFAULT VOID CONTINUE DO ENUM TYPEDEF VOLATILE STRUCT
+%token OP_SIZEOF
+
+%type <prog> FUNC PROG RETURN_STMT EXPR ASSIGN
+
+%start ROOT
 
 %type <expr> FUNC_DEF
 %type <number> PROG
@@ -30,7 +40,49 @@
 
 ROOT : FUNC_DEF {g_root = $1};
 
-FUNC_DEF : T_INT IDENT LBRACKET RBRACKET CLBRACKET PROG CRBRACKET {$$ = new function_def($6)};
+FUNC_DEF: TYPE_SPECIFIER DIRECT_DECLARATOR {$$ = new function_def(); //direct declarator will have args but idk}
+        ;
+
+
+DIRECT_DECLARATOR
+                : IDENT
+                | direct_declarator '(' ')'
+                ;
+
+TYPE_SPECIFIER
+	: VOID
+	| CHAR
+	| SHORT
+	| INT
+	| LONG
+	| FLOAT
+	| DOUBLE
+	| SIGNED
+	| UNSIGNED
+	;
+
+
+UNARY_OPERATOR
+	: '&'
+	| '*'
+	| '+'
+	| '-'
+	| '~'
+	| '!'
+	;
+
+PRIMARY_EXPRESSION
+                  : IDENT
+                  | CONSTANT
+                  | STRING_LITERAL  
+                  |  '(' expression ')'
+                  ;
+
+CONSTANT :INT_LITERAL 
+        | FLOAT_LITERAL 
+        |STRING_LITERA
+        ;
+
 
 PROG : INT_LITERAL {$$ = $1};
 

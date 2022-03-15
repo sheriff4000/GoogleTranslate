@@ -15,6 +15,11 @@ public:
     {
         args = _args; //I think it copies instead of reference
     }
+    function_def() //overloading
+    {
+        args = {}; 
+    }
+
     void gen_mips()
     {
         //assign values to each argument?

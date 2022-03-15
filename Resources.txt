@@ -1,0 +1,5 @@
+https://godbolt.org/
+http://homepage.divms.uiowa.edu/~ghosh/1-28-10.pdf
+
+https://norasandler.com/2017/11/29/Write-a-Compiler.html
+^^^^mmhmm
