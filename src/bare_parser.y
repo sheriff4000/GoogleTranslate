@@ -40,13 +40,12 @@
 
 ROOT : FUNC_DEF {g_root = $1};
 
-FUNC_DEF: TYPE_SPECIFIER DIRECT_DECLARATOR {$$ = new function_def(); //direct declarator will have args but idk}
-        ;
+FUNC_DEF: TYPE_SPECIFIER DIRECT_DECLARATOR {$$ = new function_def()}; //direct declarator will have args but idk}
 
 
 DIRECT_DECLARATOR
                 : IDENT
-                | direct_declarator '(' ')'
+                | DIRECT_DECLARATOR '(' ')'
                 ;
 
 TYPE_SPECIFIER
@@ -88,6 +87,8 @@ PROG : INT_LITERAL {$$ = $1};
 
 
 %%
+
+
 // classic parser stuff - idk what it does [TO FIGURE OUT]
 node *g_root;
 
