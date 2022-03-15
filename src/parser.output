@@ -1,0 +1,346 @@
+Nonterminals useless in grammar
+
+    UNARY_OPERATOR
+    PRIMARY_EXPRESSION
+    CONSTANT
+
+
+Terminals unused in grammar
+
+    RETURN
+    T_UINT
+    EQUALS
+    PLUS
+    MINUS
+    TIMES
+    DIVIDE
+    AND
+    OR
+    NOT
+    B_AND
+    B_OR
+    B_NOT
+    B_LSL
+    B_LSR
+    INT_LITERAL
+    FLOAT_LITERAL
+    STRING_LITERAL
+    LBRACKET
+    RBRACKET
+    CLBRACKET
+    CRBRACKET
+    SLBRACKET
+    SRBRACKET
+    BREAK
+    WHILE
+    IF
+    ELSE
+    CASE
+    DEFAULT
+    VOID
+    CONTINUE
+    DO
+    ENUM
+    TYPEDEF
+    VOLATILE
+    STRUCT
+    OP_SIZEOF
+    '&'
+    '*'
+    '+'
+    '-'
+    '~'
+    '!'
+
+
+Rules useless in grammar
+
+   15 UNARY_OPERATOR: '&'
+   16               | '*'
+   17               | '+'
+   18               | '-'
+   19               | '~'
+   20               | '!'
+
+   21 PRIMARY_EXPRESSION: IDENT
+   22                   | CONSTANT
+   23                   | STRING_LITERAL
+   24                   | '(' PRIMARY_EXPRESSION ')'
+
+   25 CONSTANT: INT_LITERAL
+   26         | FLOAT_LITERAL
+   27         | STRING_LITERAL
+
+
+Grammar
+
+    0 $accept: ROOT $end
+
+    1 ROOT: FUNC_DEF
+
+    2 FUNC_DEF: TYPE_SPECIFIER DIRECT_DECLARATOR COMPOUND_STATEMENT
+
+    3 COMPOUND_STATEMENT: '{' '}'
+
+    4 DIRECT_DECLARATOR: IDENT
+    5                  | DIRECT_DECLARATOR '(' ')'
+
+    6 TYPE_SPECIFIER: T_VOID
+    7               | T_CHAR
+    8               | T_SHORT
+    9               | T_INT
+   10               | T_LONG
+   11               | T_FLOAT
+   12               | T_DOUBLE
+   13               | SIGNED
+   14               | UNSIGNED
+
+
+Terminals, with rules where they appear
+
+    $end (0) 0
+    '!' (33)
+    '&' (38)
+    '(' (40) 5
+    ')' (41) 5
+    '*' (42)
+    '+' (43)
+    '-' (45)
+    '{' (123) 3
+    '}' (125) 3
+    '~' (126)
+    error (256)
+    IDENT (258) 4
+    RETURN (259)
+    T_INT (260) 9
+    T_FLOAT (261) 11
+    T_DOUBLE (262) 12
+    T_CHAR (263) 7
+    T_UINT (264)
+    T_SHORT (265) 8
+    T_VOID (266) 6
+    SIGNED (267) 13
+    UNSIGNED (268) 14
+    T_LONG (269) 10
+    EQUALS (270)
+    PLUS (271)
+    MINUS (272)
+    TIMES (273)
+    DIVIDE (274)
+    AND (275)
+    OR (276)
+    NOT (277)
+    B_AND (278)
+    B_OR (279)
+    B_NOT (280)
+    B_LSL (281)
+    B_LSR (282)
+    INT_LITERAL (283)
+    FLOAT_LITERAL (284)
+    STRING_LITERAL (285)
+    LBRACKET (286)
+    RBRACKET (287)
+    CLBRACKET (288)
+    CRBRACKET (289)
+    SLBRACKET (290)
+    SRBRACKET (291)
+    BREAK (292)
+    WHILE (293)
+    IF (294)
+    ELSE (295)
+    CASE (296)
+    DEFAULT (297)
+    VOID (298)
+    CONTINUE (299)
+    DO (300)
+    ENUM (301)
+    TYPEDEF (302)
+    VOLATILE (303)
+    STRUCT (304)
+    OP_SIZEOF (305)
+
+
+Nonterminals, with rules where they appear
+
+    $accept (61)
+        on left: 0
+    ROOT (62)
+        on left: 1
+        on right: 0
+    FUNC_DEF <node> (63)
+        on left: 2
+        on right: 1
+    COMPOUND_STATEMENT (64)
+        on left: 3
+        on right: 2
+    DIRECT_DECLARATOR (65)
+        on left: 4 5
+        on right: 2 5
+    TYPE_SPECIFIER (66)
+        on left: 6 7 8 9 10 11 12 13 14
+        on right: 2
+
+
+State 0
+
+    0 $accept: . ROOT $end
+
+    T_INT     shift, and go to state 1
+    T_FLOAT   shift, and go to state 2
+    T_DOUBLE  shift, and go to state 3
+    T_CHAR    shift, and go to state 4
+    T_SHORT   shift, and go to state 5
+    T_VOID    shift, and go to state 6
+    SIGNED    shift, and go to state 7
+    UNSIGNED  shift, and go to state 8
+    T_LONG    shift, and go to state 9
+
+    ROOT            go to state 10
+    FUNC_DEF        go to state 11
+    TYPE_SPECIFIER  go to state 12
+
+
+State 1
+
+    9 TYPE_SPECIFIER: T_INT .
+
+    $default  reduce using rule 9 (TYPE_SPECIFIER)
+
+
+State 2
+
+   11 TYPE_SPECIFIER: T_FLOAT .
+
+    $default  reduce using rule 11 (TYPE_SPECIFIER)
+
+
+State 3
+
+   12 TYPE_SPECIFIER: T_DOUBLE .
+
+    $default  reduce using rule 12 (TYPE_SPECIFIER)
+
+
+State 4
+
+    7 TYPE_SPECIFIER: T_CHAR .
+
+    $default  reduce using rule 7 (TYPE_SPECIFIER)
+
+
+State 5
+
+    8 TYPE_SPECIFIER: T_SHORT .
+
+    $default  reduce using rule 8 (TYPE_SPECIFIER)
+
+
+State 6
+
+    6 TYPE_SPECIFIER: T_VOID .
+
+    $default  reduce using rule 6 (TYPE_SPECIFIER)
+
+
+State 7
+
+   13 TYPE_SPECIFIER: SIGNED .
+
+    $default  reduce using rule 13 (TYPE_SPECIFIER)
+
+
+State 8
+
+   14 TYPE_SPECIFIER: UNSIGNED .
+
+    $default  reduce using rule 14 (TYPE_SPECIFIER)
+
+
+State 9
+
+   10 TYPE_SPECIFIER: T_LONG .
+
+    $default  reduce using rule 10 (TYPE_SPECIFIER)
+
+
+State 10
+
+    0 $accept: ROOT . $end
+
+    $end  shift, and go to state 13
+
+
+State 11
+
+    1 ROOT: FUNC_DEF .
+
+    $default  reduce using rule 1 (ROOT)
+
+
+State 12
+
+    2 FUNC_DEF: TYPE_SPECIFIER . DIRECT_DECLARATOR COMPOUND_STATEMENT
+
+    IDENT  shift, and go to state 14
+
+    DIRECT_DECLARATOR  go to state 15
+
+
+State 13
+
+    0 $accept: ROOT $end .
+
+    $default  accept
+
+
+State 14
+
+    4 DIRECT_DECLARATOR: IDENT .
+
+    $default  reduce using rule 4 (DIRECT_DECLARATOR)
+
+
+State 15
+
+    2 FUNC_DEF: TYPE_SPECIFIER DIRECT_DECLARATOR . COMPOUND_STATEMENT
+    5 DIRECT_DECLARATOR: DIRECT_DECLARATOR . '(' ')'
+
+    '{'  shift, and go to state 16
+    '('  shift, and go to state 17
+
+    COMPOUND_STATEMENT  go to state 18
+
+
+State 16
+
+    3 COMPOUND_STATEMENT: '{' . '}'
+
+    '}'  shift, and go to state 19
+
+
+State 17
+
+    5 DIRECT_DECLARATOR: DIRECT_DECLARATOR '(' . ')'
+
+    ')'  shift, and go to state 20
+
+
+State 18
+
+    2 FUNC_DEF: TYPE_SPECIFIER DIRECT_DECLARATOR COMPOUND_STATEMENT .
+
+    $default  reduce using rule 2 (FUNC_DEF)
+
+
+State 19
+
+    3 COMPOUND_STATEMENT: '{' '}' .
+
+    $default  reduce using rule 3 (COMPOUND_STATEMENT)
+
+
+State 20
+
+    5 DIRECT_DECLARATOR: DIRECT_DECLARATOR '(' ')' .
+
+    $default  reduce using rule 5 (DIRECT_DECLARATOR)
