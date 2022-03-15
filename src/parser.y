@@ -40,8 +40,13 @@
 
 ROOT : FUNC_DEF {g_root = $1};
 
-FUNC_DEF: TYPE_SPECIFIER DIRECT_DECLARATOR {$$ = new function_def()}; //direct declarator will have args but idk}
+FUNC_DEF
+        : TYPE_SPECIFIER DIRECT_DECLARATOR {$$ = new function_def()}; //direct declarator will have args but idk}
 
+COMPOUND_STATEMENT
+	: '{' '}'
+	| '{' STATEMENT_LIST '}'
+	;
 
 DIRECT_DECLARATOR
                 : IDENT
@@ -74,12 +79,12 @@ PRIMARY_EXPRESSION
                   : IDENT
                   | CONSTANT
                   | STRING_LITERAL  
-                  |  '(' expression ')'
+                  |  '(' PRIMARY_EXPRESSION ')'
                   ;
 
 CONSTANT :INT_LITERAL 
         | FLOAT_LITERAL 
-        |STRING_LITERA
+        | STRING_LITERAL
         ;
 
 
