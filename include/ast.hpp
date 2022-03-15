@@ -13,14 +13,10 @@
 #include "ast/functions/ast_function_call.hpp"
 #include "ast/functions/ast_function_def.hpp"
 #include "ast/context.hpp"
+#include "ast/literals/ast_float_literal.hpp"
+#include "ast/literals/ast_int_literal.hpp"
+#include "ast/literals/ast_string_literal.hpp"
 
-
-// struct context {
-
-//     std::map<std::string, int> var_list; //maps variable names to memory address
-//     std::map<std::string, std::string> var_type; // maps variables to their types
-
-// }
 
 extern const nodePtr parseAST(std::string filename);
 

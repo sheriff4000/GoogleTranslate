@@ -1,5 +1,6 @@
-
-#include "ast/ast_node.hpp"
+#ifndef ast_float_literal
+#define ast_float_literal
+//#include "ast/ast_node.hpp"
 
 class float_literal : public node
 {
@@ -15,3 +16,4 @@ public:
 
     //need codegen
 };
+#endif

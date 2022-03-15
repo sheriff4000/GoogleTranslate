@@ -1,5 +1,6 @@
 #include <vector>
-
+#ifndef registers_hpp
+#define registers_hpp
 class registers
 {
 private:
@@ -18,3 +19,4 @@ public:
         return -1;
     }
 };
+#endif

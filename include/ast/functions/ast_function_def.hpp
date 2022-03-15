@@ -1,6 +1,8 @@
-#include<iostream>
-#include <vector>
-#include <string>
+#ifndef ast_function_def_hpp
+#define ast_function_def_hpp
+
+#include "ast/ast_node.hpp"
+
 
 class function_def : public node
 {
@@ -71,3 +73,4 @@ public:
 
 
 };
+#endif

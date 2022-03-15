@@ -8,7 +8,6 @@
 #include <vector>
 #include<unordered_map>
 
-#include "ast.hpp"
 #include "context.hpp"
 
 class node;
