@@ -442,7 +442,7 @@ function_definition
 // classic parser stuff - idk what it does [TO FIGURE OUT]
 node *g_root;
 
-const node* parseAST(std::string filename)
+node* parseAST(std::string filename)
 {
   yyin = fopen(filename.c_str(), "r");
   if(yyin == NULL){

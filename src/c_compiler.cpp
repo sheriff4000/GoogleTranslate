@@ -1,12 +1,11 @@
 #include "ast.hpp"
 
 
-
 int main (int argc, char *argv[])
 {
     const node* ast = parseAST(argv[2]);
 
-    if (argv[3] == "-o")
+    if (o == "-o")
     {
         std::ofstream ofs(argv[4]);
         //ofs is output stream i think, the file to put assembly into
