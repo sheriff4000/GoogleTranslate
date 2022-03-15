@@ -1,8 +1,14 @@
+#ifndef context_hpp
+#define context_hpp
 #include<unordered_map>
 #include <vector>
 
 
+#include<unordered_map>
 
+#include "ast/ast_node.hpp"
+#include "ast/registers.hpp"
+#include "ast/functions/ast_function_def.hpp"
 struct function;
 
 class registers;
@@ -27,6 +33,7 @@ public:
 
 
 };
+
 
 struct function{
     int size;
