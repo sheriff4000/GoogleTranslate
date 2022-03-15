@@ -83,8 +83,6 @@ CONSTANT :INT_LITERAL
         ;
 
 
-PROG : INT_LITERAL {$$ = $1};
-
 
 %%
 
