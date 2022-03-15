@@ -20,6 +20,9 @@ public:
         _actual_func = actual_func
     }
 
+    //visualise
+    void print(std::ostream &dst, std::string indent) const override;
+
     virtual ~function_def();
     
 
