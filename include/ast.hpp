@@ -22,6 +22,6 @@
 
 // }
 
-// extern const nodePtr parseAST();
+extern const nodePtr parseAST();
 
 #endif
