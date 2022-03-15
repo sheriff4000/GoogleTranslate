@@ -87,13 +87,13 @@ CONSTANT :INT_LITERAL
 // classic parser stuff - idk what it does [TO FIGURE OUT]
 node *g_root;
 
-node *parseAST() //(std::string filename)
+node *parseAST(std::string filename)
 {
- // yyin = fopen(filename.c_str(), "r");
-  //if(yyin == NULL){
-    //std::cerr << "Couldn't open input file: " << filename << std::endl;
-   // exit(1);
-  //}
+  yyin = fopen(filename.c_str(), "r");
+  if(yyin == NULL){
+    std::cerr << "Couldn't open input file: " << filename << std::endl;
+    exit(1);
+  }
   g_root = NULL;
   yyparse();
   return g_root;

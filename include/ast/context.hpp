@@ -4,7 +4,7 @@ class context
 {
 private:
     //variables storing register configuration, function names mapped to pointers, idk other context stuff
-    registers reg;
+    register reg;
     std::unordered_map <std::string name, function_def* def> function_defs;//not 100% sure about what maps to what, but it's ok for now
 
 public:
