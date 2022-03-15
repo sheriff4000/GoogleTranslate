@@ -13,11 +13,11 @@
 %union{
     std::string *string;
     int number;
-    nodePtr expr;
+    nodePtr node;
 }
 
 %token IDENT RETURN
-%token T_INT T_FLOAT T_DOUBLE T_CHAR T_UINT T_SHORT T_VOID
+%token T_INT T_FLOAT T_DOUBLE T_CHAR T_UINT T_SHORT T_VOID SIGNED UNSIGNED T_LONG
 %token EQUALS 
 %token PLUS MINUS TIMES DIVIDE
 %token AND OR NOT B_AND B_OR B_NOT B_LSL B_LSR
@@ -26,26 +26,18 @@
 %token BREAK WHILE IF ELSE CASE DEFAULT VOID CONTINUE DO ENUM TYPEDEF VOLATILE STRUCT
 %token OP_SIZEOF
 
-%type <prog> FUNC PROG RETURN_STMT EXPR ASSIGN
-
 %start ROOT
-
-%type <expr> FUNC_DEF
-%type <number> PROG
-
-
-%start ROOT
-
+//BASICally all the ones that TURN INTO NODES
+%type <node> FUNC_DEF
 %%
 
 ROOT : FUNC_DEF {g_root = $1};
 
 FUNC_DEF
-        : TYPE_SPECIFIER DIRECT_DECLARATOR {$$ = new function_def()}; //direct declarator will have args but idk}
+        : TYPE_SPECIFIER DIRECT_DECLARATOR COMPOUND_STATEMENT {$$ = new function_def()}; //direct declarator will have args but idk}
 
 COMPOUND_STATEMENT
 	: '{' '}'
-	| '{' STATEMENT_LIST '}'
 	;
 
 DIRECT_DECLARATOR
@@ -54,13 +46,13 @@ DIRECT_DECLARATOR
                 ;
 
 TYPE_SPECIFIER
-	: VOID
-	| CHAR
-	| SHORT
-	| INT
-	| LONG
-	| FLOAT
-	| DOUBLE
+	: T_VOID
+	| T_CHAR
+	| T_SHORT
+	| T_INT
+	| T_LONG
+	| T_FLOAT
+	| T_DOUBLE
 	| SIGNED
 	| UNSIGNED
 	;
