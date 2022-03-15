@@ -6,7 +6,7 @@
 class function_call : public node {
 private: 
     nodePtr def; //points to the definition object, perhaps we could use the prexisting branches variable inherited from node class.
-    std::vector<nodePtr> args
+    std::vector<nodePtr> args;
 public :
     function_call(nodePtr _def, std::vector<nodePtr> _args)
     {

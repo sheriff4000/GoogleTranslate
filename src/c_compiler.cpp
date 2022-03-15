@@ -14,11 +14,11 @@ int main (int argc, char *argv[])
     }
     
     //make context now - dynamically
-    context* Context = new context;
+    context Context;
 
     ast->gen_mips(std::cout, Context); //idk what arguments we'll need just yet
 
-    delete Context;
+    //delete Context;
 
 }
 
