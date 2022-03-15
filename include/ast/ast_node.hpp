@@ -10,6 +10,7 @@
 
 #include "ast.hpp"
 
+class node;
 
 typedef node* nodePtr;
 
