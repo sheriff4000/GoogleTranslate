@@ -84,8 +84,6 @@ CONSTANT :INT_LITERAL
         ;
 
 
-PROG : INT_LITERAL {$$ = $1};
-
 
 %%
 // classic parser stuff - idk what it does [TO FIGURE OUT]
