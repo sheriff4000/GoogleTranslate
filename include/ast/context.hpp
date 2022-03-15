@@ -1,6 +1,6 @@
 #include<unordered_map>
-
-class context : public node
+#include "ast_node.hpp"
+class context
 {
 private:
     //variables storing register configuration, function names mapped to pointers, idk other context stuff
