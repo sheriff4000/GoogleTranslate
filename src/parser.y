@@ -16,7 +16,7 @@
     float f_number;
 }
 
-%token IDENTIFIER CONSTANT STRING_LITERAL SIZEOF
+%token IDENTIFIER FLOAT_LITERAL INT_LITERAL STRING_LITERAL SIZEOF
 %token PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
 %token AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
 %token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
@@ -36,8 +36,9 @@
 %%
 
 primary_expression
-	: IDENTIFIER
-	| CONSTANT
+	: IDENTIFIER {$$ = new identifier(*$1);}
+	| FLOAT_LITERAL
+	| INT_LITERAL
 	| STRING_LITERAL
 	| '(' expression ')'
 	;
@@ -426,14 +427,14 @@ translation_unit
 
 external_declaration
 	: function_definition
-	| declaration
+	| declaration 
 	;
 
 function_definition
 	: declaration_specifiers declarator declaration_list compound_statement
 	| declaration_specifiers declarator compound_statement
 	| declarator declaration_list compound_statement
-	| declarator compound_statement
+	| declarator compound_statement 
 	;
 
 %%
