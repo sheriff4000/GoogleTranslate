@@ -4,7 +4,7 @@
 
 int main (int argc, char *argv[])
 {
-    nodePtr ast = parseAST(argv[2]);
+    const node* ast = parseAST(argv[2]);
 
     if (argv[3] == "-o")
     {

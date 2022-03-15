@@ -9,8 +9,8 @@ extern "C" int fileno(FILE *stream);
 
 
 
-D [0-9]
-C [a-zA-Z]   
+D [0-9] // DIGIT
+L [a-zA-Z]  // LETTER
 
 I ({D}+)
 F ({D}+"."{D}+)
@@ -24,33 +24,38 @@ S \"[{C}{D}]+\"
 
 %%
 
+/* OPERATORS */
+"*"            { return('*'); }
+"/"            { return('/'); }
+"+"             { return('/'); }
+"-"             { return('-'); }
+"&&"            { return AND; }
+"||"            {return OR;}
+"!"            {return NOT;}
+"&"            {return B_AND;}
+"|"           {return B_OR;}
+"^"            {return B_XOR;}
+"~"           {return B_NOT;}
+"<<"         {return B_LSL;}
+">>"            {return B_LSR;}
 
-[*]             { return TIMES; }
-[\/]            { return DIVIDE; }
-[+]             { return PLUS; }
-[-]             { return MINUS; }
+/* EQ OPERATORS */
 
-[(]             { return LBRACKET; }
-[)]             { return RBRACKET; }
 
-[{]             { return CLBRACKET; }
-[}]             { return CRBRACKET; }
 
-[\[]            { return SLBRACKET; }
-[\]]            { return SRBRACKET; }
+/* BRACKETS */
+"("             { return('('); }
+")"             { return(')'); }
+"{"             { return('{'); }
+"}"             { return('}'); }
+\[            { return('['); }
+\]            { return(']'); }
 
-\&\&            { return AND; }
-\|\|            {return OR;}
-[\!]            {return NOT;}
+
 
 [=]             { return EQUALS; }
 
-[\&]            {return B_AND;}
-[\|]            {return B_OR;}
-[\^]            {return B_XOR;}
-[\~]            {return B_NOT;}
-\<\<            {return B_LSL;}
-\>\>            {return B_LSR;}
+
 
 "int"           { return T_INT; }
 "float"         { return T_FLOAT; }

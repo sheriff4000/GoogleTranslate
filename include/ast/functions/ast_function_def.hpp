@@ -13,6 +13,9 @@ class function_def : public node
     // 
 private:
     std::vector<nodePtr> args;
+    nodePtr* spec;
+    nodePtr* name;
+    nodePtr* param;
     std::string name;
     //std::vector<nodePtr> statements;
 public:
@@ -23,7 +26,7 @@ public:
     }
     function_def() //overloading
     {
-        args = {}; 
+        args = []; 
     }
     void add_statement(nodePtr statement)
     {
@@ -68,7 +71,7 @@ public:
     //     }
     // }
 
-    virtual ~function_def();
+    virtual ~function_def(){};
     
 
 
