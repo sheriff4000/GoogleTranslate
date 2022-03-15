@@ -37,14 +37,14 @@
 
 primary_expression
 	: IDENTIFIER {$$ = new identifier(*$1);}
-	| FLOAT_LITERAL
-	| INT_LITERAL
-	| STRING_LITERAL
+	| FLOAT_LITERAL {$$ = new f_number(*$1);}
+	| INT_LITERAL {$$ = new int_number(*$1);}
+	| STRING_LITERAL {$$ = new string_literal(*$1);}
 	| '(' expression ')'
 	;
 
 postfix_expression
-	: primary_expression
+	: primary_expression {$$ = $1}
 	| postfix_expression '[' expression ']'
 	| postfix_expression '(' ')'
 	| postfix_expression '(' argument_expression_list ')'
