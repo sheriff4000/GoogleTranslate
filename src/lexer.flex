@@ -6,12 +6,14 @@ extern "C" int fileno(FILE *stream);
 
 #include "parser.tab.hpp"
 %}
-
-
-
-D [0-9] // DIGIT
-L [a-zA-Z]  // LETTER
-E [eE][+-]?D+ // EXPONENTIAL
+%{
+/* DIGIT*/
+/* LETTER*/
+/* EXPONENTIAL*/
+%}
+D [0-9] 
+L [a-zA-Z]  
+E [eE][+-]?D+ 
 
 
 
@@ -80,9 +82,10 @@ S \"[{C}{D}]+\"
 
   /* need to add hex and binary support - get a baseline first tho*/
 
-{D}?"."{D}+E? {yylval.f_number = strtod(yytext, NULL); return(FLOAT_LITERAL);}
+{D}?"."{D}+{E}? {yylval.f_number = strtod(yytext, NULL); return(FLOAT_LITERAL);}
 
 {L}({L} | {D})* {yylval.string = new std::string(yytext); return(IDENTIFIER);}
+
 
 
   /* IGNORE */

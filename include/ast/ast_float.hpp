@@ -8,7 +8,7 @@ class float_literal : public node {
         float val;
 
     public:
-        f_number(float _val);
+        float_literal(float _val);
 };
 
 #endif
