@@ -14,6 +14,8 @@
     std::string* string;
     int number;
     float f_number;
+	nodePtr expr;
+	nodeListPtr exprlist;
 }
 
 %token IDENTIFIER FLOAT_LITERAL INT_LITERAL STRING_LITERAL SIZEOF
@@ -30,15 +32,41 @@
 
 %start translation_unit
 
-%start ROOT
+//%start ROOT
 //BASICally all the ones that TURN INTO NODES
 //%type <node> FUNC_DEF
+%type <expr> primary_expression postfix_expression unary_expression
+%type <expr> multiplicative_expression additive_expression shift_expression
+%type <expr> relational_expression equality_expression and_expression
+%type <expr> exclusive_or_expression inclusive_or_expression logical_and_expression
+%type <expr> logical_or_expression conditional_expression assignment_expression
+%type <expr> expression constant_expression
+
+%type <expr> declaration init_declarator
+%type <expr> declaration_specifiers type_specifier
+%type <expr> struct_declaration //struct_specifier
+%type <expr> struct_declarator declarator
+%type <expr> enum_specifier enumerator direct_declarator pointer
+
+%type <expr> parameter_declaration type_name abstract_declarator direct_abstract_declarator
+%type <expr> initializer statement labeled_statement compound_statement
+%type <expr> expression_statement selection_statement iteration_statement
+%type <expr> jump_statement external_declaration function_definition
+
+%type <exprlist> translation_unit struct_declaration_list argument_expression_list
+%type <exprlist> specifier_qualifier_list struct_declarator_list
+%type <exprlist> enumerator_list parameter_list
+%type <exprlist> identifier_list initializer_list declaration_list statement_list
+
+%type <number> INT_LITERAL
+%type <f_number> FLOAT_LITERAL
+%type <string> IDENTIFIER STRING_LITERAL
 %%
 
 primary_expression
-	: IDENTIFIER {$$ = new identifier(*$1);}
-	| FLOAT_LITERAL {$$ = new f_number(*$1);}
-	| INT_LITERAL {$$ = new int_number(*$1);}
+	: IDENTIFIER {$$ = new identifier(*$1);} //constructing nodes and passing the values as the argument
+	| FLOAT_LITERAL {$$ = new float_literal($1);}
+	| INT_LITERAL {$$ = new int_literal($1);}
 	| STRING_LITERAL {$$ = new string_literal(*$1);}
 	| '(' expression ')'
 	;

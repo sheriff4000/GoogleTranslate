@@ -3,12 +3,12 @@
 
 #include "ast_node.hpp"
 
-class int_number : public node {
+class int_literal : public node {
     protected:
-        int val
+        int val;
 
     public:
-        int_number(int _val);
-}
+        int_literal(int _val);
+};
 
 #endif

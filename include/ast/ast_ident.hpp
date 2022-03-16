@@ -10,7 +10,7 @@ class identifier : public node {
     public:
         identifier(std::string _id);
 
-}
+};
 
 
 

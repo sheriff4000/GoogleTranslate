@@ -6,7 +6,7 @@
 
 
 
-struct function;
+//struct function;
 
 struct function{
     int size;

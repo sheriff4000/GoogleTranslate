@@ -5,16 +5,18 @@ int main (int argc, char *argv[])
 {
     const node* ast = parseAST(argv[2]);
 
+    std::string o(argv[3]);
+    std::ofstream ofs;
     if (o == "-o")
     {
-        std::ofstream ofs(argv[4]);
+       std::ofstream ofs(argv[4]);
         //ofs is output stream i think, the file to put assembly into
     }
     
     //make context now - dynamically
     context Context;
 
-    ast->gen_mips(std::cout, Context); //idk what arguments we'll need just yet
+    ast->gen_mips(ofs, Context, NULL); //idk what arguments we'll need just yet
 
     //delete Context;
 

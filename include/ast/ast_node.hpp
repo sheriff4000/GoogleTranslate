@@ -1,5 +1,5 @@
-#ifndef ast_node
-#define ast_node
+#ifndef ast_node_hpp
+#define ast_node_hpp
 
 #include <iostream>
 #include <fstream>
@@ -9,10 +9,14 @@
 
 class node;
 typedef node *node_ptr;
+#include "ast/context.hpp"
 
 class node{
 
-    virtual ~node();
+    
+    public:
+        virtual ~node();
+        virtual void gen_mips(std::ostream &dst, context &Context, int destReg) const;
 };
 
 

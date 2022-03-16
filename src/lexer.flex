@@ -21,7 +21,7 @@ S \"[{C}{D}]+\"
 
 %%
 
-/* OPERATORS */
+  /* OPERATORS */
 "*"            { return('*'); }
 "/"            { return('/'); }
 "+"             { return('/'); }
@@ -36,11 +36,11 @@ S \"[{C}{D}]+\"
 "<<"         {return(LSL);}
 ">>"            {return(LSR);}
 
-/* EQ OPERATORS */
+  /* EQ OPERATORS */
 "="             { return('='); }
 
 
-/* BRACKETS */
+  /* BRACKETS */
 "("             { return('('); }
 ")"             { return(')'); }
 "{"             { return('{'); }
@@ -50,7 +50,7 @@ S \"[{C}{D}]+\"
 
 
 
-/* KEYWORDS */
+  /* KEYWORDS */
 "int"           { return(INT); }
 "float"         { return(FLOAT); }
 "double"        {return(DOUBLE);}
@@ -75,17 +75,17 @@ S \"[{C}{D}]+\"
 "struct"		    { return(STRUCT); }
 "sizeof"          { return(SIZEOF); }
 
-/* LITERALS */
+  /* LITERALS */
 {D}+ {yylval.number = strtol(yytext, NULL, 10); return(INT_LITERAL);}
 
-/* need to add hex and binary support - get a baseline first tho*/
+  /* need to add hex and binary support - get a baseline first tho*/
 
 {D}?"."{D}+E? {yylval.f_number = strtod(yytext, NULL); return(FLOAT_LITERAL);}
 
 {L}({L} | {D})* {yylval.string = new std::string(yytext); return(IDENTIFIER);}
 
 
-/* IGNORE */
+  /* IGNORE */
 [ \t\r\n]+		{;}
 
 %%

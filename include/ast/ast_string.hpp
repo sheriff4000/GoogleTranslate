@@ -9,6 +9,6 @@ class string_literal : public node {
 
     public:
         string_literal(std::string _string);
-}
+};
 
 #endif
