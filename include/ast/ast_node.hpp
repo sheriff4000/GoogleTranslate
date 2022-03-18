@@ -12,11 +12,13 @@ typedef node *node_ptr;
 #include "ast/context.hpp"
 
 class node{
-
+    private:
+        std::vector<node_ptr> branches;
     
     public:
         virtual ~node();
         virtual void gen_mips(std::ostream &dst, context &Context, int destReg) const;
+        virtual void gen_mips(std::ostream &dst, context &Context) const;
 };
 
 

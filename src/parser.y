@@ -11,11 +11,12 @@
 }
 
 %union{
+	yytokentype token;
     std::string* string;
     int number;
     float f_number;
-	nodePtr expr;
-	nodeListPtr exprlist;
+	node_ptr expr;
+	std::vector<node_ptr> exprlist;
 }
 
 %token IDENTIFIER FLOAT_LITERAL INT_LITERAL STRING_LITERAL SIZEOF
@@ -72,7 +73,7 @@ primary_expression
 	;
 
 postfix_expression
-	: primary_expression {$$ = $1}
+	: primary_expression {$$ = $1;}
 	| postfix_expression '[' expression ']'
 	| postfix_expression '(' ')'
 	| postfix_expression '(' argument_expression_list ')'

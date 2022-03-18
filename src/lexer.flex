@@ -3,14 +3,9 @@
 %{
 // Avoid error "error: `fileno' was not declared in this scope"
 extern "C" int fileno(FILE *stream);
-
 #include "parser.tab.hpp"
 %}
-%{
-/* DIGIT*/
-/* LETTER*/
-/* EXPONENTIAL*/
-%}
+
 D [0-9] 
 L [a-zA-Z]  
 E [eE][+-]?D+ 
@@ -28,15 +23,15 @@ E [eE][+-]?D+
 "/"            { return('/'); }
 "+"             { return('/'); }
 "-"             { return('-'); }
-"&&"            { return(AND); }
-"||"            {return(OR);}
-"!"            {return(NOT);}
+"&&"            { return(AND_OP); }
+"||"            {return(OR_OP);}
+"!"            {return(NE_OP);}
 "&"            {return('&');}
 "|"           {return('|');}
 "^"            {return('^');}
 "~"           {return('~');}
-"<<"         {return(LSL);}
-">>"            {return(LSR);}
+"<<"         {return(LEFT_OP);}
+">>"            {return(RIGHT_OP);}
 
   /* EQ OPERATORS */
 "="             { return('='); }
@@ -84,7 +79,7 @@ E [eE][+-]?D+
 
 {D}?"."{D}+{E}? {yylval.f_number = strtod(yytext, NULL); return(FLOAT_LITERAL);}
 
-{L}({L} | {D})* {yylval.string = new std::string(yytext); return(IDENTIFIER);}
+{L}({L}|{D})* {yylval.string = new std::string(yytext); return(IDENTIFIER);}
 
 
 

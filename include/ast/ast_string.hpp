@@ -5,7 +5,7 @@
 
 class string_literal : public node {
     protected:
-        std::string string;
+        std::string value;
 
     public:
         string_literal(std::string _string);
