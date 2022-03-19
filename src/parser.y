@@ -33,7 +33,7 @@
 
 %start translation_unit
 
-//%start ROOT
+
 //BASICally all the ones that TURN INTO NODES
 //%type <node> FUNC_DEF
 %type <expr> primary_expression postfix_expression unary_expression
@@ -62,6 +62,7 @@
 %type <number> INT_LITERAL
 %type <f_number> FLOAT_LITERAL
 %type <string> IDENTIFIER STRING_LITERAL
+
 %%
 
 primary_expression
@@ -210,7 +211,7 @@ declaration
 declaration_specifiers
 	: storage_class_specifier
 	| storage_class_specifier declaration_specifiers
-	| type_specifier
+	| type_specifier {$$ = $1;}
 	| type_specifier declaration_specifiers
 	| type_qualifier
 	| type_qualifier declaration_specifiers
@@ -235,10 +236,10 @@ storage_class_specifier
 	;
 
 type_specifier
-	: VOID
+	: VOID {} //Better to use a class, but for now just use strings
 	| CHAR
 	| SHORT
-	| INT
+	| INT {$$ = new specifier_type("int");} //NEEDS TO BE OF TYPE: node_ptr
 	| LONG
 	| FLOAT
 	| DOUBLE
@@ -450,9 +451,10 @@ jump_statement
 	;
 
 translation_unit
-	: external_declaration
-	| translation_unit external_declaration
+	: external_declaration {$$ = std::vector<node_ptr> {}; $$->push_back($1);} // don't know if this is the right place to do this
+	| translation_unit external_declaration {$1->push_back($2); $$ = $1;}//idek don't ask maybe it works maybe it doesn't
 	;
+	 //of type exprlist, hence we need a vector of node_ptrs
 
 external_declaration
 	: function_definition
@@ -460,8 +462,14 @@ external_declaration
 	;
 
 function_definition
-	: declaration_specifiers declarator declaration_list compound_statement
-	| declaration_specifiers declarator compound_statement
+	: declaration_specifiers declarator declaration_list compound_statement //so int main (declaration_list (list of int a, intb etc.)) then {compound statement}
+	//declaration_specifiers should be resolved just fine, int should pass through for example.
+	//declarator: should pass up from identifier(if we lex it properly) up to direct_declarator then declarator, it inlcude the empty brackets like main()
+	//we can ignore declaration_list for now since the below grammar doesn't include it, obv. in main() doesn't either
+	//compound_statement should be an empty vector? it starts as {} empty assuming empty function int main(){}. then turns into statement, then statement_list, where it's a dead end. I'm guessing it'll just stay as a compound statement
+	| declaration_specifiers declarator compound_statement {$$ = new function_def(*$1, $2, $3)}
+	//we pass the specifier (rn its a string*, better to have a class, but no), we pass the declarator (ident class), and the compound statement as a vector of node_ptrs
+	
 	| declarator declaration_list compound_statement
 	| declarator compound_statement 
 	;
