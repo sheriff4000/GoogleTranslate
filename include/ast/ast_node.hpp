@@ -7,13 +7,13 @@
 #include <map>
 #include <vector>
 
-class node;
-typedef node *node_ptr;
+// class node;
+
 #include "ast/context.hpp"
 
 class node{
     private:
-        std::vector<node_ptr> branches;
+        std::vector<node*> branches;
     
     public:
         node();
@@ -22,5 +22,5 @@ class node{
         virtual void gen_mips(std::ostream &dst, context &Context) const;
 };
 
-
+typedef node *node_ptr;
 #endif
