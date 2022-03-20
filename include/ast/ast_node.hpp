@@ -10,6 +10,7 @@
 class node;
 typedef node *node_ptr;
 #include "ast/context.hpp"
+#include "node_vector_parser.hpp"
 
 class node{
     private:

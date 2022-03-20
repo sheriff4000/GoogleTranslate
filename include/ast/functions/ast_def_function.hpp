@@ -12,8 +12,8 @@ class function_def : public node
         std::vector<node_ptr> args = {};
     public:
 
-        function_def(node_ptr _type, node_ptr _id, std::vector<node_ptr>* _args, std::vector<node_ptr>* statements);
-        function_def(node_ptr _type, node_ptr _id, node_ptr statements); //no args in this one
+        function_def(node_ptr _type, node_ptr _id, std::vector<node_ptr>* _args, std::vector<node_ptr>* statements){};
+        function_def(node_ptr _type, node_ptr _id, node_ptr statements){}; //no args in this one
 
 
         void gen_mips(std::ostream &dst, context &Context) const override
