@@ -59,7 +59,7 @@
 %type <exprlist> enumerator_list parameter_list
 %type <exprlist> identifier_list initializer_list declaration_list statement_list
 
-%type <number> INT_LITERAL
+/* %type <number> INT_LITERAL  */
 %type <f_number> FLOAT_LITERAL
 %type <string> IDENTIFIER STRING_LITERAL
 

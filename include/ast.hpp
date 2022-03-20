@@ -16,7 +16,7 @@
 #include "ast/ast_type.hpp"
 #include "ast/ast_ident.hpp"
 #include "ast/context.hpp"
-#include "ast/ast_def_function.hpp"
+#include "ast/functions/ast_def_function.hpp"
 #include "ast/ast_statement_list.hpp"
 
 
