@@ -59,7 +59,7 @@
 %type <exprlist> enumerator_list parameter_list
 %type <exprlist> identifier_list initializer_list declaration_list statement_list
 
-/* %type <number> INT_LITERAL  */
+%type <number> INT_LITERAL
 %type <f_number> FLOAT_LITERAL
 %type <string> IDENTIFIER STRING_LITERAL
 
@@ -70,7 +70,7 @@ primary_expression
 	| FLOAT_LITERAL {$$ = new float_literal($1);}
 	| INT_LITERAL {$$ = new int_literal($1);}
 	| STRING_LITERAL {$$ = new string_literal(*$1);}
-	| '(' expression ')'
+	| '(' expression ')' {$$ = $2;}
 	;
 
 postfix_expression

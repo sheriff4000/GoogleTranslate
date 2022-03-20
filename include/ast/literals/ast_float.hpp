@@ -8,7 +8,9 @@ class float_literal : public node {
         float val;
 
     public:
-        float_literal(float _val);
+        float_literal(float _val){
+            val = _val;
+        }
 };
 
 #endif

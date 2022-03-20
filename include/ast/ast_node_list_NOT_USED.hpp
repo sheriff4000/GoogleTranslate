@@ -1,6 +1,6 @@
 #ifndef ast_node_list_hpp
 #define ast_node_list_hpp
-#include "ast_node.hpp"
+#include "ast/ast_node.hpp"
 
 class node_list
 {

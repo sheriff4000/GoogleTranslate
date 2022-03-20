@@ -8,7 +8,10 @@ class identifier : public node {
         std::string id;
 
     public:
-        identifier(std::string _id);
+        identifier(std::string _id){
+            id = _id;
+            
+        };
 
 };
 

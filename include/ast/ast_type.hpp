@@ -1,4 +1,4 @@
-#include "ast_node.hpp"
+#include "ast/ast_node.hpp"
 class specifier_type: public node
 {
     private:
@@ -8,4 +8,5 @@ class specifier_type: public node
         {
             type = _type;
         }
+        virtual ~specifier_type();
 };

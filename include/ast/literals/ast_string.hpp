@@ -8,7 +8,9 @@ class string_literal : public node {
         std::string value;
 
     public:
-        string_literal(std::string _string);
+        string_literal(std::string _string){
+            value = _string;
+        }
 };
 
 #endif

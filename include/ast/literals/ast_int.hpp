@@ -8,7 +8,9 @@ class int_literal : public node {
         int val;
 
     public:
-        int_literal(int _val);
+        int_literal(int _val){
+            val = _val;
+        }
 };
 
 #endif
