@@ -12,7 +12,7 @@ class int_literal : public node {
             val = _val;
         }
 
-        void gen_mips(std::ostream &dst, context &Context, int destReg) const override;
+        void gen_mips(std::ostream &dst, context &Context, int destReg) const override {};
 };
 
 #endif

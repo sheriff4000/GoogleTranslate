@@ -11,7 +11,7 @@ class statement_list : public node
     public:
         
         statement_list(){};
-    void gen_mips(std::ostream &dst, context &Context, int destReg) const override;
+    void gen_mips(std::ostream &dst, context &Context, int destReg) const override {};
 };
 
 #endif

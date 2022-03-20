@@ -10,9 +10,9 @@ class identifier : public node {
     public:
         identifier(std::string _id){
             id = _id;
-            
+
         };
-        void gen_mips(std::ostream &dst, context &Context, int destReg) const override;
+        void gen_mips(std::ostream &dst, context &Context, int destReg) const override {};
 
 };
 

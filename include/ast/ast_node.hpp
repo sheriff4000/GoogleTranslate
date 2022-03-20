@@ -9,9 +9,6 @@
 #include "ast/context.hpp"
 
 
-
-
-
 class node{
     private:
         std::vector<node*> branches;
@@ -19,8 +16,8 @@ class node{
     public:
         node(){}
         virtual ~node(){}
-        virtual void gen_mips(std::ostream &dst, context &Context, int destReg) const;
-        virtual void gen_mips(std::ostream &dst, context &Context) const;
+        virtual void gen_mips(std::ostream &dst, context &Context, int destReg) const{};
+        virtual void gen_mips(std::ostream &dst, context &Context) const{};
 };
 typedef node *node_ptr;
 
