@@ -6,11 +6,12 @@
 
 class statement_list : public node
 {
-    public:
-        node_vector statements {};
-        statement_list();
     private:
-       // statement_list();
+        node_vector statements {};
+    public:
+        
+        statement_list();
+
 };
 
 #endif
