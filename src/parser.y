@@ -50,7 +50,7 @@
 %type <expr> enum_specifier enumerator direct_declarator pointer
 
 %type <expr> parameter_declaration type_name abstract_declarator direct_abstract_declarator
-%type <expr> initializer statement labeled_statement 
+%type <expr> initializer statement labeled_statement compound_statement
 %type <expr> expression_statement selection_statement iteration_statement
 %type <expr> jump_statement external_declaration function_definition
 
@@ -58,7 +58,7 @@
 %type <exprlist> specifier_qualifier_list struct_declarator_list
 %type <exprlist> enumerator_list parameter_list
 %type <exprlist> identifier_list initializer_list declaration_list statement_list
-%type <exprlist> compound_statement
+
 %type <number> INT_LITERAL
 %type <f_number> FLOAT_LITERAL
 %type <string> IDENTIFIER STRING_LITERAL
@@ -408,14 +408,14 @@ labeled_statement
 	;
 
 compound_statement
-	: '{' '}'
+	: '{' '}' {$$ = new statement_list();}
 	| '{' statement_list '}'
 	| '{' declaration_list '}'
 	| '{' declaration_list statement_list '}'
 	;
 
 declaration_list
-	: declaration {$$ = new_vector(declaration);}
+	: declaration {$$ = new_vector($1);}
 	| declaration_list declaration
 	;
 
