@@ -1,3 +1,6 @@
+#ifndef ast_type_hpp
+#define ast_type_hpp
+
 #include "ast/ast_node.hpp"
 class specifier_type: public node
 {
@@ -10,3 +13,5 @@ class specifier_type: public node
         }
         virtual ~specifier_type();
 };
+
+#endif
