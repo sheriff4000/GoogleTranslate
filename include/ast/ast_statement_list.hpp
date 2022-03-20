@@ -8,8 +8,9 @@ class statement_list : public node
 {
     public:
         node_vector statements {};
-    private:
         statement_list();
+    private:
+       // statement_list();
 };
 
 #endif

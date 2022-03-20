@@ -9,16 +9,16 @@
 //other AST stuff
 #include "ast/ast_node.hpp"
 
-#include "ast/ast_float.hpp"
-#include "ast/ast_int.hpp"
-#include "ast/ast_string.hpp"
+#include "ast/literals/ast_float.hpp"
+#include "ast/literals/ast_int.hpp"
+#include "ast/literals/ast_string.hpp"
 
 #include "ast/ast_type.hpp"
 #include "ast/ast_ident.hpp"
 #include "ast/context.hpp"
-#include "ast/ast_def_function.hpp"
+#include "ast/functions/ast_def_function.hpp"
 
-
+#include "ast/ast_statement_list.hpp"
 
 #include "node_vector_parser.hpp"
 

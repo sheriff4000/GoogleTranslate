@@ -1,7 +1,7 @@
 #ifndef ast_string
 #define ast_string
 
-#include "ast_node.hpp"
+#include "ast/ast_node.hpp"
 
 class string_literal : public node {
     protected:

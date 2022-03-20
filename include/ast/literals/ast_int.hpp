@@ -1,7 +1,7 @@
 #ifndef ast_int
 #define ast_int
 
-#include "ast_node.hpp"
+#include "ast/ast_node.hpp"
 
 class int_literal : public node {
     protected:
