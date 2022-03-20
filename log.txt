@@ -1,0 +1,565 @@
+harsh@ThinkPad-T14:/mnt/c/Users/harsh/Desktop/Labs/langproc-2021-cw-GoogleTranslate$ make clean && make -B &> log.txt
+rm -rf bin/*
+rm -f src/*.tab.cpp
+rm -f src/*.yy.cpp
+rm -f src/*.output
+rm -f src/*.tab.hpp
+rm -f src/*.o
+
+
+g++  -std=c++11 -W -Wall -g -Wno-unused-parameter -I include  -c -o src/c_compiler.o src/c_compiler.cpp
+bison -v -d src/parser.y -o src/parser.tab.cpp
+src/parser.y:73.11-28: warning: type clash on default action: <expr> != <> [-Wother]
+   73 | 	| '(' expression ')'
+      |           ^~~~~~~~~~~~~~~~~~
+src/parser.y:88.11-31: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+   88 | 	: assignment_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~
+src/parser.y:94.11-33: warning: type clash on default action: <expr> != <> [-Wother]
+   94 | 	| INC_OP unary_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:95.11-33: warning: type clash on default action: <expr> != <> [-Wother]
+   95 | 	| DEC_OP unary_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:96.11-40: warning: type clash on default action: <expr> != <> [-Wother]
+   96 | 	| unary_operator cast_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:97.11-33: warning: type clash on default action: <expr> != <> [-Wother]
+   97 | 	| SIZEOF unary_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:98.11-34: warning: type clash on default action: <expr> != <> [-Wother]
+   98 | 	| SIZEOF '(' type_name ')'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:116.11-25: warning: type clash on default action: <expr> != <> [-Wother]
+  116 | 	: cast_expression
+      |           ^~~~~~~~~~~~~~~
+src/parser.y:212.11-33: warning: type clash on default action: <expr> != <> [-Wother]
+  212 | 	: storage_class_specifier
+      |           ^~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:213.11-56: warning: type clash on default action: <expr> != <> [-Wother]
+  213 | 	| storage_class_specifier declaration_specifiers
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:216.11-24: warning: type clash on default action: <expr> != <> [-Wother]
+  216 | 	| type_qualifier
+      |           ^~~~~~~~~~~~~~
+src/parser.y:217.11-47: warning: type clash on default action: <expr> != <> [-Wother]
+  217 | 	| type_qualifier declaration_specifiers
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:240.11-14: warning: type clash on default action: <expr> != <> [-Wother]
+  240 | 	| CHAR
+      |           ^~~~
+src/parser.y:241.11-15: warning: type clash on default action: <expr> != <> [-Wother]
+  241 | 	| SHORT
+      |           ^~~~~
+src/parser.y:243.11-14: warning: type clash on default action: <expr> != <> [-Wother]
+  243 | 	| LONG
+      |           ^~~~
+src/parser.y:244.11-15: warning: type clash on default action: <expr> != <> [-Wother]
+  244 | 	| FLOAT
+      |           ^~~~~
+src/parser.y:245.11-16: warning: type clash on default action: <expr> != <> [-Wother]
+  245 | 	| DOUBLE
+      |           ^~~~~~
+src/parser.y:246.11-16: warning: type clash on default action: <expr> != <> [-Wother]
+  246 | 	| SIGNED
+      |           ^~~~~~
+src/parser.y:247.11-18: warning: type clash on default action: <expr> != <> [-Wother]
+  247 | 	| UNSIGNED
+      |           ^~~~~~~~
+src/parser.y:248.11-35: warning: type clash on default action: <expr> != <> [-Wother]
+  248 | 	| struct_or_union_specifier
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:250.11-19: warning: type clash on default action: <expr> != <> [-Wother]
+  250 | 	| TYPE_NAME
+      |           ^~~~~~~~~
+src/parser.y:265.11-28: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  265 | 	: struct_declaration
+      |           ^~~~~~~~~~~~~~~~~~
+src/parser.y:270.11-61: warning: type clash on default action: <expr> != <exprlist> [-Wother]
+  270 | 	: specifier_qualifier_list struct_declarator_list ';'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:274.11-49: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  274 | 	: type_specifier specifier_qualifier_list
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:275.11-24: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  275 | 	| type_specifier
+      |           ^~~~~~~~~~~~~~
+src/parser.y:276.11-49: warning: type clash on default action: <exprlist> != <> [-Wother]
+  276 | 	| type_qualifier specifier_qualifier_list
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:277.11-24: warning: type clash on default action: <exprlist> != <> [-Wother]
+  277 | 	| type_qualifier
+      |           ^~~~~~~~~~~~~~
+src/parser.y:281.11-27: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  281 | 	: struct_declarator
+      |           ^~~~~~~~~~~~~~~~~
+src/parser.y:287.11-33: warning: type clash on default action: <expr> != <> [-Wother]
+  287 | 	| ':' constant_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:292.11-38: warning: type clash on default action: <expr> != <> [-Wother]
+  292 | 	: ENUM '{' enumerator_list '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:293.11-49: warning: type clash on default action: <expr> != <> [-Wother]
+  293 | 	| ENUM IDENTIFIER '{' enumerator_list '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:294.11-25: warning: type clash on default action: <expr> != <> [-Wother]
+  294 | 	| ENUM IDENTIFIER
+      |           ^~~~~~~~~~~~~~~
+src/parser.y:298.11-20: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  298 | 	: enumerator
+      |           ^~~~~~~~~~
+src/parser.y:303.11-20: warning: type clash on default action: <expr> != <string> [-Wother]
+  303 | 	: IDENTIFIER
+      |           ^~~~~~~~~~
+src/parser.y:304.11-44: warning: type clash on default action: <expr> != <string> [-Wother]
+  304 | 	| IDENTIFIER '=' constant_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:318.11-20: warning: type clash on default action: <expr> != <string> [-Wother]
+  318 | 	: IDENTIFIER
+      |           ^~~~~~~~~~
+src/parser.y:319.11-28: warning: type clash on default action: <expr> != <> [-Wother]
+  319 | 	| '(' declarator ')'
+      |           ^~~~~~~~~~~~~~~~~~
+src/parser.y:328.11-13: warning: type clash on default action: <expr> != <> [-Wother]
+  328 | 	: '*'
+      |           ^~~
+src/parser.y:329.11-33: warning: type clash on default action: <expr> != <> [-Wother]
+  329 | 	| '*' type_qualifier_list
+      |           ^~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:330.11-21: warning: type clash on default action: <expr> != <> [-Wother]
+  330 | 	| '*' pointer
+      |           ^~~~~~~~~~~
+src/parser.y:331.11-41: warning: type clash on default action: <expr> != <> [-Wother]
+  331 | 	| '*' type_qualifier_list pointer
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:346.11-31: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  346 | 	: parameter_declaration
+      |           ^~~~~~~~~~~~~~~~~~~~~
+src/parser.y:357.11-20: warning: type clash on default action: <exprlist> != <string> [-Wother]
+  357 | 	: IDENTIFIER
+      |           ^~~~~~~~~~
+src/parser.y:362.11-34: warning: type clash on default action: <expr> != <exprlist> [-Wother]
+  362 | 	: specifier_qualifier_list
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:363.11-54: warning: type clash on default action: <expr> != <exprlist> [-Wother]
+  363 | 	| specifier_qualifier_list abstract_declarator
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:373.11-37: warning: type clash on default action: <expr> != <> [-Wother]
+  373 | 	: '(' abstract_declarator ')'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:374.11-17: warning: type clash on default action: <expr> != <> [-Wother]
+  374 | 	| '[' ']'
+      |           ^~~~~~~
+src/parser.y:375.11-37: warning: type clash on default action: <expr> != <> [-Wother]
+  375 | 	| '[' constant_expression ']'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:378.11-17: warning: type clash on default action: <expr> != <> [-Wother]
+  378 | 	| '(' ')'
+      |           ^~~~~~~
+src/parser.y:379.11-37: warning: type clash on default action: <expr> != <> [-Wother]
+  379 | 	| '(' parameter_type_list ')'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:386.11-34: warning: type clash on default action: <expr> != <> [-Wother]
+  386 | 	| '{' initializer_list '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:387.11-38: warning: type clash on default action: <expr> != <> [-Wother]
+  387 | 	| '{' initializer_list ',' '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:391.11-21: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  391 | 	: initializer
+      |           ^~~~~~~~~~~
+src/parser.y:405.11-34: warning: type clash on default action: <expr> != <string> [-Wother]
+  405 | 	: IDENTIFIER ':' statement
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:406.11-48: warning: type clash on default action: <expr> != <> [-Wother]
+  406 | 	| CASE constant_expression ':' statement
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:407.11-31: warning: type clash on default action: <expr> != <> [-Wother]
+  407 | 	| DEFAULT ':' statement
+      |           ^~~~~~~~~~~~~~~~~~~~~
+src/parser.y:411.11-17: warning: type clash on default action: <expr> != <> [-Wother]
+  411 | 	: '{' '}'
+      |           ^~~~~~~
+src/parser.y:412.11-32: warning: type clash on default action: <expr> != <> [-Wother]
+  412 | 	| '{' statement_list '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:413.11-34: warning: type clash on default action: <expr> != <> [-Wother]
+  413 | 	| '{' declaration_list '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:414.11-49: warning: type clash on default action: <expr> != <> [-Wother]
+  414 | 	| '{' declaration_list statement_list '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:418.11-21: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  418 | 	: declaration
+      |           ^~~~~~~~~~~
+src/parser.y:423.11-19: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  423 | 	: statement
+      |           ^~~~~~~~~
+src/parser.y:428.11-13: warning: type clash on default action: <expr> != <> [-Wother]
+  428 | 	: ';'
+      |           ^~~
+src/parser.y:433.11-41: warning: type clash on default action: <expr> != <> [-Wother]
+  433 | 	: IF '(' expression ')' statement
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:434.11-56: warning: type clash on default action: <expr> != <> [-Wother]
+  434 | 	| IF '(' expression ')' statement ELSE statement
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:435.11-45: warning: type clash on default action: <expr> != <> [-Wother]
+  435 | 	| SWITCH '(' expression ')' statement
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:439.11-44: warning: type clash on default action: <expr> != <> [-Wother]
+  439 | 	: WHILE '(' expression ')' statement
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:440.11-51: warning: type clash on default action: <expr> != <> [-Wother]
+  440 | 	| DO statement WHILE '(' expression ')' ';'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:441.11-73: warning: type clash on default action: <expr> != <> [-Wother]
+  441 | 	| FOR '(' expression_statement expression_statement ')' state...
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:442.11-84: warning: type clash on default action: <expr> != <> [-Wother]
+  442 | 	| FOR '(' expression_statement expression_statement expressio...
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:446.11-29: warning: type clash on default action: <expr> != <> [-Wother]
+  446 | 	: GOTO IDENTIFIER ';'
+      |           ^~~~~~~~~~~~~~~~~~~
+src/parser.y:447.11-22: warning: type clash on default action: <expr> != <> [-Wother]
+  447 | 	| CONTINUE ';'
+      |           ^~~~~~~~~~~~
+src/parser.y:448.11-19: warning: type clash on default action: <expr> != <> [-Wother]
+  448 | 	| BREAK ';'
+      |           ^~~~~~~~~
+src/parser.y:449.11-20: warning: type clash on default action: <expr> != <> [-Wother]
+  449 | 	| RETURN ';'
+      |           ^~~~~~~~~~
+src/parser.y:450.11-31: warning: type clash on default action: <expr> != <> [-Wother]
+  450 | 	| RETURN expression ';'
+      |           ^~~~~~~~~~~~~~~~~~~~~
+src/parser.y: warning: 1 shift/reduce conflict [-Wconflicts-sr]
+flex -o src/lexer.yy.cpp  src/lexer.flex
+g++  -std=c++11 -W -Wall -g -Wno-unused-parameter -I include  -c -o src/lexer.yy.o src/lexer.yy.cpp
+src/lexer.yy.cpp:1407:17: warning: ‘void yyunput(int, char*)’ defined but not used [-Wunused-function]
+ 1407 |     static void yyunput (int c, char * yy_bp )
+      |                 ^~~~~~~
+bison -v -d src/parser.y -o src/parser.tab.cpp
+src/parser.y:73.11-28: warning: type clash on default action: <expr> != <> [-Wother]
+   73 | 	| '(' expression ')'
+      |           ^~~~~~~~~~~~~~~~~~
+src/parser.y:88.11-31: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+   88 | 	: assignment_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~
+src/parser.y:94.11-33: warning: type clash on default action: <expr> != <> [-Wother]
+   94 | 	| INC_OP unary_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:95.11-33: warning: type clash on default action: <expr> != <> [-Wother]
+   95 | 	| DEC_OP unary_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:96.11-40: warning: type clash on default action: <expr> != <> [-Wother]
+   96 | 	| unary_operator cast_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:97.11-33: warning: type clash on default action: <expr> != <> [-Wother]
+   97 | 	| SIZEOF unary_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:98.11-34: warning: type clash on default action: <expr> != <> [-Wother]
+   98 | 	| SIZEOF '(' type_name ')'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:116.11-25: warning: type clash on default action: <expr> != <> [-Wother]
+  116 | 	: cast_expression
+      |           ^~~~~~~~~~~~~~~
+src/parser.y:212.11-33: warning: type clash on default action: <expr> != <> [-Wother]
+  212 | 	: storage_class_specifier
+      |           ^~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:213.11-56: warning: type clash on default action: <expr> != <> [-Wother]
+  213 | 	| storage_class_specifier declaration_specifiers
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:216.11-24: warning: type clash on default action: <expr> != <> [-Wother]
+  216 | 	| type_qualifier
+      |           ^~~~~~~~~~~~~~
+src/parser.y:217.11-47: warning: type clash on default action: <expr> != <> [-Wother]
+  217 | 	| type_qualifier declaration_specifiers
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:240.11-14: warning: type clash on default action: <expr> != <> [-Wother]
+  240 | 	| CHAR
+      |           ^~~~
+src/parser.y:241.11-15: warning: type clash on default action: <expr> != <> [-Wother]
+  241 | 	| SHORT
+      |           ^~~~~
+src/parser.y:243.11-14: warning: type clash on default action: <expr> != <> [-Wother]
+  243 | 	| LONG
+      |           ^~~~
+src/parser.y:244.11-15: warning: type clash on default action: <expr> != <> [-Wother]
+  244 | 	| FLOAT
+      |           ^~~~~
+src/parser.y:245.11-16: warning: type clash on default action: <expr> != <> [-Wother]
+  245 | 	| DOUBLE
+      |           ^~~~~~
+src/parser.y:246.11-16: warning: type clash on default action: <expr> != <> [-Wother]
+  246 | 	| SIGNED
+      |           ^~~~~~
+src/parser.y:247.11-18: warning: type clash on default action: <expr> != <> [-Wother]
+  247 | 	| UNSIGNED
+      |           ^~~~~~~~
+src/parser.y:248.11-35: warning: type clash on default action: <expr> != <> [-Wother]
+  248 | 	| struct_or_union_specifier
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:250.11-19: warning: type clash on default action: <expr> != <> [-Wother]
+  250 | 	| TYPE_NAME
+      |           ^~~~~~~~~
+src/parser.y:265.11-28: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  265 | 	: struct_declaration
+      |           ^~~~~~~~~~~~~~~~~~
+src/parser.y:270.11-61: warning: type clash on default action: <expr> != <exprlist> [-Wother]
+  270 | 	: specifier_qualifier_list struct_declarator_list ';'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:274.11-49: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  274 | 	: type_specifier specifier_qualifier_list
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:275.11-24: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  275 | 	| type_specifier
+      |           ^~~~~~~~~~~~~~
+src/parser.y:276.11-49: warning: type clash on default action: <exprlist> != <> [-Wother]
+  276 | 	| type_qualifier specifier_qualifier_list
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:277.11-24: warning: type clash on default action: <exprlist> != <> [-Wother]
+  277 | 	| type_qualifier
+      |           ^~~~~~~~~~~~~~
+src/parser.y:281.11-27: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  281 | 	: struct_declarator
+      |           ^~~~~~~~~~~~~~~~~
+src/parser.y:287.11-33: warning: type clash on default action: <expr> != <> [-Wother]
+  287 | 	| ':' constant_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:292.11-38: warning: type clash on default action: <expr> != <> [-Wother]
+  292 | 	: ENUM '{' enumerator_list '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:293.11-49: warning: type clash on default action: <expr> != <> [-Wother]
+  293 | 	| ENUM IDENTIFIER '{' enumerator_list '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:294.11-25: warning: type clash on default action: <expr> != <> [-Wother]
+  294 | 	| ENUM IDENTIFIER
+      |           ^~~~~~~~~~~~~~~
+src/parser.y:298.11-20: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  298 | 	: enumerator
+      |           ^~~~~~~~~~
+src/parser.y:303.11-20: warning: type clash on default action: <expr> != <string> [-Wother]
+  303 | 	: IDENTIFIER
+      |           ^~~~~~~~~~
+src/parser.y:304.11-44: warning: type clash on default action: <expr> != <string> [-Wother]
+  304 | 	| IDENTIFIER '=' constant_expression
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:318.11-20: warning: type clash on default action: <expr> != <string> [-Wother]
+  318 | 	: IDENTIFIER
+      |           ^~~~~~~~~~
+src/parser.y:319.11-28: warning: type clash on default action: <expr> != <> [-Wother]
+  319 | 	| '(' declarator ')'
+      |           ^~~~~~~~~~~~~~~~~~
+src/parser.y:328.11-13: warning: type clash on default action: <expr> != <> [-Wother]
+  328 | 	: '*'
+      |           ^~~
+src/parser.y:329.11-33: warning: type clash on default action: <expr> != <> [-Wother]
+  329 | 	| '*' type_qualifier_list
+      |           ^~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:330.11-21: warning: type clash on default action: <expr> != <> [-Wother]
+  330 | 	| '*' pointer
+      |           ^~~~~~~~~~~
+src/parser.y:331.11-41: warning: type clash on default action: <expr> != <> [-Wother]
+  331 | 	| '*' type_qualifier_list pointer
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:346.11-31: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  346 | 	: parameter_declaration
+      |           ^~~~~~~~~~~~~~~~~~~~~
+src/parser.y:357.11-20: warning: type clash on default action: <exprlist> != <string> [-Wother]
+  357 | 	: IDENTIFIER
+      |           ^~~~~~~~~~
+src/parser.y:362.11-34: warning: type clash on default action: <expr> != <exprlist> [-Wother]
+  362 | 	: specifier_qualifier_list
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:363.11-54: warning: type clash on default action: <expr> != <exprlist> [-Wother]
+  363 | 	| specifier_qualifier_list abstract_declarator
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:373.11-37: warning: type clash on default action: <expr> != <> [-Wother]
+  373 | 	: '(' abstract_declarator ')'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:374.11-17: warning: type clash on default action: <expr> != <> [-Wother]
+  374 | 	| '[' ']'
+      |           ^~~~~~~
+src/parser.y:375.11-37: warning: type clash on default action: <expr> != <> [-Wother]
+  375 | 	| '[' constant_expression ']'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:378.11-17: warning: type clash on default action: <expr> != <> [-Wother]
+  378 | 	| '(' ')'
+      |           ^~~~~~~
+src/parser.y:379.11-37: warning: type clash on default action: <expr> != <> [-Wother]
+  379 | 	| '(' parameter_type_list ')'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:386.11-34: warning: type clash on default action: <expr> != <> [-Wother]
+  386 | 	| '{' initializer_list '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:387.11-38: warning: type clash on default action: <expr> != <> [-Wother]
+  387 | 	| '{' initializer_list ',' '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:391.11-21: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  391 | 	: initializer
+      |           ^~~~~~~~~~~
+src/parser.y:405.11-34: warning: type clash on default action: <expr> != <string> [-Wother]
+  405 | 	: IDENTIFIER ':' statement
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:406.11-48: warning: type clash on default action: <expr> != <> [-Wother]
+  406 | 	| CASE constant_expression ':' statement
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:407.11-31: warning: type clash on default action: <expr> != <> [-Wother]
+  407 | 	| DEFAULT ':' statement
+      |           ^~~~~~~~~~~~~~~~~~~~~
+src/parser.y:411.11-17: warning: type clash on default action: <expr> != <> [-Wother]
+  411 | 	: '{' '}'
+      |           ^~~~~~~
+src/parser.y:412.11-32: warning: type clash on default action: <expr> != <> [-Wother]
+  412 | 	| '{' statement_list '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:413.11-34: warning: type clash on default action: <expr> != <> [-Wother]
+  413 | 	| '{' declaration_list '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:414.11-49: warning: type clash on default action: <expr> != <> [-Wother]
+  414 | 	| '{' declaration_list statement_list '}'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:418.11-21: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  418 | 	: declaration
+      |           ^~~~~~~~~~~
+src/parser.y:423.11-19: warning: type clash on default action: <exprlist> != <expr> [-Wother]
+  423 | 	: statement
+      |           ^~~~~~~~~
+src/parser.y:428.11-13: warning: type clash on default action: <expr> != <> [-Wother]
+  428 | 	: ';'
+      |           ^~~
+src/parser.y:433.11-41: warning: type clash on default action: <expr> != <> [-Wother]
+  433 | 	: IF '(' expression ')' statement
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:434.11-56: warning: type clash on default action: <expr> != <> [-Wother]
+  434 | 	| IF '(' expression ')' statement ELSE statement
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:435.11-45: warning: type clash on default action: <expr> != <> [-Wother]
+  435 | 	| SWITCH '(' expression ')' statement
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:439.11-44: warning: type clash on default action: <expr> != <> [-Wother]
+  439 | 	: WHILE '(' expression ')' statement
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:440.11-51: warning: type clash on default action: <expr> != <> [-Wother]
+  440 | 	| DO statement WHILE '(' expression ')' ';'
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:441.11-73: warning: type clash on default action: <expr> != <> [-Wother]
+  441 | 	| FOR '(' expression_statement expression_statement ')' state...
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:442.11-84: warning: type clash on default action: <expr> != <> [-Wother]
+  442 | 	| FOR '(' expression_statement expression_statement expressio...
+      |           ^~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+src/parser.y:446.11-29: warning: type clash on default action: <expr> != <> [-Wother]
+  446 | 	: GOTO IDENTIFIER ';'
+      |           ^~~~~~~~~~~~~~~~~~~
+src/parser.y:447.11-22: warning: type clash on default action: <expr> != <> [-Wother]
+  447 | 	| CONTINUE ';'
+      |           ^~~~~~~~~~~~
+src/parser.y:448.11-19: warning: type clash on default action: <expr> != <> [-Wother]
+  448 | 	| BREAK ';'
+      |           ^~~~~~~~~
+src/parser.y:449.11-20: warning: type clash on default action: <expr> != <> [-Wother]
+  449 | 	| RETURN ';'
+      |           ^~~~~~~~~~
+src/parser.y:450.11-31: warning: type clash on default action: <expr> != <> [-Wother]
+  450 | 	| RETURN expression ';'
+      |           ^~~~~~~~~~~~~~~~~~~~~
+src/parser.y: warning: 1 shift/reduce conflict [-Wconflicts-sr]
+g++  -std=c++11 -W -Wall -g -Wno-unused-parameter -I include  -c -o src/parser.tab.o src/parser.tab.cpp
+src/parser.tab.cpp:1590:9: error: use of deleted function ‘YYSTYPE::YYSTYPE()’
+ 1590 | YYSTYPE yylval;
+      |         ^~~~~~
+src/parser.tab.cpp:193:7: note: ‘YYSTYPE::YYSTYPE()’ is implicitly deleted because the default definition would be ill-formed:
+  193 | union YYSTYPE
+      |       ^~~~~~~
+src/parser.y:19:24: error: union member ‘YYSTYPE::exprlist’ with non-trivial ‘std::vector<_Tp, _Alloc>::vector() [with _Tp = node*; _Alloc = std::allocator<node*>]’
+   19 |  std::vector<node_ptr> exprlist;
+      |                        ^~~~~~~~
+src/parser.tab.cpp: In function ‘int yyparse()’:
+src/parser.tab.cpp:1619:30: error: use of deleted function ‘YYSTYPE::YYSTYPE()’
+ 1619 |     YYSTYPE yyvsa[YYINITDEPTH];
+      |                              ^
+src/parser.tab.cpp:1619:30: error: use of deleted function ‘YYSTYPE::~YYSTYPE()’
+src/parser.tab.cpp:193:7: note: ‘YYSTYPE::~YYSTYPE()’ is implicitly deleted because the default definition would be ill-formed:
+  193 | union YYSTYPE
+      |       ^~~~~~~
+src/parser.y:19:24: error: union member ‘YYSTYPE::exprlist’ with non-trivial ‘std::vector<_Tp, _Alloc>::~vector() [with _Tp = node*; _Alloc = std::allocator<node*>]’
+   19 |  std::vector<node_ptr> exprlist;
+      |                        ^~~~~~~~
+src/parser.tab.cpp:1619:30: error: use of deleted function ‘YYSTYPE::~YYSTYPE()’
+ 1619 |     YYSTYPE yyvsa[YYINITDEPTH];
+      |                              ^
+src/parser.tab.cpp:1631:11: error: use of deleted function ‘YYSTYPE::YYSTYPE()’
+ 1631 |   YYSTYPE yyval;
+      |           ^~~~~
+src/parser.tab.cpp:1631:11: error: use of deleted function ‘YYSTYPE::~YYSTYPE()’
+src/parser.tab.cpp:506:80: warning: ‘void* __builtin_memcpy(void*, const void*, long unsigned int)’ writing to an object of type ‘YYSTYPE’ {aka ‘union YYSTYPE’} with no trivial copy-assignment [-Wclass-memaccess]
+  506 |       __builtin_memcpy (Dst, Src, YY_CAST (YYSIZE_T, (Count)) * sizeof (*(Src)))
+      |                                                                                ^
+src/parser.tab.cpp:491:9: note: in expansion of macro ‘YYCOPY’
+  491 |         YYCOPY (&yyptr->Stack_alloc, Stack, yysize);                    \
+      |         ^~~~~~
+src/parser.tab.cpp:1721:9: note: in expansion of macro ‘YYSTACK_RELOCATE’
+ 1721 |         YYSTACK_RELOCATE (yyvs_alloc, yyvs);
+      |         ^~~~~~~~~~~~~~~~
+src/parser.tab.cpp:193:7: note: ‘YYSTYPE’ {aka ‘union YYSTYPE’} declared here
+  193 | union YYSTYPE
+      |       ^~~~~~~
+src/parser.tab.cpp:1802:14: error: use of deleted function ‘YYSTYPE& YYSTYPE::operator=(const YYSTYPE&)’
+ 1802 |   *++yyvsp = yylval;
+      |              ^~~~~~
+src/parser.tab.cpp:193:7: note: ‘YYSTYPE& YYSTYPE::operator=(const YYSTYPE&)’ is implicitly deleted because the default definition would be ill-formed:
+  193 | union YYSTYPE
+      |       ^~~~~~~
+src/parser.y:19:24: error: union member ‘YYSTYPE::exprlist’ with non-trivial ‘std::vector<_Tp, _Alloc>& std::vector<_Tp, _Alloc>::operator=(const std::vector<_Tp, _Alloc>&) [with _Tp = node*; _Alloc = std::allocator<node*>]’
+   19 |  std::vector<node_ptr> exprlist;
+      |                        ^~~~~~~~
+src/parser.tab.cpp:1835:24: error: use of deleted function ‘YYSTYPE& YYSTYPE::operator=(const YYSTYPE&)’
+ 1835 |   yyval = yyvsp[1-yylen];
+      |                        ^
+src/parser.y:72:46: error: expected type-specifier before ‘string_literal’
+   72 |  | STRING_LITERAL {$$ = new string_literal(*$1);}
+      |                                              ^~~~          
+src/parser.y:242:35: error: expected type-specifier before ‘specifier_type’
+  242 |  | INT {$$ = new specifier_type("int");} //NEEDS TO BE OF TYPE: node_ptr
+      |                                   ^~~~~~~~~~~~~~
+src/parser.y:454:94: error: base operand of ‘->’ has non-pointer type ‘std::vector<node*>’
+  454 |  : external_declaration {$$ = std::vector<node_ptr> {}; $$->push_back($1);} // don't know if this is the right place to do this
+      |                                                                                              ^~
+src/parser.y:455:70: error: base operand of ‘->’ has non-pointer type ‘std::vector<node*>’
+  455 |  | translation_unit external_declaration {$1->push_back($2); $$ = $1;}//idek don't ask maybe it works maybe it doesn't
+      |                                                                      ^~
+src/parser.y:470:149: error: no matching function for call to ‘function_def::function_def(node&, node*&, node*&)’
+  470 |  | declaration_specifiers declarator compound_statement {$$ = new function_def(*$1, $2, $3)}
+      |                                                                                                                                                     ^
+In file included from include/ast.hpp:15,
+                 from src/parser.y:3:
+include/ast/ast_def_function.hpp:16:9: note: candidate: ‘function_def::function_def(node_ptr, std::vector<node*>)’
+   16 |         function_def(node_ptr _id, std::vector<node_ptr> statements); //no args in this one
+      |         ^~~~~~~~~~~~
+include/ast/ast_def_function.hpp:16:9: note:   candidate expects 2 arguments, 3 provided
+include/ast/ast_def_function.hpp:15:9: note: candidate: ‘function_def::function_def(node_ptr, std::vector<node*>, std::vector<node*>)’
+   15 |         function_def(node_ptr _id, std::vector<node_ptr> _args, std::vector<node_ptr> statements);
+      |         ^~~~~~~~~~~~
+include/ast/ast_def_function.hpp:15:31: note:   no known conversion for argument 1 from ‘node’ to ‘node_ptr’ {aka ‘node*’}
+   15 |         function_def(node_ptr _id, std::vector<node_ptr> _args, std::vector<node_ptr> statements);
+      |                      ~~~~~~~~~^~~
+include/ast/ast_def_function.hpp:7:7: note: candidate: ‘function_def::function_def(const function_def&)’
+    7 | class function_def : public node
+      |       ^~~~~~~~~~~~
+include/ast/ast_def_function.hpp:7:7: note:   candidate expects 1 argument, 3 provided
+include/ast/ast_def_function.hpp:7:7: note: candidate: ‘function_def::function_def(function_def&&)’
+include/ast/ast_def_function.hpp:7:7: note:   candidate expects 1 argument, 3 provided
+src/parser.tab.cpp:1929:14: error: use of deleted function ‘YYSTYPE& YYSTYPE::operator=(const YYSTYPE&)’
+ 1929 |   *++yyvsp = yyval;
+      |              ^~~~~
+src/parser.tab.cpp:2070:14: error: use of deleted function ‘YYSTYPE& YYSTYPE::operator=(const YYSTYPE&)’
+ 2070 |   *++yyvsp = yylval;
+      |              ^~~~~~
+src/parser.tab.cpp: In function ‘void __static_initialization_and_destruction_0(int, int)’:
+src/parser.tab.cpp:1590:9: error: use of deleted function ‘YYSTYPE::~YYSTYPE()’
+ 1590 | YYSTYPE yylval;
+      |         ^~~~~~
+make: *** [<builtin>: src/parser.tab.o] Error 1

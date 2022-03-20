@@ -16,7 +16,7 @@
     int number;
     float f_number;
 	node_ptr expr;
-	std::vector<node_ptr> exprlist;
+	node_vector_ptr exprlist;
 }
 
 %token IDENTIFIER FLOAT_LITERAL INT_LITERAL STRING_LITERAL SIZEOF
@@ -50,7 +50,7 @@
 %type <expr> enum_specifier enumerator direct_declarator pointer
 
 %type <expr> parameter_declaration type_name abstract_declarator direct_abstract_declarator
-%type <expr> initializer statement labeled_statement compound_statement
+%type <expr> initializer statement labeled_statement 
 %type <expr> expression_statement selection_statement iteration_statement
 %type <expr> jump_statement external_declaration function_definition
 
@@ -58,7 +58,7 @@
 %type <exprlist> specifier_qualifier_list struct_declarator_list
 %type <exprlist> enumerator_list parameter_list
 %type <exprlist> identifier_list initializer_list declaration_list statement_list
-
+%type <exprlist> compound_statement
 %type <number> INT_LITERAL
 %type <f_number> FLOAT_LITERAL
 %type <string> IDENTIFIER STRING_LITERAL
@@ -364,7 +364,7 @@ type_name
 	;
 
 abstract_declarator
-	: pointer
+	: pointer //no idea
 	| direct_abstract_declarator
 	| pointer direct_abstract_declarator
 	;
@@ -393,12 +393,12 @@ initializer_list
 	;
 
 statement
-	: labeled_statement
-	| compound_statement
-	| expression_statement
-	| selection_statement
-	| iteration_statement
-	| jump_statement
+	: labeled_statement {$$ = $1;}
+	| compound_statement {$$ = $1;}
+	| expression_statement {$$ = $1;}
+	| selection_statement {$$ = $1;}
+	| iteration_statement {$$ = $1;}
+	| jump_statement {$$ = $1;}
 	;
 
 labeled_statement
@@ -415,7 +415,7 @@ compound_statement
 	;
 
 declaration_list
-	: declaration
+	: declaration {$$ = new_vector(declaration);}
 	| declaration_list declaration
 	;
 
@@ -451,7 +451,7 @@ jump_statement
 	;
 
 translation_unit
-	: external_declaration {$$ = std::vector<node_ptr> {}; $$->push_back($1);} // don't know if this is the right place to do this
+	: external_declaration {$$ = new_vector($1);}
 	| translation_unit external_declaration {$1->push_back($2); $$ = $1;}//idek don't ask maybe it works maybe it doesn't
 	;
 	 //of type exprlist, hence we need a vector of node_ptrs
@@ -467,7 +467,8 @@ function_definition
 	//declarator: should pass up from identifier(if we lex it properly) up to direct_declarator then declarator, it inlcude the empty brackets like main()
 	//we can ignore declaration_list for now since the below grammar doesn't include it, obv. in main() doesn't either
 	//compound_statement should be an empty vector? it starts as {} empty assuming empty function int main(){}. then turns into statement, then statement_list, where it's a dead end. I'm guessing it'll just stay as a compound statement
-	| declaration_specifiers declarator compound_statement {$$ = new function_def(*$1, $2, $3)}
+	| declaration_specifiers declarator compound_statement {$$ = new function_def($1, $2, $3);} //function_def(node_ptr _type, node_ptr _id, node_vector_ptr _args, std::vector<node_ptr> statements); THIS ONE
+	//THIS ONE DOESN'T HAVE LIST OF ARGS, ONLY STATMENTS WHICH IS $3. idk how the overloading works tbh but should be fine.
 	//we pass the specifier (rn its a string*, better to have a class, but no), we pass the declarator (ident class), and the compound statement as a vector of node_ptrs
 	
 	| declarator declaration_list compound_statement
