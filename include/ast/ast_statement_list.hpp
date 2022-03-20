@@ -7,11 +7,11 @@
 class statement_list : public node
 {
     private:
-        node_vector statements {};
+        std::vector<node_ptr> statements {};
     public:
         
         statement_list(){};
-
+    void gen_mips(std::ostream &dst, context &Context, int destReg) const override;
 };
 
 #endif

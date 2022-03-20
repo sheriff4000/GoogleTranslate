@@ -8,9 +8,11 @@ class int_literal : public node {
         int val;
 
     public:
-        int_literal(int _val){
+        int_literal(int _val) {
             val = _val;
         }
+
+        void gen_mips(std::ostream &dst, context &Context, int destReg) const override;
 };
 
 #endif

@@ -13,12 +13,10 @@ int main (int argc, char *argv[])
         //ofs is output stream i think, the file to put assembly into
     }
     
-    //make context now - dynamically
+    //make context now
     context Context;
 
-    ast->gen_mips(ofs, Context); //idk what arguments we'll need just yet
-
-    //delete Context;
+    //ast->gen_mips(ofs, Context); //idk what arguments we'll need just yet
 
 }
 

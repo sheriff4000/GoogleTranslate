@@ -11,6 +11,7 @@ class float_literal : public node {
         float_literal(float _val){
             val = _val;
         }
+        void gen_mips(std::ostream &dst, context &Context, int destReg) const override;
 };
 
 #endif

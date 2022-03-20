@@ -2,7 +2,6 @@
 #define node_vector_parser_hpp
 
 #include "ast/ast_node.hpp"
-#include <vector>
 
 typedef std::vector<node_ptr> node_vector;
 typedef node_vector* node_vector_ptr;

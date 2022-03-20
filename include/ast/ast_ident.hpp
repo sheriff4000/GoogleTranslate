@@ -12,6 +12,7 @@ class identifier : public node {
             id = _id;
             
         };
+        void gen_mips(std::ostream &dst, context &Context, int destReg) const override;
 
 };
 
