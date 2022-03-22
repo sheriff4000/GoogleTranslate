@@ -18,6 +18,10 @@ class node{
         virtual ~node(){}
         virtual void gen_mips(std::ostream &dst, context &Context, int destReg) const{};
         virtual void gen_mips(std::ostream &dst, context &Context) const{};
+
+        virtual std::string get_id() const{
+            return "no id here";
+        };
 };
 typedef node *node_ptr;
 

@@ -66,7 +66,7 @@
 %%
 
 primary_expression
-	: IDENTIFIER {$$ = new identifier(*$1);} //constructing nodes and passing the values as the argument
+	: IDENTIFIER {$$ = new identifier($1);} //constructing nodes and passing the values as the argument
 	| FLOAT_LITERAL {$$ = new float_literal($1);}
 	| INT_LITERAL {$$ = new int_literal($1);}
 	| STRING_LITERAL {$$ = new string_literal(*$1);}
@@ -315,7 +315,7 @@ declarator
 	;
 
 direct_declarator
-	: IDENTIFIER
+	: IDENTIFIER {$$ = new identifier($1);}
 	| '(' declarator ')'
 	| direct_declarator '[' constant_expression ']'
 	| direct_declarator '[' ']'

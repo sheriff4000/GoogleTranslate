@@ -8,11 +8,14 @@ class identifier : public node {
         std::string id;
 
     public:
-        identifier(std::string _id){
-            id = _id;
+        identifier(std::string *_id){
+            id = *_id;
 
         };
         void gen_mips(std::ostream &dst, context &Context, int destReg) const override {};
+        std::string get_id(){
+            return id;
+        };
 
 };
 

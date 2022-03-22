@@ -1857,7 +1857,7 @@ yyreduce:
     {
   case 2:
 #line 69 "src/parser.y"
-                     {(yyval.expr) = new identifier(*(yyvsp[0].string));}
+                     {(yyval.expr) = new identifier((yyvsp[0].string));}
 #line 1862 "src/parser.tab.cpp"
     break;
 
@@ -1909,74 +1909,80 @@ yyreduce:
 #line 1910 "src/parser.tab.cpp"
     break;
 
+  case 134:
+#line 318 "src/parser.y"
+                     {(yyval.expr) = new identifier((yyvsp[0].string));}
+#line 1916 "src/parser.tab.cpp"
+    break;
+
   case 175:
 #line 396 "src/parser.y"
                             {(yyval.expr) = (yyvsp[0].expr);}
-#line 1916 "src/parser.tab.cpp"
+#line 1922 "src/parser.tab.cpp"
     break;
 
   case 176:
 #line 397 "src/parser.y"
                              {(yyval.expr) = (yyvsp[0].expr);}
-#line 1922 "src/parser.tab.cpp"
+#line 1928 "src/parser.tab.cpp"
     break;
 
   case 177:
 #line 398 "src/parser.y"
                                {(yyval.expr) = (yyvsp[0].expr);}
-#line 1928 "src/parser.tab.cpp"
+#line 1934 "src/parser.tab.cpp"
     break;
 
   case 178:
 #line 399 "src/parser.y"
                               {(yyval.expr) = (yyvsp[0].expr);}
-#line 1934 "src/parser.tab.cpp"
+#line 1940 "src/parser.tab.cpp"
     break;
 
   case 179:
 #line 400 "src/parser.y"
                               {(yyval.expr) = (yyvsp[0].expr);}
-#line 1940 "src/parser.tab.cpp"
+#line 1946 "src/parser.tab.cpp"
     break;
 
   case 180:
 #line 401 "src/parser.y"
                          {(yyval.expr) = (yyvsp[0].expr);}
-#line 1946 "src/parser.tab.cpp"
+#line 1952 "src/parser.tab.cpp"
     break;
 
   case 184:
 #line 411 "src/parser.y"
                   {(yyval.expr) = new statement_list();}
-#line 1952 "src/parser.tab.cpp"
+#line 1958 "src/parser.tab.cpp"
     break;
 
   case 188:
 #line 418 "src/parser.y"
                       {(yyval.exprlist) = new_vector((yyvsp[0].expr));}
-#line 1958 "src/parser.tab.cpp"
+#line 1964 "src/parser.tab.cpp"
     break;
 
   case 206:
 #line 454 "src/parser.y"
                                {(yyval.exprlist) = new_vector((yyvsp[0].expr));}
-#line 1964 "src/parser.tab.cpp"
+#line 1970 "src/parser.tab.cpp"
     break;
 
   case 207:
 #line 455 "src/parser.y"
                                                 {(yyvsp[-1].exprlist)->push_back((yyvsp[0].expr)); (yyval.exprlist) = (yyvsp[-1].exprlist);}
-#line 1970 "src/parser.tab.cpp"
+#line 1976 "src/parser.tab.cpp"
     break;
 
   case 211:
 #line 470 "src/parser.y"
                                                                {(yyval.expr) = new function_def((yyvsp[-2].expr), (yyvsp[-1].expr), (yyvsp[0].expr));}
-#line 1976 "src/parser.tab.cpp"
+#line 1982 "src/parser.tab.cpp"
     break;
 
 
-#line 1980 "src/parser.tab.cpp"
+#line 1986 "src/parser.tab.cpp"
 
       default: break;
     }

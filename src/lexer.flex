@@ -18,6 +18,9 @@ E [eE][+-]?D+
 
 %%
 
+  /* SEMICOLON */
+";"           {return(';');}
+
   /* OPERATORS */
 "*"            { return('*'); }
 "/"            { return('/'); }
