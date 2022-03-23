@@ -58,7 +58,7 @@
 %type <exprlist> translation_unit struct_declaration_list argument_expression_list
 %type <exprlist> specifier_qualifier_list struct_declarator_list
 %type <exprlist> enumerator_list parameter_list
-%type <exprlist> identifier_list initializer_list declaration_list statement_list
+%type <exprlist> identifier_list initializer_list declaration_list statement_list init_declarator_list
 
 %type <number> INT_LITERAL
 %type <f_number> FLOAT_LITERAL
@@ -205,8 +205,8 @@ constant_expression
 	;
 
 declaration
-	: declaration_specifiers ';'
-	| declaration_specifiers init_declarator_list ';'
+	: declaration_specifiers ';'{std::cerr << "declaration with no name" << std::endl;}
+	| declaration_specifiers init_declarator_list ';' {$$ = new declaration($1, $2);}
 	;
 
 declaration_specifiers
@@ -219,12 +219,12 @@ declaration_specifiers
 	;
 
 init_declarator_list
-	: init_declarator
-	| init_declarator_list ',' init_declarator
+	: init_declarator {$$ = new_vector($1);}
+	| init_declarator_list ',' init_declarator{$1->push_back($2); $$ = $1;}
 	;
 
 init_declarator
-	: declarator
+	: declarator {$$ = $1;}
 	| declarator '=' initializer
 	;
 
@@ -411,18 +411,18 @@ labeled_statement
 compound_statement
 	: '{' '}' {$$ = new statement_list();}
 	| '{' statement_list '}' 
-	| '{' declaration_list '}'
+	| '{' declaration_list '}' {$$ = new}
 	| '{' declaration_list statement_list '}'
 	;
 
 declaration_list
 	: declaration {$$ = new_vector($1);}
-	| declaration_list declaration
+	| declaration_list declaration {$1->push_back($2); $$ = $1;}
 	;
 
 statement_list
-	: statement
-	| statement_list statement
+	: statement {$$ = new_vector($1);}
+	| statement_list statement {$1->push_back($2); $$ = $1;}
 	;
 
 expression_statement
