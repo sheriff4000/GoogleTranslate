@@ -10,7 +10,7 @@
 
 
 class node{
-    private:
+    protected:
         std::vector<node*> branches;
     
     public:

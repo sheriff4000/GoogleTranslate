@@ -1,3 +1,3 @@
-int name ( ) {
+int main() {
 
 }
