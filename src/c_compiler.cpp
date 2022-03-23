@@ -4,6 +4,7 @@
 
 int main (int argc, char *argv[])
 {
+    
     const node* ast = parseAST(argv[2]);
 
     std::string o(argv[3]);

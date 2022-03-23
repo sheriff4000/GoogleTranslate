@@ -17,10 +17,128 @@ else
     # DOS2UNIX="sed -e s/\r//g"
     # DOS2UNIX="cat"
 fi
-
-
-
 echo "========================================"
 echo " Cleaning the temporaries and outputs"
 make clean
+
+
+echo "========================================"
+echo " Force building compiler"
+make bin/c_compiler &> /dev/null
+if [[ "$?" -ne "0" ]]; then #if return code not equal to 0
+    echo "Error while building compiler."
+    exit 1;
+fi
+
+echo "========================================="
+
+PASSED=0
+CHECKED=0
+
+#GCC FOR DRIVER, OURS FOR THE DEFAULT FILE
+#THEN LINKEM
+compiler_test="./compiler_tests"
+working_dir="${compiler_test}/working"
+mkdir -p working_dir
+
+for test_type_dir in compiler_tests/*; do
+    #testname=$(basename ${i} _test.txt)
+    echo ${test_type_dir}
+    for test in ${test_type_dir}/*; do
+        testname_ext=$(basename ${test} .c);
+        testname=$(basename ${testname_ext} .c);
+        #echo ${b}
+        if [[ $testname == *"_driver" ]] # * is used for pattern matching
+        then #compile with gcc, then link, then compare
+            echo "true"
+
+
+            #I then use GCC to assemble the generated assembly program (test_program.s), like so:
+            mips-linux-gnu-gcc -mfp32 -o test_program.o -c test_program.s
+
+            #link
+            #mips-linux-gnu-gcc -mfp32 -static -o test_program test_program.o test_program_driver.c
+
+            #Tidy up the working directory
+            rm -rf "${working_dir}/*"
+            ;
+        else #compile with ours
+            echo "false"
+            #bin/c_compiler -S "${test_type_dir}/${testname_ext}"" -o "${working_dir}/${testname}.s" > /dev/null 2>&1
+        ; fi
+
+        
+        #mips-linux-gnu-gcc -mfp32 -o test_program.o -c test_program.s
+
+
+    done
+    # mkdir -p working/$b
+
+    # PARAMS=$(head -n 1 $i/in.params.txt | ${DOS2UNIX} );
+
+    # echo "==========================="
+    # echo ""
+    # echo "Input file : ${i}"
+    # echo "Testing $b"
+
+
+    # bin/c_compiler $i/in.code.txt \
+    #     > working/$b/compiled.txt
+
+    # bin/vm working/$b/compiled.txt ${PARAMS}  \
+    #   < $i/in.input.txt \
+    #   > working/$b/compiled.output.txt \
+    #   2> working/$b/compiled.stderr.txt
+
+    # GOT_RESULT=$?;
+
+    # echo "${GOT_RESULT}" > working/$b/compiled.result.txt
+
+    # OK=0;
+
+    # REF_RESULT=$(head -n 1 $i/ref.result.txt | ${DOS2UNIX} );
+
+    # if [[ "${GOT_RESULT}" -ne "${REF_RESULT}" ]]; then
+    #     echo "  got result : ${GOT_RESULT}"
+    #     echo "  ref result : ${REF_RESULT}"
+    #     echo "  FAIL!";
+    #     OK=1;
+    # fi
+
+    # GOT_OUTPUT=$(echo $(cat working/$b/compiled.output.txt | ${DOS2UNIX} ))
+    # REF_OUTPUT=$(echo $(cat $i/ref.output.txt | ${DOS2UNIX} ))
+
+    # if [[ "${GOT_OUTPUT}" != "${REF_OUTPUT}" ]]; then
+    #     echo "  got output : ${GOT_OUTPUT}"
+    #     echo "  ref output : ${REF_OUTPUT}"
+    #     echo "  FAIL!";
+    #     OK=1;
+    # fi
+
+    # if [[ "$OK" -eq "0" ]]; then
+    #     PASSED=$(( ${PASSED}+1 ));
+    # fi
+
+    # CHECKED=$(( ${CHECKED}+1 ));
+
+    # echo ""
+done
+
+echo "########################################"
+echo "Passed ${PASSED} out of ${CHECKED}".
+echo ""
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 

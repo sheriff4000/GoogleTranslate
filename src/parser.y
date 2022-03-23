@@ -240,8 +240,8 @@ type_specifier
 	| CHAR
 	| SHORT
 	| INT {$$ = new specifier_type("int");} //NEEDS TO BE OF TYPE: node_ptr
-	| LONG
-	| FLOAT
+	| LONG {$$ = new specifier_type("long");}
+	| FLOAT {$$ = new specifier_type("float");}
 	| DOUBLE
 	| SIGNED
 	| UNSIGNED
