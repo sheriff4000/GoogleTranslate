@@ -11,7 +11,7 @@
 
 class node{
     protected:
-        std::vector<node*> branches;
+        std::vector<node*> branches = {};
     
     public:
         node(){}
