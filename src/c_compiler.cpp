@@ -5,7 +5,7 @@
 int main (int argc, char *argv[])
 {
     
-    const node* ast = parseAST(argv[2]);
+    const node *ast = parseAST(argv[2]);
 
     std::string o(argv[3]);
     std::ofstream ofs;
@@ -20,7 +20,7 @@ int main (int argc, char *argv[])
     std::cout << "check 1" << std::endl;
     //ast->gen_mips(ofs, Context); //idk what arguments we'll need just yet
 
-    ast->print();
+    (ast[0]).print();
     std::cout << "check 2" << std::endl;
     std::cout << "[" << std::endl;
 
