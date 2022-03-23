@@ -312,7 +312,7 @@ type_qualifier
 
 declarator
 	: pointer direct_declarator
-	| direct_declarator
+	| direct_declarator {$$ = $1;}
 	;
 
 direct_declarator

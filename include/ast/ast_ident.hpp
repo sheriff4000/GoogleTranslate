@@ -14,11 +14,11 @@ class identifier : public node {
         };
         void gen_mips(std::ostream &dst, context &Context, int destReg) const override {};
 
-        std::string get_id(){
+        std::string get_id() const override{
             return id;
         };
 
-        void print(){
+        void print() const override {
             std::cout << id << std::endl;
         }
 
