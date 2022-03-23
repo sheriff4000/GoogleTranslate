@@ -15,9 +15,11 @@ int main (int argc, char *argv[])
         //ofs is output stream i think, the file to put assembly into
     }
     std::cout << "before context" << std::endl;
-    //make context now
+
     context Context;
-    //std::cout << "check 1" << std::endl;
+
+    std::cout << ast << std::endl;
+    std::cout << ast << std::endl;
     ast->gen_mips(ofs, Context); //idk what arguments we'll need just yet
     
     std::cout << "Before print" << std::endl;
