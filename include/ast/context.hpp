@@ -1,10 +1,10 @@
 #ifndef context_hpp
 #define context_hpp
 
-#include<unordered_map>
-#include <vector>
+#include "ast_node.hpp"
 
-
+class node;
+typedef node* node_ptr;
 class registers
 {
 private:

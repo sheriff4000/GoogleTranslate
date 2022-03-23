@@ -21,6 +21,7 @@
 #include "ast/ast_statement_list.hpp"
 
 #include "ast/ast_root.hpp"
+#include "ast/ast_declaration.hpp"
 
 #include "node_vector_parser.hpp"
 

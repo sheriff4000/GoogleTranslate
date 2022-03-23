@@ -220,7 +220,7 @@ declaration_specifiers
 
 init_declarator_list
 	: init_declarator {$$ = new_vector($1);}
-	| init_declarator_list ',' init_declarator{$1->push_back($2); $$ = $1;}
+	| init_declarator_list ',' init_declarator{$1->push_back($3); $$ = $1;}
 	;
 
 init_declarator
@@ -411,7 +411,7 @@ labeled_statement
 compound_statement
 	: '{' '}' {$$ = new statement_list();}
 	| '{' statement_list '}' 
-	| '{' declaration_list '}' {$$ = new}
+	| '{' declaration_list '}' {$$ = new statement_list();}
 	| '{' declaration_list statement_list '}'
 	;
 

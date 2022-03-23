@@ -9,14 +9,14 @@ class declaration :public node
         declaration(node_ptr _type, std::vector<node_ptr> declarator_list )
         {
             type = _type->get_id();
-            ident = _ident->get_id();
+            
         }
         void gen_mips(std::ostream &dst, context &Context) const override
         {
             //idefk
             int reg = Context.get_reg();
             //get a reg, then quick instruction to put it into reg?
-            dst << "li"
+            dst << "li";
            
         }
 
