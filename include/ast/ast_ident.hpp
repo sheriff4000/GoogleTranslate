@@ -11,12 +11,12 @@ class identifier : public node {
         identifier(std::string *_id){
             id = *_id;
 
-        };
-        void gen_mips(std::ostream &dst, context &Context, int destReg) const override {};
+        }
+        void gen_mips(std::ostream &dst, context &Context, int destReg) const override {}
 
         std::string get_id() const override{
             return id;
-        };
+        }
 
         void print() const override {
             std::cout << id << std::endl;
