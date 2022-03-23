@@ -10,6 +10,6 @@ class root : public node
         }
         void gen_mips(std::ostream &dst, context &Context) const override
         {
-            branches[0]->ast_print();
+            branches[0]->print();
         }
 };
