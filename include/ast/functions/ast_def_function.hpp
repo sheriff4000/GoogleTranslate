@@ -47,6 +47,7 @@ class function_def : public node
 
             //MIDDLE BIT
             statements->gen_mips(dst, Context);
+            //this is a statement node, generating the code for it.
 
             //EPILOGUE
             dst << "move    $sp,$fp" << std::endl;
