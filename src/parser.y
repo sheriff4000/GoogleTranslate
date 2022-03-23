@@ -409,7 +409,7 @@ labeled_statement
 
 compound_statement
 	: '{' '}' {$$ = new statement_list();}
-	| '{' statement_list '}'
+	| '{' statement_list '}' 
 	| '{' declaration_list '}'
 	| '{' declaration_list statement_list '}'
 	;
@@ -489,6 +489,7 @@ node* parseAST(std::string filename)
     exit(1);
   }
   g_root = NULL;
-  std::cout << yyparse() << std::endl;
+  yyparse();
+  std::cout << "parsed" << std::endl;
   return g_root;
 } 

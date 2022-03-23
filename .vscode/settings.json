@@ -1,6 +1,7 @@
 {
     "files.associations": {
         "*.v": "systemverilog",
-        "ostream": "cpp"
+        "ostream": "cpp",
+        "iosfwd": "cpp"
     }
 }

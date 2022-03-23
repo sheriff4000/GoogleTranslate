@@ -1,6 +1,7 @@
 #include "ast.hpp"
 
 
+
 int main (int argc, char *argv[])
 {
     
@@ -10,14 +11,22 @@ int main (int argc, char *argv[])
     std::ofstream ofs;
     if (o == "-o")
     {
-       std::ofstream ofs(argv[4], std::ofstream::out);
+        ofs.open(argv[4]);
         //ofs is output stream i think, the file to put assembly into
     }
     
     //make context now
     context Context;
+    std::cout << "check 1" << std::endl;
+    //ast->gen_mips(ofs, Context); //idk what arguments we'll need just yet
 
-    ast->gen_mips(ofs, Context); //idk what arguments we'll need just yet
+    ast->print();
+    std::cout << "check 2" << std::endl;
+    std::cout << "[" << std::endl;
+
+    
+
+    std::cout << "]" << std::endl;
 
 }
 

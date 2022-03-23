@@ -22,6 +22,9 @@ class node{
         virtual std::string get_id() const{
             return "no id here";
         };
+
+        virtual void print() const {
+        };
 };
 typedef node *node_ptr;
 
