@@ -31,7 +31,7 @@
 
 %token CASE DEFAULT IF ELSE SWITCH WHILE DO FOR GOTO CONTINUE BREAK RETURN
 
-%start translation_unit
+%start ROOT
 
 
 //BASICally all the ones that TURN INTO NODES
@@ -49,10 +49,11 @@
 %type <expr> struct_declarator declarator
 %type <expr> enum_specifier enumerator direct_declarator pointer
 
+
 %type <expr> parameter_declaration type_name abstract_declarator direct_abstract_declarator
 %type <expr> initializer statement labeled_statement compound_statement
 %type <expr> expression_statement selection_statement iteration_statement
-%type <expr> jump_statement external_declaration function_definition
+%type <expr> jump_statement external_declaration function_definition ROOT
 
 %type <exprlist> translation_unit struct_declaration_list argument_expression_list
 %type <exprlist> specifier_qualifier_list struct_declarator_list
@@ -471,10 +472,11 @@ function_definition
 	//THIS ONE DOESN'T HAVE LIST OF ARGS, ONLY STATMENTS WHICH IS $3. idk how the overloading works tbh but should be fine.
 	//we pass the specifier (rn its a string*, better to have a class, but no), we pass the declarator (ident class), and the compound statement as a vector of node_ptrs
 	
-	| declarator declaration_list compound_statement
-	| declarator compound_statement 
+	//| declarator declaration_list compound_statement
+	//| declarator compound_statement 
 	;
-
+ROOT
+	:translation_unit {$$ = new root($1);}
 %%
 
 

@@ -23,7 +23,11 @@ class function_def : public node
             statements = _statements;
             id = _id->get_id();
         }; //no args in this one
-
+        std::string ast_print()
+        {
+            std::cout << "def_function" << std::endl;
+            return "oioioi";
+        }
 
         void gen_mips(std::ostream &dst, context &Context) const override
         {     
