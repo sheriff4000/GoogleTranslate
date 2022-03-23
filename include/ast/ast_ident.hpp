@@ -18,7 +18,7 @@ class identifier : public node {
             return id;
         }
 
-        void print(){
+        void print() const override {
             std::cout << id << std::endl;
         }
 
