@@ -6,7 +6,7 @@ class declaration :public node
         std::string type;
         std::string ident;
     public:
-        declaration(node_ptr _type, std::vector<node_ptr> declarator_list )
+        declaration(node_ptr _type, std::vector<node_ptr>* declarator_list )
         {
             type = _type->get_id();
             
