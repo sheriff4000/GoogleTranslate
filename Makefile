@@ -19,6 +19,7 @@ bin/c_compiler : src/c_compiler.o src/lexer.yy.o src/parser.tab.o
 clean :
 	rm -rf bin/*
 	rm -f src/*.tab.cpp
+	rm -f src/*.yy.c
 	rm -f src/*.yy.cpp
 	rm -f src/*.output
 	rm -f src/*.tab.hpp

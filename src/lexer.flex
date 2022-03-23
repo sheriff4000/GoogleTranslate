@@ -82,7 +82,7 @@ E [eE][+-]?D+
 
 {D}?"."{D}+{E}? {yylval.f_number = strtod(yytext, NULL); return(FLOAT_LITERAL);}
 
-{L}({L}|{D})* {yylval.string = new std::string(yytext); return(IDENTIFIER);}
+{L}({L}|{D})* {yylval.string = new std::string(yytext); return IDENTIFIER;}
 
 L?\"(\\.|[^\\"])*\"	{ yylval.string = new std::string(yytext); return(STRING_LITERAL); }
 
@@ -96,5 +96,6 @@ L?\"(\\.|[^\\"])*\"	{ yylval.string = new std::string(yytext); return(STRING_LIT
 void yyerror (char const *s)
 {
   fprintf (stderr, "Lexing error : %s\n", s);
+  printf("%s\n",s);
   exit(1);
 }

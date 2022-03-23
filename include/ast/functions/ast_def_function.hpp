@@ -11,6 +11,7 @@ class function_def : public node
         std::string id;
         std::vector<node_ptr> args = {};
         node_ptr statements;
+        std::string type;
     public:
 
         function_def(node_ptr _type, node_ptr _id, std::vector<node_ptr> _args, node_ptr _statements){
