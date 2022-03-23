@@ -7,20 +7,24 @@
 class statement_list : public node
 {
     private:
-        std::vector<node_ptr> statements {};
+        std::vector<node_ptr> branches = {};
     public:
         
         statement_list(std::vector<node_ptr> _statements){
-            statements = _statements;
-        };
+            branches = _statements;
+        }
         statement_list(){
-            statements = {};
+            branches = {};
         }
     void gen_mips(std::ostream &dst, context &Context, int destReg) const override {
-        for(int i = 0; i < statements.size(); i++){
-            statements[i]->gen_mips(dst, Context, destReg);
-        }
-    };
+        // for(int i = 0; i < branches.size(); i++){
+        //     branches[i]->gen_mips(dst, Context, destReg);
+        // }
+    }
+
+    void print(){
+        std::cout << "statements" << std::endl;
+    }
 };
 
 #endif

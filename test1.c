@@ -1,4 +1,3 @@
-int name(){
-    int a;
-    a = 7;
+int name ( ) {
+
 }

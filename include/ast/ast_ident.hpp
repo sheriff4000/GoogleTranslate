@@ -17,6 +17,10 @@ class identifier : public node {
             return id;
         };
 
+        void print(){
+            std::cout << id << std::endl;
+        }
+
 };
 
 

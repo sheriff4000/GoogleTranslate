@@ -15,6 +15,10 @@ class int_literal : public node {
         void gen_mips(std::ostream &dst, context &Context, int destReg) const override {
             dst << "li $" << destReg << "," << val << std::endl;
         };
+
+        void print(){
+            std::cout << "integer" << std::endl;
+        }
 };
 
 #endif

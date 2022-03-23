@@ -12,6 +12,10 @@ class string_literal : public node {
             value = _string;
         }
         void gen_mips(std::ostream &dst, context &Context, int destReg) const override {};
+
+        void print(){
+            std::cout << "String" << std::endl;
+        }
 };
 
 #endif

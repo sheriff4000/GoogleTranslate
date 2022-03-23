@@ -5,6 +5,7 @@
 #include <string>
 #include <iostream>
 #include <map>
+#include <fstream>
 
 //other AST stuff
 #include "ast/ast_node.hpp"

@@ -4,6 +4,7 @@
 // Avoid error "error: `fileno' was not declared in this scope"
 extern "C" int fileno(FILE *stream);
 #include "parser.tab.hpp"
+
 %}
 
 D [0-9] 
@@ -89,12 +90,13 @@ L?\"(\\.|[^\\"])*\"	{ yylval.string = new std::string(yytext); return(STRING_LIT
 
 
   /* IGNORE */
-[ \t\r\n]+		{;}
+[ \t\r\n]		{;}
 
 %%
 
 void yyerror (char const *s)
 {
   fprintf (stderr, "Lexing error : %s\n", s);
+  fprintf(stderr, "The problem :%s, line: %d\n", yytext, yylineno );
   exit(1);
 }
