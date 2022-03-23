@@ -34,6 +34,7 @@ echo "========================================="
 
 PASSED=0
 CHECKED=0
+<<<<<<< Updated upstream
 
 #GCC FOR DRIVER, OURS FOR THE DEFAULT FILE
 #THEN LINKEM
@@ -72,6 +73,15 @@ for test_type_dir in compiler_tests/*; do
 
 
     done
+=======
+#built and ready to test
+
+for i in compiler_tests/*; do
+    testname=$(basename ${test} _test.txt)
+    for test
+    b=$(basename ${i});
+    echo ${b}
+>>>>>>> Stashed changes
     # mkdir -p working/$b
 
     # PARAMS=$(head -n 1 $i/in.params.txt | ${DOS2UNIX} );

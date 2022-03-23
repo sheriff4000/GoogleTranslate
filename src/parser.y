@@ -476,7 +476,7 @@ function_definition
 	//| declarator compound_statement 
 	;
 ROOT
-	:translation_unit {$$ = new root($1);}
+	:translation_unit {g_root = new root($1);}
 %%
 
 
