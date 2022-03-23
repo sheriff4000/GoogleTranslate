@@ -18,16 +18,16 @@ class function_def : public node
             //args = _args;
             statements = _statements;
             id = _id->get_id();
-        };
+        }
         function_def(node_ptr _type, node_ptr _id, node_ptr _statements){
             statements = _statements;
             id = _id->get_id();
-        }; //no args in this one
-        std::string ast_print()
-        {
-            std::cout << "def_function" << std::endl;
-            return "oioioi";
+        } //no args in this one
+
+        void print(){
+            std::cout << "cool function def bro" << std::endl;
         }
+
 
         void gen_mips(std::ostream &dst, context &Context) const override
         {     

@@ -458,8 +458,8 @@ translation_unit
 	 //of type exprlist, hence we need a vector of node_ptrs
 
 external_declaration
-	: function_definition
-	| declaration 
+	: function_definition {$$ = $1;}
+	| declaration {$$ = $1;}
 	;
 
 function_definition
