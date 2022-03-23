@@ -11,6 +11,9 @@ class specifier_type: public node
         {
             type = _type;
         }
+        std::string get_id() const override{
+            return type;
+        }
         virtual ~specifier_type(){};
         void gen_mips(std::ostream &dst, context &Context, int destReg) const override {};
 

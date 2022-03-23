@@ -17,10 +17,11 @@ class statement_list : public node
             branches = {};
         }
     void gen_mips(std::ostream &dst, context &Context, int destReg) const override {
-        // for(int i = 0; i < branches.size(); i++){
-        //     branches[i]->gen_mips(dst, Context, destReg);
-        // }
         
+        for(uint32_t i = 0; i < branches.size(); i++){
+            branches[i]->gen_mips(dst, Context, destReg);
+        }
+
     }
 
     void print(){
