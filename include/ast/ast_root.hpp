@@ -10,6 +10,11 @@ class root : public node
         }
         void gen_mips(std::ostream &dst, context &Context) const override
         {
-            branches[0]->print();
+            std::cout << "progress!" << std::endl;
+            //branches[0]->print();
+        }
+
+        void print() const override{
+            std::cout << "progress!" << std::endl;
         }
 };
