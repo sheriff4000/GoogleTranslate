@@ -91,7 +91,7 @@ argument_expression_list
 	;
 
 unary_expression
-	: postfix_expression
+	: postfix_expression {$$ = $1;}
 	| INC_OP unary_expression
 	| DEC_OP unary_expression
 	| unary_operator cast_expression
@@ -109,25 +109,25 @@ unary_operator
 	;
 
 cast_expression
-	: unary_expression
+	: unary_expression {$$ = $1;}
 	| '(' type_name ')' cast_expression
 	;
 
 multiplicative_expression
-	: cast_expression
+	: cast_expression {$$ = $1;}
 	| multiplicative_expression '*' cast_expression
 	| multiplicative_expression '/' cast_expression
 	| multiplicative_expression '%' cast_expression
 	;
 
 additive_expression
-	: multiplicative_expression
+	: multiplicative_expression {$$ = $1;}
 	| additive_expression '+' multiplicative_expression
 	| additive_expression '-' multiplicative_expression
 	;
 
 shift_expression
-	: additive_expression
+	: additive_expression {$$ = $1;}
 	| shift_expression LEFT_OP additive_expression
 	| shift_expression RIGHT_OP additive_expression
 	;

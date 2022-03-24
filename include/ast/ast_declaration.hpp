@@ -5,12 +5,17 @@ class declaration :public node
     private:
         std::string type;
         std::string ident;
+        std::vector<std::string> variables;
     public:
-        declaration(node_ptr _type, std::vector<node_ptr>* declarator_list )
+        declaration(node_ptr _type, std::vector<node_ptr>* declarator_list)
         {
             type = _type->get_id();
-            
+
+            for (int i = 0; i < declarator_list.size(); i++){
+                variables.push_back(declarator_list[i]->get_id());
+            }
         }
+        
         void gen_mips(std::ostream &dst, context &Context) const override
         {
             //idefk
