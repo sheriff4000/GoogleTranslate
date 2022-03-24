@@ -411,7 +411,7 @@ labeled_statement
 compound_statement
 	: '{' '}' {$$ = new statement_list();}
 	| '{' statement_list '}' 
-	| '{' declaration_list '}' {$$ = new statement_list();}
+	| '{' declaration_list '}' {$$ = new statement_list($2);}
 	| '{' declaration_list statement_list '}'
 	;
 

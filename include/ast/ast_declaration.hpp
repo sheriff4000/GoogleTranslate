@@ -6,6 +6,7 @@ class declaration :public node
         std::string type;
         std::string ident;
         std::vector<std::string> variables;
+        std::string value;
     public:
         declaration(node_ptr _type, std::vector<node_ptr>* declarator_list)
         {
@@ -21,7 +22,8 @@ class declaration :public node
             //idefk
             int reg = Context.get_reg();
             //get a reg, then quick instruction to put it into reg?
-            dst << "li";
+            dst << "li  $" <<reg << value << std::endl;
+            
            
         }
 
