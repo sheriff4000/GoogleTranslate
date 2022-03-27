@@ -47,8 +47,8 @@ class function_def : public node
             dst << "sw      $fp,"<< statement_size-8 << "($sp)" << std::endl;
             dst << "move        $fp,$sp" << std::endl;
 
-            for(int i = 0; i < args.size(); i++){
-                dst << "sw      $" << i+4 << "," << statement_size <<
+            for(int i = 0; i < arg_size; i++){
+                dst << "sw      $" << i+4 << "," << statement_size + i*4 << "($sp)" << std::endl;
             }
 
 
