@@ -19,6 +19,10 @@ class int_literal : public node {
         void print(){
             std::cout << "integer" << std::endl;
         }
+
+        int get_val() const override{
+            return val;
+        }
 };
 
 #endif

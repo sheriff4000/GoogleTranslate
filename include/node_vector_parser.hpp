@@ -1,10 +1,11 @@
-#ifndef node_vector_parser_hpp
-#define node_vector_parser_hpp
+#ifndef node_vector_parser
+#define node_vector_parser
 
+#include <vector>
 #include "ast/ast_node.hpp"
 
 typedef std::vector<node_ptr> node_vector;
-typedef node_vector* node_vector_ptr;
+typedef node_vector *node_vector_ptr;
 
 
 inline node_vector_ptr new_vector(node_ptr node)

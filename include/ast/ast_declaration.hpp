@@ -12,9 +12,9 @@ class declaration :public node
         {
             type = _type->get_id();
 
-            for (int i = 0; i < declarator_list.size(); i++){
-                variables.push_back(declarator_list[i]->get_id());
-            }
+            // for (int i = 0; i < declarator_list->size(); i++){
+            //     variables.push_back((declarator_list[i])->get_id());
+            // }
         }
         
         void gen_mips(std::ostream &dst, context &Context) const override

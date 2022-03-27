@@ -23,6 +23,10 @@ class node{
             return "no id here";
         };
 
+        virtual int get_val() const{
+            return 0;
+        }
+
         virtual void print() const {
             std::cout << "progress!" << std::endl;
         };

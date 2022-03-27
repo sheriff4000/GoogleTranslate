@@ -22,6 +22,7 @@
 
 #include "ast/ast_root.hpp"
 #include "ast/ast_declaration.hpp"
+#include "ast/ast_assign.hpp"
 
 #include "node_vector_parser.hpp"
 
