@@ -20,6 +20,10 @@ class int_literal : public node {
             std::cout << "integer" << std::endl;
         }
 
+        int get_size() const override{
+            return 4;
+        }
+
         std::string get_val() const override{
             return std::to_string(val);
         }

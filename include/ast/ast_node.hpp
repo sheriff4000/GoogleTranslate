@@ -21,6 +21,10 @@ class node{
             std::cout << "node mips" << std::endl;
         };
 
+        virtual int get_size() const {
+            return -1; //shouldn't be in here 
+        }
+
         virtual std::string get_id() const{
             return "no id here";
         };

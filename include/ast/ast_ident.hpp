@@ -22,6 +22,10 @@ class identifier : public node {
             std::cout << id << std::endl;
         }
 
+        int get_size() const override{
+            return 4;
+        }
+
 };
 
 
