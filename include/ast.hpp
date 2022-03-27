@@ -13,6 +13,7 @@
 #include "ast/literals/ast_float.hpp"
 #include "ast/literals/ast_int.hpp"
 #include "ast/literals/ast_string.hpp"
+#include "ast/ast_sizeof.hpp"
 
 #include "ast/ast_type.hpp"
 #include "ast/ast_ident.hpp"
