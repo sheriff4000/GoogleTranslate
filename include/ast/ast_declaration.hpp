@@ -34,7 +34,7 @@ class declaration :public node
         void gen_mips(std::ostream &dst, context &Context) const override
         {
             std::cout << "inside declaration" << std::endl;
-            int size = branches.size();
+            uint32_t size = branches.size();
 
             //Iterate through all declarations to idek
             for (uint32_t i = 0; i< size; i++)

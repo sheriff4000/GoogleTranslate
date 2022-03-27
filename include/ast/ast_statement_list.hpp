@@ -35,6 +35,7 @@ class statement_list : public node
 
             out += branches[i]->get_size();
         }
+        return out;
     }
 
     void gen_mips(std::ostream &dst, context &Context) const override {
