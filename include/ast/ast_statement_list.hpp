@@ -25,6 +25,7 @@ class statement_list : public node
     void gen_mips(std::ostream &dst, context &Context, int destReg) const override {
 
         for(uint32_t i = 0; i < branches.size(); i++){
+            std::cout << "printing statements" << std::endl;
             branches[i]->gen_mips(dst, Context, destReg);
         }
 

@@ -28,7 +28,6 @@ class node{
         }
 
         virtual void print() const {
-            std::cout << "progress!" << std::endl;
         };
 };
 typedef node *node_ptr;
