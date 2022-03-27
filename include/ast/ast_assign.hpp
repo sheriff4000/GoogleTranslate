@@ -15,4 +15,4 @@ class assignment : public node {
             dst << "li $" << dest_reg << "," << value << std::endl;
             dst << "sw $" << dest_reg << ",8($fp)" << std::endl;
         }
-}
+};
