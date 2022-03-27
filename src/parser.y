@@ -97,7 +97,7 @@ unary_expression
 	| DEC_OP unary_expression
 	| unary_operator cast_expression
 	| SIZEOF unary_expression {$$ = new size_of($2);}
-	| SIZEOF '(' type_name ')'
+	| SIZEOF '(' type_name ')' {$$ = new size_of($3);}
 	;
 
 unary_operator
@@ -239,7 +239,7 @@ storage_class_specifier
 
 type_specifier
 	: VOID {$$ = new specifier_type("void");} //Better to use a class, but for now just use strings
-	| CHAR
+	| CHAR {$$ = new specifier_type("char");}
 	| SHORT
 	| INT {$$ = new specifier_type("int");} //NEEDS TO BE OF TYPE: node_ptr
 	| LONG {$$ = new specifier_type("long");}
@@ -249,7 +249,7 @@ type_specifier
 	| UNSIGNED {$$ = new specifier_type("unsigned");}
 	| struct_or_union_specifier
 	| enum_specifier
-	| TYPE_NAME
+	| TYPE_NAME {$$ = new specifier_type("type");}
 	;
 
 struct_or_union_specifier
@@ -274,7 +274,7 @@ struct_declaration
 
 specifier_qualifier_list
 	: type_specifier specifier_qualifier_list
-	| type_specifier
+	| type_specifier 
 	| type_qualifier specifier_qualifier_list
 	| type_qualifier
 	;
@@ -361,7 +361,7 @@ identifier_list
 	;
 
 type_name
-	: specifier_qualifier_list
+	: specifier_qualifier_list {$$ = (*$1)[0];}
 	| specifier_qualifier_list abstract_declarator
 	;
 

@@ -21,6 +21,7 @@ class return_stmt : public node {
         void gen_mips(std::ostream &dst, context &Context) const override{
             std::cout << "mips for return statement" << std::endl;
             std::cout << type << std::endl;
+            std::cout << return_val->get_id() << std::endl;
             if (type == "int") { 
                 dst << "li $" << dest_reg << "," << val << std::endl;
             } else if  (type == "func"){

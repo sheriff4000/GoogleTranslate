@@ -37,5 +37,6 @@
 
 
 extern node *parseAST(std::string filename);
+extern context Context;
 
 #endif
