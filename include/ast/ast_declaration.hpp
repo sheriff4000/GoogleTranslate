@@ -21,7 +21,7 @@ class declaration :public node
         {
             std::cout << "inside basic declaration" << std::endl;
             //idefk
-            int reg = Context.get_reg();
+            //int reg = Context.get_reg();
             //get a reg, then quick instruction to put it into reg?
             //dst << "li  $" <<reg << value << std::endl;
             

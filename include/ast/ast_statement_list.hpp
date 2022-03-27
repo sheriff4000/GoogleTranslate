@@ -30,8 +30,10 @@ class statement_list : public node
 
 
 
-    void gen_mips(std::ostream &dst, context &Context, int destReg) const override {
+    void gen_mips(std::ostream &dst, context &Context) const override {
         std::cout << "in statement list" << std::endl;
+        std::cout << branches.size() << std::endl;
+        
         for(uint32_t i = 0; i < branches.size(); i++){
             branches[i]->gen_mips(dst, Context);
         }
