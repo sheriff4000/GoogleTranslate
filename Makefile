@@ -24,3 +24,4 @@ clean :
 	rm -f src/*.output
 	rm -f src/*.tab.hpp
 	rm -f src/*.o
+	rm -f compiler_tests/working_dir/*

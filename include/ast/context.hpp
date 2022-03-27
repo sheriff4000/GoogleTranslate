@@ -5,11 +5,16 @@
 
 class node;
 typedef node* node_ptr;
+
 class registers
 {
 private:
     std::vector <int> register_list;
 public:
+    registers()
+    {
+        register_list = {};
+    }
 
     int get_reg()
     {
@@ -23,7 +28,13 @@ public:
         }
         return 0;
     }
+    void zero()
+    {
+        register_list = {};
+    }
 };
+
+
 
 class context
 {
@@ -31,6 +42,7 @@ private:
     //variables storing register configuration, function names mapped to pointers, idk other context stuff
     registers reg;
     std::unordered_map <std::string, node_ptr> function_defs;//not 100% sure about what maps to what, but it's ok for now
+    std::unordered_map<std::string, std::string> memory;
 
 public:
     //functions to check context should be here
@@ -41,6 +53,11 @@ public:
     node_ptr get_function(std::string name)
     {
         return function_defs[name];
+    }
+    void clean()
+    {
+        reg.zero();
+        memory = {};
     }
 
 

@@ -34,54 +34,51 @@ echo "========================================="
 
 PASSED=0
 CHECKED=0
-<<<<<<< Updated upstream
 
 #GCC FOR DRIVER, OURS FOR THE DEFAULT FILE
 #THEN LINKEM
 compiler_test="./compiler_tests"
-working_dir="${compiler_test}/working"
-mkdir -p working_dir
+working_dir="${compiler_test}/working_dir"
+mkdir -p ${working_dir}
 
 for test_type_dir in compiler_tests/*; do
     #testname=$(basename ${i} _test.txt)
+
     echo ${test_type_dir}
     for test in ${test_type_dir}/*; do
-        testname_ext=$(basename ${test} .c);
+        testname_ext=$(basename ${test});
         testname=$(basename ${testname_ext} .c);
         #echo ${b}
-        if [[ $testname == *"_driver" ]] # * is used for pattern matching
+        if [[ $testname == *"_driver" ]]; # * is used for pattern matching
         then #compile with gcc, then link, then compare
             echo "true"
 
-
-            #I then use GCC to assemble the generated assembly program (test_program.s), like so:
-            mips-linux-gnu-gcc -mfp32 -o test_program.o -c test_program.s
+            testname_no_driver=$(basename ${testname} _driver);
+            #I then use GCC to assemble the generated assembly program (test_program.s), like so: puts our assembly into the working directory as an object
+            mips-linux-gnu-gcc -mfp32 -o "${working_dir}/${testname_no_driver}.o" -c "${working_dir}/${testname_no_driver}.s"
 
             #link
-            #mips-linux-gnu-gcc -mfp32 -static -o test_program test_program.o test_program_driver.c
+            mips-linux-gnu-gcc -mfp32 -static -o "${working_dir}/${testname_no_driver}" "${working_dir}/${testname_no_driver}.o" "${test_type_dir}/${testname_ext}"
 
             #Tidy up the working directory
-            rm -rf "${working_dir}/*"
-            ;
+            #rm -rf "${working_dir}/*"
+
+            qemu-mips "${working_dir}/${testname_no_driver}"
+            # if [[ "$OK" -eq "0" ]]; then
+            # PASSED=$(( ${PASSED}+1 ));
+            # fi
+
+            # CHECKED=$(( ${CHECKED}+1 ));
         else #compile with ours
-            echo "false"
-            #bin/c_compiler -S "${test_type_dir}/${testname_ext}"" -o "${working_dir}/${testname}.s" > /dev/null 2>&1
-        ; fi
+            #echo "false"
+            bin/c_compiler -S "${test_type_dir}/${testname_ext}" -o "${working_dir}/${testname}.s" > /dev/null 2>&1
+        fi
 
         
         #mips-linux-gnu-gcc -mfp32 -o test_program.o -c test_program.s
 
 
     done
-=======
-#built and ready to test
-
-for i in compiler_tests/*; do
-    testname=$(basename ${test} _test.txt)
-    for test
-    b=$(basename ${i});
-    echo ${b}
->>>>>>> Stashed changes
     # mkdir -p working/$b
 
     # PARAMS=$(head -n 1 $i/in.params.txt | ${DOS2UNIX} );
@@ -125,15 +122,11 @@ for i in compiler_tests/*; do
     #     OK=1;
     # fi
 
-    # if [[ "$OK" -eq "0" ]]; then
-    #     PASSED=$(( ${PASSED}+1 ));
-    # fi
 
-    # CHECKED=$(( ${CHECKED}+1 ));
 
     # echo ""
 done
-
+rm -rf "${working_dir}/*"
 echo "########################################"
 echo "Passed ${PASSED} out of ${CHECKED}".
 echo ""
