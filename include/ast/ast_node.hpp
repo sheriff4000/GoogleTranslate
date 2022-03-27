@@ -29,6 +29,7 @@ class node{
 
         virtual void print() const {
         };
+        virtual void append(std::vector<node_ptr>* list){};
 };
 typedef node *node_ptr;
 

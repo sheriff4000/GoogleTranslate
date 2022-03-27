@@ -413,7 +413,7 @@ compound_statement
 	: '{' '}' {$$ = new statement_list();}
 	| '{' statement_list '}' {$$ = new statement_list($2);}
 	| '{' declaration_list '}' {$$ = new statement_list($2);}
-	| '{' declaration_list statement_list '}' {$$ = new statement_list($1); $$->append($2)}
+	| '{' declaration_list statement_list '}' {$$ = new statement_list($2); $$->append($3);}
 	;
 
 declaration_list

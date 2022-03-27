@@ -16,7 +16,7 @@ class root : public node
             //std::cout << "progress!" << std::endl;
             for (uint32_t i = 0; i < branches.size(); i++){
 
-                std::cout << "printing branches" << std::endl;
+                //std::cout << "printing branches" << std::endl;
                 branches[i]->gen_mips(dst, Context);
             }
             

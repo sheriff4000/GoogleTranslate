@@ -19,10 +19,11 @@ class declaration :public node
         
         void gen_mips(std::ostream &dst, context &Context) const override
         {
+            std::cout << "inside basic declaration" << std::endl;
             //idefk
             int reg = Context.get_reg();
             //get a reg, then quick instruction to put it into reg?
-            dst << "li  $" <<reg << value << std::endl;
+            //dst << "li  $" <<reg << value << std::endl;
             
            
         }

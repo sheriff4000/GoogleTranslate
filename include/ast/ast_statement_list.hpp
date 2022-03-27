@@ -16,7 +16,7 @@ class statement_list : public node
                 branches.push_back(     (*_statements)[i]    );
             }
         }
-        void append(std::vector<node_ptr>* _statements)
+        void append(std::vector<node_ptr>* _statements) override
         {
             for (uint32_t i =0; i < _statements->size(); i++)
             {
@@ -31,7 +31,7 @@ class statement_list : public node
 
 
     void gen_mips(std::ostream &dst, context &Context, int destReg) const override {
-
+        std::cout << "in statement list" << std::endl;
         for(uint32_t i = 0; i < branches.size(); i++){
             branches[i]->gen_mips(dst, Context);
         }
