@@ -96,7 +96,7 @@ unary_expression
 	| INC_OP unary_expression
 	| DEC_OP unary_expression
 	| unary_operator cast_expression
-	| SIZEOF unary_expression
+	| SIZEOF unary_expression {$$ = new size_of($2);}
 	| SIZEOF '(' type_name ')'
 	;
 

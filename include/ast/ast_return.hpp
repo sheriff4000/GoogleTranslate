@@ -26,6 +26,8 @@ class return_stmt : public node {
             } else if  (type == "func"){
                 std::cout << "return function call" << std::endl;
                 return_val->gen_mips(dst, Context);
+            } else if (type == "sizeof") {
+                dst << "li $" << dest_reg << "," << return_val->get_size() << std::endl;
             }
         }
 };
