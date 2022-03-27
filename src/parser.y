@@ -54,7 +54,7 @@
 %type <expr> initializer statement labeled_statement compound_statement
 %type <expr> expression_statement selection_statement iteration_statement
 %type <expr> jump_statement external_declaration function_definition ROOT
-%type <expr> cast_expression
+%type <expr> cast_expression 
 
 %type <exprlist> translation_unit struct_declaration_list argument_expression_list
 %type <exprlist> specifier_qualifier_list struct_declarator_list
@@ -448,8 +448,8 @@ jump_statement
 	: GOTO IDENTIFIER ';'
 	| CONTINUE ';'
 	| BREAK ';'
-	| RETURN ';'
-	| RETURN expression ';'
+	| RETURN ';' 
+	| RETURN expression ';' {$$ = new return_stmt($2);}
 	;
 
 translation_unit

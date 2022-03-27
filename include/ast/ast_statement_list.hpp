@@ -35,6 +35,7 @@ class statement_list : public node
         std::cout << branches.size() << std::endl;
         
         for(uint32_t i = 0; i < branches.size(); i++){
+            std::cout << "printing statment: " << i+1 << std::endl;
             branches[i]->gen_mips(dst, Context);
         }
 

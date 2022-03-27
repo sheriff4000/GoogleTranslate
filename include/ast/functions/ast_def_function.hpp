@@ -17,11 +17,11 @@ class function_def : public node
         function_def(node_ptr _type, node_ptr _id, std::vector<node_ptr> _args, node_ptr _statements){
             //args = _args;
             statements = _statements;
-            id = _id->get_id();
+            id = _id->get_val();
         }
         function_def(node_ptr _type, node_ptr _id, node_ptr _statements){
             statements = _statements;
-            id = _id->get_id();
+            id = _id->get_val();
         } //no args in this one
 
         void print(){

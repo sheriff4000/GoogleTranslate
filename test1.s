@@ -4,6 +4,7 @@ sw      $fp,4($sp)
 move    $fp,$sp
 li $2,7
 sw $2,8($fp)
+li $2,6
 move    $sp,$fp
 lw      $fp,4($sp)
 addiu   $sp,$sp,8

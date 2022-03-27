@@ -17,14 +17,16 @@ class node{
         node(){}
         virtual ~node(){}
         virtual void gen_mips(std::ostream &dst, context &Context, int destReg) const{};
-        virtual void gen_mips(std::ostream &dst, context &Context) const{};
+        virtual void gen_mips(std::ostream &dst, context &Context) const{
+            std::cout << "node mips" << std::endl;
+        };
 
         virtual std::string get_id() const{
             return "no id here";
         };
 
-        virtual int get_val() const{
-            return 0;
+        virtual std::string get_val() const{
+            return "0";
         }
 
         virtual void print() const {

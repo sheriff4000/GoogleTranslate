@@ -14,7 +14,7 @@ class identifier : public node {
         }
         void gen_mips(std::ostream &dst, context &Context, int destReg) const override {}
 
-        std::string get_id() const override{
+        std::string get_val() const override{
             return id;
         }
 

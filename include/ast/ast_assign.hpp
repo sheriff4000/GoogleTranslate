@@ -3,7 +3,7 @@
 class assignment : public node {
     private:
         int dest_reg;
-        int value;
+        std::string value;
 
     public:
         assignment(node_ptr _dest_reg, node_ptr _value){
@@ -12,6 +12,7 @@ class assignment : public node {
         }
 
         void gen_mips(std::ostream &dst, context &Context) const override{
+            std::cout << "assignment" << std::endl;
             dst << "li $" << dest_reg << "," << value << std::endl;
             dst << "sw $" << dest_reg << ",8($fp)" << std::endl;
             
