@@ -1,3 +1,3 @@
 int hi(){
-    return lo(1);
+    return lo(1,2);
 }
