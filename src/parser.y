@@ -417,7 +417,7 @@ compound_statement
 	;
 
 declaration_list
-	: declaration {$$ = new_vector($1); std::cout << "declaration" << std::endl;}
+	: declaration {$$ = new_vector($1);}
 	| declaration_list declaration {$1->push_back($2); $$ = $1;}
 	;
 

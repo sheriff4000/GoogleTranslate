@@ -18,7 +18,8 @@ int main (int argc, char *argv[])
 
     context Context;
 
-    ast->gen_mips(ofs, Context); //idk what arguments we'll need just yet
+    ast->gen_mips(ofs, Context);
+    //ast->print(); //idk what arguments we'll need just yet
     
 
     
