@@ -8,10 +8,12 @@ class return_stmt : public node {
         std::string val;
         std::string type;
         int dest_reg;
+        node_ptr return_val;
     public:
         return_stmt(node_ptr _val){
             type = _val->get_type();
             val = _val->get_val();
+            return_val = _val;
             
             dest_reg = 2;
         }
@@ -22,8 +24,8 @@ class return_stmt : public node {
             if (type == "int") { 
                 dst << "li $" << dest_reg << "," << val << std::endl;
             } else if  (type == "func"){
-                dst << "jal     " << val << std::endl; //
-                dst << "nop" << std::endl;
+                std::cout << "return function call" << std::endl;
+                return_val->gen_mips(dst, Context);
             }
         }
 };

@@ -79,7 +79,7 @@ postfix_expression
 	: primary_expression {$$ = $1;}
 	| postfix_expression '[' expression ']'
 	| postfix_expression '(' ')' {$$ = new func_call($1);}
-	| postfix_expression '(' argument_expression_list ')'
+	| postfix_expression '(' argument_expression_list ')' {$$ = new func_call($1, $3);}
 	| postfix_expression '.' IDENTIFIER
 	| postfix_expression PTR_OP IDENTIFIER
 	| postfix_expression INC_OP
@@ -87,8 +87,8 @@ postfix_expression
 	;
 
 argument_expression_list
-	: assignment_expression
-	| argument_expression_list ',' assignment_expression
+	: assignment_expression {$$ = new_vector($1);}
+	| argument_expression_list ',' assignment_expression {$1->push_back($3); $$ = $1;}
 	;
 
 unary_expression

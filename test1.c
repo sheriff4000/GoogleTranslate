@@ -1,6 +1,3 @@
-int g();
-
-int f()
-{
-    return g();
+int hi(){
+    return lo(1,2);
 }
