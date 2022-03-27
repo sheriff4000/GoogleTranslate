@@ -6,12 +6,12 @@ class function_declarator : public node
 {   
     private:
         node_ptr id;
-        std::vector<node_ptr>* params = {};
+        std::vector<node_ptr> declarators = {};
     public:
         function_declarator(node_ptr direct_decl, std::vector<node_ptr>* param_list)
         {   
             id = direct_decl;
-            params = param_list;
+            declarators = *param_list;
         }
         function_declarator(node_ptr direct_decl)
         {   
@@ -19,7 +19,7 @@ class function_declarator : public node
         }
         std::string get_id()
         {
-            return id->get_id();
+            return id->get_id();//declarator object, should return string
         }
 };
 

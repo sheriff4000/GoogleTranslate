@@ -464,13 +464,14 @@ external_declaration
 	;
 
 function_definition
-	: declaration_specifiers declarator declaration_list compound_statement {$$ = new function_def($1, $2, $3, $4);}
+	: declaration_specifiers declarator compound_statement {$$ = new function_def($1, $2, $3);} //function_def(node_ptr _type, node_ptr _id, node_vector_ptr _args, std::vector<node_ptr> statements); THIS ONE
+	//: declaration_specifiers declarator declaration_list compound_statement {$$ = new function_def($1, $2, $3, $4);}
 	 //so int main (declaration_list (list of int a, intb etc.)) then {compound statement}
 	//declaration_specifiers should be resolved just fine, int should pass through for example.
 	//declarator: should pass up from identifier(if we lex it properly) up to direct_declarator then declarator, it inlcude the empty brackets like main()
 	//we can ignore declaration_list for now since the below grammar doesn't include it, obv. in main() doesn't either
 	//compound_statement id of type statement list and has a list of node_ptr
-	| declaration_specifiers declarator compound_statement {$$ = new function_def($1, $2, $3);} //function_def(node_ptr _type, node_ptr _id, node_vector_ptr _args, std::vector<node_ptr> statements); THIS ONE
+	
 	//THIS ONE DOESN'T HAVE LIST OF ARGS, ONLY STATMENTS WHICH IS $3. idk how the overloading works tbh but should be fine.
 	//we pass the specifier (rn its a string*, better to have a class, but no), we pass the declarator (ident class), and the compound statement as a vector of node_ptrs
 	

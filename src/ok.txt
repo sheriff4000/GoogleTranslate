@@ -1,0 +1,33 @@
+declaration_list -> list of declaration(object and grammar) -> declaration- > specifier + init_decl_list
+->list of init_declarators -> init_declarators are objects of that name or declarators -> ignoring init declarators, declarator 
+-> direct_declarator -> we make a declarator from identi, to become a direct_declarator in grammar, then feed it back with more args
+->so we re-enter direct_declarator with arg1 as a declarator object, then we make a function_declarator object from it. assuming empty brackets, a function declarator is what is passed up.
+
+function_declarator will reach declaration as a specifier and a  element list with this function_declarator. We must construct a declaration from this.
+because of parameter_type_list/parameter_list, function declarator will have params in it? so it is constructed with an id from direct decl (declarator object) and a list of param declarations which are declaration objecs.
+we want to keep these declaration objects
+
+direct_declarator 
+	: IDENTIFIER {$$ = new declarator(*$1);}
+	| '(' declarator ')' {$$ = $2;}
+	| direct_declarator '[' constant_expression ']'
+	| direct_declarator '[' ']'
+	| direct_declarator '(' parameter_type_list ')' {$$ = new function_declarator($1, $3);}//List like int main(int a, int b)
+	| direct_declarator '(' identifier_list ')' {}//List like int a,b,c = 1;
+	| direct_declarator '(' ')' {$$ = new function_declarator($1);}//passing a declarator object
+	;//of type declarator
+
+
+
+
+
+
+
+
+FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCK
+
+let us begin from declarator
+fuck
+this declarator in function def will be a function_declarator <- direct_declarator construct function_declarator with declarator argument <- direct_declarator from IDENTIFIER
+we used to pass up an identifier object as this declarator. now it's a function_declarator object
+it should have this declarator object (made from IDENTIFIER) and be able to extract an id from it

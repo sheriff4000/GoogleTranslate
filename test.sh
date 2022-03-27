@@ -78,16 +78,16 @@ for test_type_dir in compiler_tests/*; do
             #rm -rf "${working_dir}/*"
 
             qemu-mips "${working_dir}/${testname_no_driver}" &> /dev/null
+            
             if [[ $? -eq "0" ]]; then
             PASSED=$(( ${PASSED}+1 ));
             echo ${testname_no_driver}
             fi
-
             CHECKED=$(( ${CHECKED}+1 ));
 
         else #compile with ours
             #echo "false"
-            bin/c_compiler -S "${test_type_dir}/${testname_ext}" -o "${working_dir}/${testname}.s" &> /dev/null
+            bin/c_compiler -S "${test_type_dir}/${testname_ext}" -o "${working_dir}/${testname}.s" #&> /dev/null
         fi
 
         
@@ -96,8 +96,8 @@ for test_type_dir in compiler_tests/*; do
 
     done
 done
-make clean
-rm -rf "${working_dir}/*"
+make clean &> /dev/null
+
 echo "########################################"
 echo "Passed ${PASSED} out of ${CHECKED}".
 echo ""

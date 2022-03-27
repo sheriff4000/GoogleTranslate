@@ -10,19 +10,17 @@ class function_def : public node
         // vector <node_ptr> branches is inherited
         std::string id;
         std::vector<node_ptr> args = {};
+        node_ptr func_decl;
         node_ptr statements;
         std::string type;
     public:
 
-        function_def(node_ptr _type, node_ptr _id, std::vector<node_ptr>* _args, node_ptr _statements){
-            args =  *_args;
-            statements = _statements;
-            id = _id->get_val();
-        }
         function_def(node_ptr _type, node_ptr _id, node_ptr _statements){
+            //type = _type->
             statements = _statements;
-            id = _id->get_val();
-            //id is of type declarator, not ident
+            id = _id->get_id();
+            //id is of type declarator
+
         } //no args in this one
 
         void print(){
