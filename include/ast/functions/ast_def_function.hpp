@@ -35,7 +35,9 @@ class function_def : public node
 
         void gen_mips(std::ostream &dst, context &Context) const override
         {    
-            int statement_size = 12;
+            
+            int arg_size = args.size();
+            int statement_size = 12 + 4*arg_size;
             statement_size += statements->get_size();
             //PROLOGUE
             dst << ".globl " << id << std::endl;

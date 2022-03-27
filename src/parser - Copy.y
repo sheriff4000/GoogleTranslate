@@ -226,7 +226,7 @@ init_declarator_list
 
 init_declarator
 	: declarator {$$ = $1;}
-	| declarator '=' initializer
+	| declarator '=' initializer  {$$ = new init_declarator($1, $3);}
 	;
 
 storage_class_specifier
