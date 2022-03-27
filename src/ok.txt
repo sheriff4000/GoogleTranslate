@@ -28,6 +28,6 @@ FUUUUUUUUUUUUUUUUUUUUUUUUUUUUUCK
 
 let us begin from declarator
 fuck
-this declarator in function def will be a function_declarator <- direct_declarator construct function_declarator with declarator argument <- direct_declarator from IDENTIFIER
+this declarator in function def will be a function_declarator in declarator grammar <- direct_declarator construct function_declarator with declarator argument <- direct_declarator from IDENTIFIER
 we used to pass up an identifier object as this declarator. now it's a function_declarator object
 it should have this declarator object (made from IDENTIFIER) and be able to extract an id from it

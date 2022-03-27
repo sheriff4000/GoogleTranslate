@@ -17,7 +17,7 @@ class function_declarator : public node
         {   
             id = direct_decl;
         }
-        std::string get_id()
+        std::string get_id() const override
         {
             return id->get_id();//declarator object, should return string
         }

@@ -68,16 +68,16 @@ for test_type_dir in compiler_tests/*; do
 
             testname_no_driver=$(basename ${testname} _driver);
             #I then use GCC to assemble the generated assembly program (test_program.s), like so: puts our assembly into the working directory as an object
-            mips-linux-gnu-gcc -mfp32 -o "${working_dir}/${testname_no_driver}.o" -c "${working_dir}/${testname_no_driver}.s" &> /dev/null
+            mips-linux-gnu-gcc -mfp32 -o "${working_dir}/${testname_no_driver}.o" -c "${working_dir}/${testname_no_driver}.s" #&> /dev/null
 
             #link
-            #echo "Linking"
-            mips-linux-gnu-gcc -mfp32 -static -o "${working_dir}/${testname_no_driver}" "${working_dir}/${testname_no_driver}.o" "${test_type_dir}/${testname_ext}" &> /dev/null
+            echo "Linking"
+            mips-linux-gnu-gcc -mfp32 -static -o "${working_dir}/${testname_no_driver}" "${working_dir}/${testname_no_driver}.o" "${test_type_dir}/${testname_ext}" #&> /dev/null
 
             #Tidy up the working directory
             #rm -rf "${working_dir}/*"
-
-            qemu-mips "${working_dir}/${testname_no_driver}" &> /dev/null
+            echo "qemu"
+            qemu-mips "${working_dir}/${testname_no_driver}" #&> /dev/null
             
             if [[ $? -eq "0" ]]; then
             PASSED=$(( ${PASSED}+1 ));
@@ -96,7 +96,7 @@ for test_type_dir in compiler_tests/*; do
 
     done
 done
-make clean &> /dev/null
+#make clean &> /dev/null
 
 echo "########################################"
 echo "Passed ${PASSED} out of ${CHECKED}".

@@ -15,7 +15,7 @@ class declarator : public node
         {
             id = ident;
         }
-        std::string get_id()
+        std::string get_id() const override
         {
             return id;
         }

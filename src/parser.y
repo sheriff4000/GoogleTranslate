@@ -323,7 +323,7 @@ direct_declarator
 	| direct_declarator '[' ']'
 	| direct_declarator '(' parameter_type_list ')' {$$ = new function_declarator($1, $3);}//List like int main(int a, int b)
 	| direct_declarator '(' identifier_list ')' {}//List like int a,b,c = 1;
-	| direct_declarator '(' ')' {$$ = new function_declarator($1);}//passing a declarator object
+	| direct_declarator '(' ')' {$$ = new function_declarator($1);}
 	;//of type declarator
 
 pointer
