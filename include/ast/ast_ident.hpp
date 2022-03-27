@@ -26,8 +26,9 @@ class identifier : public node {
             std::cout << id << std::endl;
         }
 
-        int get_size() const override{
-            return 4;
+
+        int get_size() override{
+            return 8;
         }
 
 };

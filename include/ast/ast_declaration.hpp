@@ -7,25 +7,32 @@ class declaration :public node
         std::string ident;
         std::vector<std::string> variables;
         std::string value;
+        node_ptr declarator;
+        
     public:
         declaration(node_ptr _type, std::vector<node_ptr>* declarator_list)
         {
             type = _type->get_id();
+            //need to deal with declarator list
 
-            // for (int i = 0; i < declarator_list->size(); i++){
-            //     variables.push_back((declarator_list[i])->get_id());
-            // }
+        }
+        declaration(node_ptr _type, node_ptr _declarator)
+        {
+            type = _type->get_id();
+            declarator = _declarator;
+
         }
         
         void gen_mips(std::ostream &dst, context &Context) const override
         {
             std::cout << "inside basic declaration" << std::endl;
-            //idefk
-            //int reg = Context.get_reg();
-            //get a reg, then quick instruction to put it into reg?
-            //dst << "li  $" <<reg << value << std::endl;
-            
+
+            Context.set_type(ident, type);
            
+        }
+        int get_size()
+        {
+            return 0;
         }
 
         int get_size() const override {
