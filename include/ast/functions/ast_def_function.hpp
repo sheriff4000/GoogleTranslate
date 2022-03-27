@@ -46,7 +46,7 @@ class function_def : public node
             //or do we call gen_mips on each of the parameters? and they store themselves.
 
             //MIDDLE BIT
-            statements->gen_mips(dst, Context);
+            statements->gen_mips(dst, Context); //called on type statement_list
             //this is a statement node, generating the code for it.
 
             //EPILOGUE

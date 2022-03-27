@@ -1,3 +1,6 @@
+#ifndef ast_root_hpp
+#define ast_root_hpp
+
 #include "ast_node.hpp"
 
 class root : public node
@@ -23,3 +26,5 @@ class root : public node
             std::cout << "progress!" << std::endl;
         }
 };
+
+#endif

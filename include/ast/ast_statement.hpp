@@ -12,7 +12,7 @@ class statement : public node {
 
         }
 
-        gen_mips(std::ostream &dst, context &Context) const override{
-            
+        void gen_mips(std::ostream &dst, context &Context) const override{
+            //basically put something into memory/register and adjust context
         }
 };

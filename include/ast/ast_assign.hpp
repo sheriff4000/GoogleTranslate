@@ -14,5 +14,6 @@ class assignment : public node {
         void gen_mips(std::ostream &dst, context &Context) const override{
             dst << "li $" << dest_reg << "," << value << std::endl;
             dst << "sw $" << dest_reg << ",8($fp)" << std::endl;
+            
         }
-}
+};
