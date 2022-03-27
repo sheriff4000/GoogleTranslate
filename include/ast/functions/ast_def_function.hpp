@@ -14,8 +14,8 @@ class function_def : public node
         std::string type;
     public:
 
-        function_def(node_ptr _type, node_ptr _id, std::vector<node_ptr> _args, node_ptr _statements){
-            //args = _args;
+        function_def(node_ptr _type, node_ptr _id, std::vector<node_ptr>* _args, node_ptr _statements){
+            args =  *_args;
             statements = _statements;
             id = _id->get_val();
         }
@@ -30,11 +30,14 @@ class function_def : public node
 
 
         void gen_mips(std::ostream &dst, context &Context) const override
-        {     
+        {    
+            int statement_size = 8;
+            statement_size += statements->get_size();
             //PROLOGUE
             dst << id << ":" << std::endl;
-            dst << "addiu   $sp,$sp,-8" << std::endl;
-            dst << "sw      $fp,4($sp)" << std::endl;
+            dst << "addiu   $sp,$sp," << -statement_size <<std::endl;
+            dst <<"sw      $31,"<<statement_size-4<<"($sp)"<< std::endl;
+            dst << "sw      $fp,"<< statement_size-8 << "($sp)" << std::endl;
             dst << "move    $fp,$sp" << std::endl;
 
             //ASSIGN ARGS TO REGISTERS (4 bytes each) (sequence of sw for each arg)
@@ -51,10 +54,12 @@ class function_def : public node
 
             //EPILOGUE
             dst << "move    $sp,$fp" << std::endl;
-            dst << "lw      $fp,4($sp)" << std::endl;
-            dst << "addiu   $sp,$sp,8" << std::endl;
+            dst << "lw      $31,"<<statement_size-4<<"($sp)" << std::endl;
+            dst << "lw      $fp, "<<statement_size-8 <<"($sp)" << std::endl;
+            dst << "addiu   $sp,$sp," << statement_size << std::endl;
             dst << "j       $31" << std::endl;
             dst << "nop" << std::endl;
+            dst << std::endl;
         }
 };
 

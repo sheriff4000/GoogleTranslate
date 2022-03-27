@@ -55,10 +55,10 @@ for test_type_dir in compiler_tests/*; do
 
             testname_no_driver=$(basename ${testname} _driver);
             #I then use GCC to assemble the generated assembly program (test_program.s), like so: puts our assembly into the working directory as an object
-            mips-linux-gnu-gcc -mfp32 -o "${working_dir}/${testname_no_driver}.o" -c "${working_dir}/${testname_no_driver}.s"
+            mips-linux-gnu-gcc -mfp32 -o "${working_dir}/${testname_no_driver}.o" -c "${working_dir}/${testname_no_driver}.s" > /dev/null 2>&1
 
             #link
-            mips-linux-gnu-gcc -mfp32 -static -o "${working_dir}/${testname_no_driver}" "${working_dir}/${testname_no_driver}.o" "${test_type_dir}/${testname_ext}"
+            mips-linux-gnu-gcc -mfp32 -static -o "${working_dir}/${testname_no_driver}" "${working_dir}/${testname_no_driver}.o" "${test_type_dir}/${testname_ext}" > /dev/null 2>&1
 
             #Tidy up the working directory
             #rm -rf "${working_dir}/*"

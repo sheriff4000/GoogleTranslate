@@ -28,12 +28,19 @@ class statement_list : public node
             branches = {};
         }
 
+    int get_size()
+    {
+        int out = 0;
+        for(uint32_t i = 0; i < branches.size(); i++){
 
+            out += branches[i]->get_size();
+        }
+    }
 
     void gen_mips(std::ostream &dst, context &Context) const override {
         std::cout << "in statement list" << std::endl;
         std::cout << branches.size() << std::endl;
-        
+
         for(uint32_t i = 0; i < branches.size(); i++){
             std::cout << "printing statment: " << i+1 << std::endl;
             branches[i]->gen_mips(dst, Context);

@@ -350,7 +350,7 @@ parameter_list
 	;
 
 parameter_declaration
-	: declaration_specifiers declarator
+	: declaration_specifiers declarator {$$ = new declaration($1, $2);}
 	| declaration_specifiers abstract_declarator
 	| declaration_specifiers
 	;
@@ -464,7 +464,8 @@ external_declaration
 	;
 
 function_definition
-	: declaration_specifiers declarator declaration_list compound_statement //so int main (declaration_list (list of int a, intb etc.)) then {compound statement}
+	: declaration_specifiers declarator declaration_list compound_statement {$$ = new function_def($1, $2, $3, $4);}
+	 //so int main (declaration_list (list of int a, intb etc.)) then {compound statement}
 	//declaration_specifiers should be resolved just fine, int should pass through for example.
 	//declarator: should pass up from identifier(if we lex it properly) up to direct_declarator then declarator, it inlcude the empty brackets like main()
 	//we can ignore declaration_list for now since the below grammar doesn't include it, obv. in main() doesn't either
