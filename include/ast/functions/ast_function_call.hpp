@@ -17,7 +17,7 @@ class func_call : public node{
 
         void gen_mips(std::ostream &dst, context &Context) const override {
             std::cout << "function call" << std::endl;
-            for(int i = 0; i < args.size(); i++){
+            for(uint32_t i = 0; i < args.size(); i++){
                 dst << "li      $" << i+4 << "," << args[i]->get_val() << std::endl;
             }
             dst << "jal     " << val << std::endl; //

@@ -356,8 +356,8 @@ parameter_declaration
 	;
 
 identifier_list
-	: IDENTIFIER {$$ = new_vector($1);}
-	| identifier_list ',' IDENTIFIER {$1->push_back($3); $$ = $1;}
+	: IDENTIFIER {$$ = new_vector(	new identifier($1)	);}
+	| identifier_list ',' IDENTIFIER {$1->push_back( new identifier($3)); $$ = $1;}
 	;
 
 type_name
