@@ -12,22 +12,38 @@ class declaration :public node
     public:
         declaration(node_ptr _type, std::vector<node_ptr>* declarator_list)
         {
+            //declarator list is a list of types init declarator and normal declarations.
+            // this occurs in normal function, not function def afaik
             type = _type->get_id();
+            for (uint32_t i = 0; i< declarator_list->size(); i++)
+            {
+                branches.push_back( (*declarator_list)[i] );
+            }
             //need to deal with declarator list
 
         }
+
+        //This occurs for parameter declaration at least, or not
         declaration(node_ptr _type, node_ptr _declarator)
         {
-            type = _type->get_id();
-            declarator = _declarator;
+            type = _type->get_id(); //Type is ident class
+            declarator = _declarator;//declarator is declarator class (not init_declarator)
 
         }
         
         void gen_mips(std::ostream &dst, context &Context) const override
         {
-            std::cout << "inside basic declaration" << std::endl;
+            std::cout << "inside declaration" << std::endl;
+            int size = branches.size();
 
-            Context.set_type(ident, type);
+            //Iterate through all declarations to idek
+            for (uint32_t i = 0; i< size; i++)
+            {
+
+            }
+
+
+            //Context.set_type(ident, type);
            
         }
         int get_size()

@@ -238,7 +238,7 @@ storage_class_specifier
 	;
 
 type_specifier
-	: VOID {} //Better to use a class, but for now just use strings
+	: VOID {$$ = new specifier_type("void");} //Better to use a class, but for now just use strings
 	| CHAR
 	| SHORT
 	| INT {$$ = new specifier_type("int");} //NEEDS TO BE OF TYPE: node_ptr
@@ -246,7 +246,7 @@ type_specifier
 	| FLOAT {$$ = new specifier_type("float");}
 	| DOUBLE
 	| SIGNED
-	| UNSIGNED
+	| UNSIGNED {$$ = new specifier_type("unsigned");}
 	| struct_or_union_specifier
 	| enum_specifier
 	| TYPE_NAME

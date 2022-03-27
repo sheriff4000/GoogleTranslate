@@ -58,7 +58,7 @@
 
 %type <exprlist> translation_unit struct_declaration_list argument_expression_list
 %type <exprlist> specifier_qualifier_list struct_declarator_list
-%type <exprlist> enumerator_list parameter_list
+%type <exprlist> enumerator_list parameter_type_list parameter_list
 %type <exprlist> identifier_list initializer_list declaration_list statement_list init_declarator_list
 
 %type <number> INT_LITERAL
@@ -207,7 +207,7 @@ constant_expression
 
 declaration
 	: declaration_specifiers ';'{std::cerr << "declaration with no name" << std::endl;}
-	| declaration_specifiers init_declarator_list ';' {$$ = new declaration($1, $2);}
+	| declaration_specifiers init_declarator_list ';' {$$ = new declaration($1, $2);} //init_declarator is a list of declarators or init declarators because init declarator can be either, and the list is just a list of them
 	;
 
 declaration_specifiers
@@ -226,7 +226,7 @@ init_declarator_list
 
 init_declarator
 	: declarator {$$ = $1;}
-	| declarator '=' initializer
+	| declarator '=' initializer  {$$ = new init_declarator($1, $3);}
 	;
 
 storage_class_specifier
@@ -238,7 +238,7 @@ storage_class_specifier
 	;
 
 type_specifier
-	: VOID {} //Better to use a class, but for now just use strings
+	: VOID {$$ = new specifier_type("void");} //Better to use a class, but for now just use strings
 	| CHAR
 	| SHORT
 	| INT {$$ = new specifier_type("int");} //NEEDS TO BE OF TYPE: node_ptr
@@ -246,7 +246,7 @@ type_specifier
 	| FLOAT {$$ = new specifier_type("float");}
 	| DOUBLE
 	| SIGNED
-	| UNSIGNED
+	| UNSIGNED {$$ = new specifier_type("unsigned");}
 	| struct_or_union_specifier
 	| enum_specifier
 	| TYPE_NAME
@@ -316,15 +316,15 @@ declarator
 	| direct_declarator {$$ = $1;}
 	;
 
-direct_declarator
+direct_declarator 
 	: IDENTIFIER {$$ = new identifier($1);}
-	| '(' declarator ')'
+	| '(' declarator ')' {$$ = $2;}
 	| direct_declarator '[' constant_expression ']'
 	| direct_declarator '[' ']'
-	| direct_declarator '(' parameter_type_list ')'
-	| direct_declarator '(' identifier_list ')'
+	| direct_declarator '(' parameter_type_list ')' {$$ = new declarator($1, $3);}//List like int main(int a, int b)
+	| direct_declarator '(' identifier_list ')' {}//List like int a,b,c = 1;
 	| direct_declarator '(' ')'
-	;
+	;//of type declarator
 
 pointer
 	: '*'
@@ -340,24 +340,24 @@ type_qualifier_list
 
 
 parameter_type_list
-	: parameter_list
+	: parameter_list {$$ = $1;}
 	| parameter_list ',' ELLIPSIS
 	;
 
 parameter_list
-	: parameter_declaration
-	| parameter_list ',' parameter_declaration
+	: parameter_declaration {$$ = new_vector($1);}
+	| parameter_list ',' parameter_declaration {$$ = $1; $$->push_back($3);}
 	;
 
 parameter_declaration
-	: declaration_specifiers declarator {$$ = new declaration($1, $2);}
-	| declaration_specifiers abstract_declarator
-	| declaration_specifiers
+	: declaration_specifiers declarator {$$ = new declaration($1, $2);} //declaration without a list
+	| declaration_specifiers abstract_declarator //wat is abstract
+	| declaration_specifiers //idek
 	;
 
 identifier_list
-	: IDENTIFIER
-	| identifier_list ',' IDENTIFIER
+	: IDENTIFIER {$$ = new_vector($1);}
+	| identifier_list ',' IDENTIFIER {$1->push_back($3); $$ = $1;}
 	;
 
 type_name

@@ -47,10 +47,6 @@ class function_def : public node
             dst << "sw      $fp,"<< statement_size-8 << "($sp)" << std::endl;
             dst << "move        $fp,$sp" << std::endl;
 
-            for(int i = 0; i < args.size(); i++){
-                dst << "sw      $" << i+4 << "," << statement_size <<
-            }
-
 
             //ASSIGN ARGS TO REGISTERS (4 bytes each) (sequence of sw for each arg)
             // for (uint32_t i = 0; i < args.size(); i++)
