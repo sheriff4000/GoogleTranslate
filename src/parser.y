@@ -317,13 +317,13 @@ declarator
 	;
 
 direct_declarator 
-	: IDENTIFIER {$$ = new identifier($1);}
+	: IDENTIFIER {$$ = new declarator(*$1);}
 	| '(' declarator ')' {$$ = $2;}
 	| direct_declarator '[' constant_expression ']'
 	| direct_declarator '[' ']'
-	| direct_declarator '(' parameter_type_list ')' {$$ = new declarator($1, $3);}//List like int main(int a, int b)
+	| direct_declarator '(' parameter_type_list ')' {$$ = new function_declarator($1, $3);}//List like int main(int a, int b)
 	| direct_declarator '(' identifier_list ')' {}//List like int a,b,c = 1;
-	| direct_declarator '(' ')'
+	| direct_declarator '(' ')' {$$ = new function_declarator($1);}//passing a declarator object
 	;//of type declarator
 
 pointer

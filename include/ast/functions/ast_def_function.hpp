@@ -22,6 +22,7 @@ class function_def : public node
         function_def(node_ptr _type, node_ptr _id, node_ptr _statements){
             statements = _statements;
             id = _id->get_val();
+            //id is of type declarator, not ident
         } //no args in this one
 
         void print(){

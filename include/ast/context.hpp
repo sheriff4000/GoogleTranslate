@@ -43,7 +43,7 @@ private:
     registers reg;
     std::unordered_map <std::string, node_ptr> function_defs;//not 100% sure about what maps to what, but it's ok for now
     std::unordered_map<std::string, std::string> memory;
-    std::unordered_map<std::string, int> types;
+    std::unordered_map<std::string, std::string> types;
 
 public:
     //functions to check context should be here
@@ -60,14 +60,12 @@ public:
         reg.zero();
         memory = {};
     }
-    int get_type(std::string ident){
+    std::string get_type(std::string ident){
         return types[ident];
     }
     void set_type(std::string ident, std::string type1)
     {
-        int size;
-
-        types[ident] = size;
+        types[ident] = type1;
     }
 
 

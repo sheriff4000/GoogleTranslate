@@ -28,6 +28,7 @@
 
 #include "ast/ast_declarator.hpp"
 #include "ast/ast_init_declarator.hpp"
+#include "ast/ast_function_declarator.hpp"
 
 #include "node_vector_parser.hpp"
 

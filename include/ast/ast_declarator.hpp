@@ -5,9 +5,18 @@ class declarator : public node
     private:
         std::vector<node_ptr> args;
         
+        std::string id;
     public:
         declarator(node_ptr _type, node_vector_ptr _args)
         {
             args = *_args;
+        }
+        declarator(std::string ident)
+        {
+            id = ident;
+        }
+        std::string get_id()
+        {
+            return id;
         }
 };

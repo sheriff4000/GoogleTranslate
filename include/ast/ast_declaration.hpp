@@ -39,7 +39,7 @@ class declaration :public node
             //Iterate through all declarations to idek
             for (uint32_t i = 0; i< size; i++)
             {
-
+                Context.set_type(type, branches[i]->get_id()); //branches[i] is declarators and we need their ids
             }
 
 
