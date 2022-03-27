@@ -3,7 +3,7 @@ addiu   $sp,$sp,-7
 sw      $31,3($sp)
 sw      $fp,-1($sp)
 move    $fp,$sp
-jal     g()
+jal     g
 nop
 move    $sp,$fp
 lw      $31,3($sp)

@@ -35,14 +35,15 @@ class function_def : public node
 
         void gen_mips(std::ostream &dst, context &Context) const override
         {    
-            int statement_size = 8;
+            int statement_size = 12;
             statement_size += statements->get_size();
             //PROLOGUE
+            dst << ".globl " << id << std::endl;
             dst << id << ":" << std::endl;
-            dst << "addiu   $sp,$sp," << -statement_size <<std::endl;
-            dst <<"sw      $31,"<<statement_size-4<<"($sp)"<< std::endl;
+            dst << "addiu       $sp,$sp," << -statement_size <<std::endl;
+            dst <<"sw       $31,"<<statement_size-4<<"($sp)"<< std::endl;
             dst << "sw      $fp,"<< statement_size-8 << "($sp)" << std::endl;
-            dst << "move    $fp,$sp" << std::endl;
+            dst << "move        $fp,$sp" << std::endl;
 
             //ASSIGN ARGS TO REGISTERS (4 bytes each) (sequence of sw for each arg)
             // for (uint32_t i = 0; i < args.size(); i++)
@@ -57,10 +58,10 @@ class function_def : public node
             //this is a statement node, generating the code for it.
 
             //EPILOGUE
-            dst << "move    $sp,$fp" << std::endl;
+            dst << "move        $sp,$fp" << std::endl;
             dst << "lw      $31,"<<statement_size-4<<"($sp)" << std::endl;
             dst << "lw      $fp, "<<statement_size-8 <<"($sp)" << std::endl;
-            dst << "addiu   $sp,$sp," << statement_size << std::endl;
+            dst << "addiu       $sp,$sp," << statement_size << std::endl;
             dst << "j       $31" << std::endl;
             dst << "nop" << std::endl;
             dst << std::endl;

@@ -54,37 +54,40 @@ for test_type_dir in compiler_tests/*; do
         
         #echo "${chosen_test}_driver"
 
-        if [ "${testname}" == "${chosen_test}" ] || [ "${testname}" == "${chosen_test}_driver" ]
+        if [ "${testname}" == "${chosen_test}" ] || [ "${testname}" == "${chosen_test}_driver" ] || [ "${chosen_test}" == "all" ]
         then
-            echo "Stages" 
+            #echo "Stages" 
+            true
         else
             continue
             
         fi
-        echo ${testname}
+
         if [[ $testname == *"_driver" ]];
         then #compile with gcc, then link, then compare
 
             testname_no_driver=$(basename ${testname} _driver);
             #I then use GCC to assemble the generated assembly program (test_program.s), like so: puts our assembly into the working directory as an object
-            mips-linux-gnu-gcc -mfp32 -o "${working_dir}/${testname_no_driver}.o" -c "${working_dir}/${testname_no_driver}.s" 
+            mips-linux-gnu-gcc -mfp32 -o "${working_dir}/${testname_no_driver}.o" -c "${working_dir}/${testname_no_driver}.s" &> /dev/null
 
             #link
-            mips-linux-gnu-gcc -mfp32 -static -o "${working_dir}/${testname_no_driver}" "${working_dir}/${testname_no_driver}.o" "${test_type_dir}/${testname_ext}"
+            #echo "Linking"
+            mips-linux-gnu-gcc -mfp32 -static -o "${working_dir}/${testname_no_driver}" "${working_dir}/${testname_no_driver}.o" "${test_type_dir}/${testname_ext}" &> /dev/null
 
             #Tidy up the working directory
             #rm -rf "${working_dir}/*"
 
-            qemu-mips "${working_dir}/${testname_no_driver}"
+            qemu-mips "${working_dir}/${testname_no_driver}" &> /dev/null
             if [[ $? -eq "0" ]]; then
             PASSED=$(( ${PASSED}+1 ));
+            echo ${testname_no_driver}
             fi
 
             CHECKED=$(( ${CHECKED}+1 ));
 
         else #compile with ours
             #echo "false"
-            bin/c_compiler -S "${test_type_dir}/${testname_ext}" -o "${working_dir}/${testname}.s"
+            bin/c_compiler -S "${test_type_dir}/${testname_ext}" -o "${working_dir}/${testname}.s" &> /dev/null
         fi
 
         
@@ -93,6 +96,7 @@ for test_type_dir in compiler_tests/*; do
 
     done
 done
+make clean
 rm -rf "${working_dir}/*"
 echo "########################################"
 echo "Passed ${PASSED} out of ${CHECKED}".
