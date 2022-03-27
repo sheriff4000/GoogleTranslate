@@ -22,7 +22,7 @@ class assignment : public node {
             
         }
 
-        int get_size() override
+        int get_size() const override
         {
             return value_node->get_size();
         }

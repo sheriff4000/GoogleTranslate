@@ -35,10 +35,5 @@ class declaration :public node
             return 0;
         }
 
-        int get_size() const override {
-            if(type == "int"){
-                return 4;
-            }
-        }
 
 };  

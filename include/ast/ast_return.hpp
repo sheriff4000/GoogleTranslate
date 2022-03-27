@@ -22,7 +22,7 @@ class return_stmt : public node {
             if (type == "int") { 
                 dst << "li $" << dest_reg << "," << val << std::endl;
             } else if  (type == "func"){
-                dst << "jal " << val << std::endl; //
+                dst << "jal     " << val << std::endl; //
                 dst << "nop" << std::endl;
             }
         }

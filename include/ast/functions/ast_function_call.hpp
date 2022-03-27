@@ -9,12 +9,11 @@ class func_call : public node{
         };
 
         std::string get_val() const override{
-            return val + "(" + ")";
+            return val;
         }
 
         std::string get_type() const override{
             return "func";
         }
 
-        gen
 };

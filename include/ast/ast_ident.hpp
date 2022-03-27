@@ -27,7 +27,7 @@ class identifier : public node {
         }
 
 
-        int get_size() override{
+        int get_size() const override{
             return 8;
         }
 
