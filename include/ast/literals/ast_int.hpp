@@ -24,6 +24,10 @@ class int_literal : public node {
             return 4;
         }
 
+        std::string get_type() const override{
+            return "int";
+        }
+
         std::string get_val() const override{
             return std::to_string(val);
         }

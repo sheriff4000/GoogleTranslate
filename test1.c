@@ -1,6 +1,6 @@
-int main() {
-    int a;
-    int b;
-    a = 7;
-    return 6;
+int g();
+
+int f()
+{
+    return g();
 }

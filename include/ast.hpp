@@ -24,6 +24,7 @@
 #include "ast/ast_declaration.hpp"
 #include "ast/ast_assign.hpp"
 #include "ast/ast_return.hpp"
+#include "ast/functions/ast_function_call.hpp"
 
 #include "node_vector_parser.hpp"
 

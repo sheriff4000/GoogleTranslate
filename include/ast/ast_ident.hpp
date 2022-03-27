@@ -18,6 +18,10 @@ class identifier : public node {
             return id;
         }
 
+        std::string get_type() const override{
+            return "ident";
+        }
+
         void print() const override {
             std::cout << id << std::endl;
         }

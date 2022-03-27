@@ -28,6 +28,10 @@ class function_def : public node
             std::cout << "cool function def bro" << std::endl;
         }
 
+        std::string get_id() const override{
+            return id;
+        }
+
 
         void gen_mips(std::ostream &dst, context &Context) const override
         {     

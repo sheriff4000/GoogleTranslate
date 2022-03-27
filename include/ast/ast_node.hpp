@@ -29,6 +29,10 @@ class node{
             return "no id here";
         };
 
+        virtual std::string get_type() const{
+            return "normal node";
+        }
+
         virtual std::string get_val() const{
             return "0";
         }
