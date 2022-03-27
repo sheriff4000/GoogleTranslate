@@ -1,3 +1,4 @@
-int hi(){
-    return lo(1,2);
+int f()
+{
+    return sizeof(int);
 }

@@ -1,12 +1,10 @@
-.globl hi
-hi:
+.globl f
+f:
 addiu       $sp,$sp,-12
 sw       $31,8($sp)
 sw      $fp,4($sp)
 move        $fp,$sp
-li      $4,1
-jal     lo
-nop
+li $2,0
 move        $sp,$fp
 lw      $31,8($sp)
 lw      $fp, 4($sp)

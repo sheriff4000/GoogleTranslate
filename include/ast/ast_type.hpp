@@ -6,12 +6,16 @@ class specifier_type: public node
 {
     private:
         std::string type;
+        int size;
     public:
         specifier_type(std::string _type)
         {
             type = _type;
         }
-        std::string get_id() const override{
+        specifier_type(node_ptr _node){
+            type = _node->get_type();
+        }
+        std::string get_type() const override{
             return type;
         }
         virtual ~specifier_type(){};
@@ -20,6 +24,18 @@ class specifier_type: public node
         void print(){
             std::cout << type << std::endl;
         };
+
+        std::string get_id() const override{
+            return "type";
+        }
+        int get_size() const override{
+            if (type == "int") {
+                return 4;
+            }else if (type == "char") {
+                return 1;
+            }
+
+        }
 };      
 
 

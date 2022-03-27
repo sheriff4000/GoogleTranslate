@@ -76,6 +76,7 @@ E [eE][+-]?D+
 "struct"		    { return(STRUCT); }
 "sizeof"          { return(SIZEOF); }
 
+
   /* LITERALS */
 {D}+ {yylval.number = strtol(yytext, NULL, 10); return(INT_LITERAL);}
 
