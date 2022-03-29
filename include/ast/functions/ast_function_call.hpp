@@ -17,9 +17,16 @@ class func_call : public node{
 
         void gen_mips(std::ostream &dst, context &Context) const override {
             std::cout << "function call" << std::endl;
-            // for(uint32_t i = 0; i < args.size(); i++){
-            //     dst << "li      $" << i+4 << "," << args[i]->get_val() << std::endl;
-            // }
+            for(uint32_t i = 0; i < args.size(); i++){
+                args[i]->gen_mips(dst, Context, i+4); //put it into 3
+                if (i >= 4)
+                {
+                    args[i]->gen_mips(dst, Context, 2); //load into reg 2
+                    dst << "sw $2,"<< 16 +((i-4)*4) <<"($sp)" << std::endl;
+                }
+
+            }
+            
             //Think above is putting params into mem
 
             dst << "jal     " << val << std::endl; //
