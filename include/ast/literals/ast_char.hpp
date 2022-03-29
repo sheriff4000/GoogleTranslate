@@ -18,8 +18,8 @@ class char_literal : public node {
             dst << "li $" << destReg << "," << ascii << std::endl;
         };
 
-        void print(){
-            std::cout << "char" << std::endl;
+        std::string get_type() const override{
+            return "char";
         }
 };
 

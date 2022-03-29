@@ -16,6 +16,9 @@ class float_literal : public node {
         int get_size() const override{
             return 8;
         }
+        std::string get_type() const override{
+            return "float";
+        }
 };
 
 #endif

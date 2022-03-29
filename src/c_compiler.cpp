@@ -7,13 +7,14 @@ int main (int argc, char *argv[])
     
     const node *ast = parseAST(argv[2]);
 
-    std::string o(argv[3]);
+    //std::string o(argv[3]);
     std::ofstream ofs;
-    if (o == "-o")
-    {
-        ofs.open(argv[4]);
-        //ofs is output stream i think, the file to put assembly into
-    }
+    ofs.open(argv[4]);
+    // if (o == "-o")
+    // {
+        
+    //     //ofs is output stream i think, the file to put assembly into
+    // }
     //std::cout << "before context" << std::endl;
 
     context Context;

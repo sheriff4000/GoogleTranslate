@@ -1,25 +1,17 @@
-#ifndef ast_if_statement
-#define ast_if_statement
+#ifndef ast_if_else_statement
+#define ast_if_else_statement
 
 #include "ast_node.hpp"
 
-class if_statement : public node {
+class if_else_statement : public node {
     protected:
         node_ptr if_condition;
         node_ptr statements;
         node_ptr else_statements;
     public:
         //BOTH STATEMENTS ARE OF TYPE STATEMENT LIST (i HOPE)
-        if_statement(node_ptr condition, node_ptr _statements) {
-            //basically I could make a class for conditionals?
-            //for now just eval in here 
-            //condition is an expression. idek. it could be a single literal or var.
-            //
-            if_condition = condition;
-            statements = _statements;
 
-        }
-        if_statement(node_ptr condition, node_ptr _statements, node_ptr _else_statements) {
+        if_else_statement(node_ptr condition, node_ptr _statements, node_ptr _else_statements) {
             if_condition = condition;
             statements = _statements;
             else_statements = _else_statements;
@@ -41,9 +33,8 @@ class if_statement : public node {
     
             Context.incr_label();
 
-            //then the statement code followed by the label
-            //we might need to insert a label after exiting any given statement. gonna need context for that
-            statements->gen_mips(dst, Context);
+
+            statements->gen_mips(dst, Context);//if true
 
             std::string second_label = Context.get_label();
             Context.store_label(second_label);
@@ -53,6 +44,8 @@ class if_statement : public node {
             dst << std::endl;
   
             dst <<  first_label << ":" << std::endl;
+            //else
+            else_statements->gen_mips(dst, Context);
 
         };
 

@@ -28,7 +28,7 @@ class identifier : public node {
         }
 
         std::string get_type() const override{
-            return "iden1t";
+            return "ident";
         }
 
         void print() const override {

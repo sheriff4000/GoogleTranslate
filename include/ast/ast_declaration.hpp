@@ -15,7 +15,7 @@ class declaration :public node
             //declarator list is a list of types init declarator and normal declarations.
             // this occurs in normal function, not function def afaik
             std::cout << "declaration with list" << std::endl;
-            type = _type->get_id();
+            type = _type->get_type();
             for (uint32_t i = 0; i< declarator_list->size(); i++)
             {
                 branches.push_back( (*declarator_list)[i] );
@@ -39,6 +39,7 @@ class declaration :public node
         void gen_mips(std::ostream &dst, context &Context) const override
         {
             std::cout << "inside declaration" << std::endl;
+            Context.set_type(ident, type);
             uint32_t size = branches.size();
 
             //Iterate through all declarations to idek
