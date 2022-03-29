@@ -68,7 +68,7 @@
 %%
 
 primary_expression
-	: IDENTIFIER {$$ = new identifier($1);} //constructing nodes and passing the values as the argument
+	: IDENTIFIER {$$ = new identifier($1); std::cout << *$1;} //constructing nodes and passing the values as the argument
 	| FLOAT_LITERAL {$$ = new float_literal($1);}
 	| INT_LITERAL {$$ = new int_literal($1);}
 	| STRING_LITERAL {$$ = new string_literal(*$1);}
@@ -122,9 +122,9 @@ multiplicative_expression
 	;
 
 additive_expression
-	: multiplicative_expression {$$ = $1;}
-	| additive_expression '+' multiplicative_expression
-	| additive_expression '-' multiplicative_expression
+	: multiplicative_expression {$$ = $1; std::cout << "multiplicative created" << std::endl;}
+	| additive_expression '+' multiplicative_expression {$$ = new add_op($1, $3); std::cout << "add_op created" << std::endl;}
+	| additive_expression '-' multiplicative_expression {$$ = new sub_op($1, $3);}
 	;
 
 shift_expression
@@ -197,7 +197,7 @@ assignment_operator
 	;
 
 expression
-	: assignment_expression
+	: assignment_expression {$$ = $1;}
 	| expression ',' assignment_expression
 	;
 
@@ -323,7 +323,7 @@ direct_declarator
 	| direct_declarator '[' ']'
 	| direct_declarator '(' parameter_type_list ')' {$$ = new function_declarator($1, $3);}//List like int main(int a, int b)
 	| direct_declarator '(' identifier_list ')' {}//List like int a,b,c = 1;
-	| direct_declarator '(' ')' {$$ = new function_declarator($1);}
+	| direct_declarator '(' ')' {$$ = new function_declarator($1); std::cout << "Function declarator created" << std::endl;}
 	;//of type declarator
 
 pointer
@@ -448,7 +448,7 @@ jump_statement
 	: GOTO IDENTIFIER ';'
 	| CONTINUE ';'
 	| BREAK ';'
-	| RETURN ';' 
+	| RETURN ';' //{$$ = new return_stmt();}
 	| RETURN expression ';' {$$ = new return_stmt($2);}
 	;
 
@@ -480,6 +480,7 @@ function_definition
 	;
 ROOT
 	:translation_unit {g_root = new root($1);}
+
 %%
 
 
@@ -495,6 +496,6 @@ node* parseAST(std::string filename)
   }
   g_root = NULL;
   yyparse();
-  std::cout << "parsed" << std::endl;
+  std::cout << "parsed g_root: " << g_root << std::endl;
   return g_root;
 } 

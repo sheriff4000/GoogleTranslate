@@ -39,12 +39,15 @@ class statement_list : public node
     }
 
     void gen_mips(std::ostream &dst, context &Context) const override {
-        std::cout << "in statement list" << std::endl;
-        std::cout << branches.size() << std::endl;
+        std::cout << "In statement list" << std::endl;
+        std::cout << branches.size() << "branches" << std::endl;
 
         for(uint32_t i = 0; i < branches.size(); i++){
             std::cout << "printing statment: " << i+1 << std::endl;
             branches[i]->gen_mips(dst, Context);
+            // if (Context.get_stop() == false){
+            //     break;
+            // }
         }
 
     }

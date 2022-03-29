@@ -17,7 +17,7 @@ int main (int argc, char *argv[])
     //std::cout << "before context" << std::endl;
 
     context Context;
-
+    Context.init_regs();
     ast->gen_mips(ofs, Context);
     //ast->print(); //idk what arguments we'll need just yet
     

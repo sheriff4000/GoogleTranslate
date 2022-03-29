@@ -10,6 +10,7 @@ class declarator : public node
         declarator(node_ptr _type, node_vector_ptr _args)
         {
             args = *_args;
+            id = (*_args)[0]->get_id();
         }
         declarator(std::string ident)
         {

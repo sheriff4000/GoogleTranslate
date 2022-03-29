@@ -21,11 +21,11 @@ E [eE][+-]?D+
 
   /* SEMICOLON */
 ";"           {return(';');}
-
+","		    	{ return(','); }
   /* OPERATORS */
 "*"            { return('*'); }
 "/"            { return('/'); }
-"+"             { return('/'); }
+"+"             { return('+'); }
 "-"             { return('-'); }
 "&&"            { return(AND_OP); }
 "||"            {return(OR_OP);}

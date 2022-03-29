@@ -16,18 +16,19 @@ class node{
     public:
         node(){}
         virtual ~node(){}
-        virtual void gen_mips(std::ostream &dst, context &Context, int destReg) const{};
+        virtual void gen_mips(std::ostream &dst, context &Context, int destReg) const{std::cout << "node mips destreg" << std::endl;};
         virtual void gen_mips(std::ostream &dst, context &Context) const{
             std::cout << "node mips" << std::endl;
         };
 
         virtual int get_size() const{
+            std::cout << "Node get_size()" << std::endl;
             return 0; //shouldn't be in here 
         }
 
         virtual std::string get_id() const{
             return "no id here";
-        };
+        }
 
         virtual std::string get_type() const{
             return "normal node";
@@ -36,6 +37,7 @@ class node{
         virtual std::string get_val() const{
             return "0";
         }
+        virtual std::vector<node_ptr> get_params() {}
 
         virtual void print() const {
         };
