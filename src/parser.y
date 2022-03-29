@@ -14,12 +14,13 @@
 	yytokentype token;
     std::string* string;
     int number;
+	char _char;
     float f_number;
 	node_ptr expr;
 	node_vector_ptr exprlist;
 }
 
-%token IDENTIFIER FLOAT_LITERAL INT_LITERAL STRING_LITERAL DOUBLE_LITERAL SIZEOF
+%token IDENTIFIER FLOAT_LITERAL INT_LITERAL STRING_LITERAL DOUBLE_LITERAL SIZEOF CHAR_LITERAL
 %token PTR_OP INC_OP DEC_OP LEFT_OP RIGHT_OP LE_OP GE_OP EQ_OP NE_OP
 %token AND_OP OR_OP MUL_ASSIGN DIV_ASSIGN MOD_ASSIGN ADD_ASSIGN
 %token SUB_ASSIGN LEFT_ASSIGN RIGHT_ASSIGN AND_ASSIGN
@@ -64,6 +65,7 @@
 %type <number> INT_LITERAL
 %type <f_number> FLOAT_LITERAL
 %type <string> IDENTIFIER STRING_LITERAL
+%type <number> 	CHAR_LITERAL
 
 %%
 
@@ -72,6 +74,7 @@ primary_expression
 	| FLOAT_LITERAL {$$ = new float_literal($1);}
 	| INT_LITERAL {$$ = new int_literal($1);}
 	| STRING_LITERAL {$$ = new string_literal(*$1);}
+	| CHAR_LITERAL {$$ = new char_literal($1);}
 	| '(' expression ')' {$$ = $2;}
 	;
 
@@ -240,12 +243,12 @@ storage_class_specifier
 type_specifier
 	: VOID {$$ = new specifier_type("void");} //Better to use a class, but for now just use strings
 	| CHAR {$$ = new specifier_type("char");}
-	| SHORT
+	| SHORT {$$ = new specifier_type("short");}
 	| INT {$$ = new specifier_type("int");} //NEEDS TO BE OF TYPE: node_ptr
 	| LONG {$$ = new specifier_type("long");}
 	| FLOAT {$$ = new specifier_type("float");}
 	| DOUBLE
-	| SIGNED
+	| SIGNED {$$ = new specifier_type("signed");}
 	| UNSIGNED {$$ = new specifier_type("unsigned");}
 	| struct_or_union_specifier
 	| enum_specifier

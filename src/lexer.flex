@@ -88,7 +88,8 @@ E [eE][+-]?D+
 
 L?\"(\\.|[^\\"])*\"	{ yylval.string = new std::string(yytext); return(STRING_LITERAL); }
 
-
+"'"{L}"'" { yylval.number = int(yytext[1]); return(CHAR_LITERAL); }
+"'"{D}"'" { yylval.number = int(yytext[1]); return(CHAR_LITERAL); }
 
   /* IGNORE */
 [ \t\r\n]		{;}
